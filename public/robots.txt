@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://betteralcala.org/sitemap.xml
+Sitemap: https://budget.betteralcala.org/sitemap.xml
