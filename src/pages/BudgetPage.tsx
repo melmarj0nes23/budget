@@ -251,35 +251,37 @@ export default function BudgetPage() {
               </p>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setActiveTab('tracker')}
-              className="w-full mb-4 text-left bg-[#EAF2EE] border border-[#2E8B57]/25 rounded-2xl p-5 sm:p-6 shadow-xs hover:shadow-md hover:border-[#2E8B57] transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#2E8B57] text-white">
-                    <i className="bi bi-geo-alt-fill" aria-hidden="true" />
-                  </span>
-                  <span className="font-mono-data text-xs font-bold uppercase tracking-wider text-[#2E8B57]">
-                    Community-Wide · All 21 Barangays
-                  </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <button
+                type="button"
+                onClick={() => setActiveTab('tracker')}
+                className="text-left bg-[#EAF2EE] border border-[#2E8B57]/25 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#2E8B57] transition-all cursor-pointer flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#2E8B57] text-white">
+                      <i className="bi bi-geo-alt-fill" aria-hidden="true" />
+                    </span>
+                    <span className="font-mono-data text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-[#2E8B57]/12 px-2.5 py-1 rounded-full">
+                      All 21 Barangays
+                    </span>
+                  </div>
+                  <h3 className="text-base font-bold text-[#0f2342] mb-1">
+                    Barangay-Level Project Tracker (2024–2027)
+                  </h3>
+                  <div className="text-2xl font-extrabold text-[#2E8B57] tabular-nums mb-1">
+                    Community-Wide
+                  </div>
+                  <p className="text-xs text-slate-600 m-0">
+                    Filter every funded road, FMR, flood control, and multi-purpose building across
+                    all 21 Alcala barangays from GAA (2024–2026), FY 2027 NEP/HGAB, and DPWH
+                    records.
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold text-[#0f2342] mb-1">
-                  Barangay-Level Project Tracker (2024–2027)
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 m-0 max-w-2xl">
-                  Filter every funded road, FMR, flood control, and multi-purpose building across all
-                  21 Alcala barangays from GAA (2024–2026), FY 2027 NEP/HGAB, and DPWH records.
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#0f2342] text-white text-xs font-bold px-4 py-2 whitespace-nowrap self-start sm:self-center shrink-0">
-                <span>Open Tracker</span>
-                <i className="bi bi-arrow-right" aria-hidden="true" />
-              </span>
-            </button>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <span className="mt-4 text-xs font-bold text-[#2E8B57]">
+                  Open Tracker →
+                </span>
+              </button>
 
               <button
                 type="button"
