@@ -1123,53 +1123,55 @@ export default function BudgetPage() {
             </div>
           )}
 
-          <div className="grid grid-2 mt-6" style={{ gap: 'var(--spacing-md)' }}>
-            <div className="bg-white border border-black/10 rounded-xl p-5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-6 items-stretch">
+            <div className="lg:col-span-5 bg-white border border-black/10 rounded-xl p-5 flex flex-col">
               <h3 className="text-base font-bold text-[#0032a0] mb-3">
                 FY {activeBudget.fiscalYear} Enactment &amp; Provincial Review
               </h3>
-              <dl className="space-y-2 text-sm text-slate-700">
+              <dl className="space-y-2.5 text-sm text-slate-700 m-0">
                 <div>
                   <dt className="font-semibold text-slate-900">Municipal Enactment</dt>
-                  <dd>{activeBudget.appropriationOrdinance}</dd>
+                  <dd className="m-0">{activeBudget.appropriationOrdinance}</dd>
                 </div>
                 <div>
                   <dt className="font-semibold text-slate-900">Sangguniang Panlalawigan Action</dt>
-                  <dd>{activeBudget.spResolution}</dd>
+                  <dd className="m-0">{activeBudget.spResolution}</dd>
                 </div>
                 <div>
                   <dt className="font-semibold text-slate-900">National Tax Allotment (NTA) &amp; 20% DF</dt>
-                  <dd>{activeBudget.ntaShareNote}</dd>
+                  <dd className="m-0">{activeBudget.ntaShareNote}</dd>
                 </div>
               </dl>
             </div>
 
-            <div className="bg-white border border-black/10 rounded-xl p-5">
-              <h3 className="text-base font-bold text-[#0032a0] mb-3">
-                Understanding Budget Terms &amp; Public Records
-              </h3>
-              <ul className="space-y-2.5 text-sm text-slate-700">
-                <li>
-                  <strong>Approved Budget:</strong> Maximum spending authority enacted by the
-                  Sangguniang Bayan and declared operative by the Sangguniang Panlalawigan.
-                </li>
-                <li>
-                  <strong>Obligations:</strong> Binding commitments (contracts/purchase orders)
-                  charged against approved appropriations.
-                </li>
-                <li>
-                  <strong>Disbursements &amp; Actual Expenditures:</strong> Cash settled and final
-                  audited expenses reported in the BLGF Statement of Receipts and Expenditures (SRE)
-                  and Commission on Audit (COA) Annual Audit Reports.
-                </li>
-              </ul>
+            <div className="lg:col-span-7 bg-white border border-black/10 rounded-xl p-5 flex flex-col justify-between">
+              <div>
+                <h3 className="text-base font-bold text-[#0032a0] mb-3">
+                  Understanding Budget Terms &amp; Public Records
+                </h3>
+                <ul className="space-y-2 text-sm text-slate-700 m-0">
+                  <li>
+                    <strong>Approved Budget:</strong> Maximum spending authority enacted by the
+                    Sangguniang Bayan and declared operative by the Sangguniang Panlalawigan.
+                  </li>
+                  <li>
+                    <strong>Obligations:</strong> Binding commitments (contracts/purchase orders)
+                    charged against approved appropriations.
+                  </li>
+                  <li>
+                    <strong>Disbursements &amp; Actual Expenditures:</strong> Cash settled and final
+                    audited expenses reported in the BLGF Statement of Receipts and Expenditures (SRE)
+                    and Commission on Audit (COA) Annual Audit Reports.
+                  </li>
+                </ul>
+              </div>
 
-              <div className="mt-4 pt-4 border-t border-black/10 flex flex-wrap gap-2">
+              <div className="mt-4 pt-4 border-t border-black/10 grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <a
                   href="https://blgf.gov.ph/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-outline btn-sm"
+                  className="btn btn-outline btn-sm justify-center whitespace-nowrap !px-2.5 !text-xs"
                 >
                   BLGF eSRE Portal <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                 </a>
@@ -1177,7 +1179,7 @@ export default function BudgetPage() {
                   href="https://www.coa.gov.ph/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-outline btn-sm"
+                  className="btn btn-outline btn-sm justify-center whitespace-nowrap !px-2.5 !text-xs"
                 >
                   COA Region I Audit Reports <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                 </a>
@@ -1185,7 +1187,7 @@ export default function BudgetPage() {
                   href="https://notices.philgeps.gov.ph/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-outline btn-sm"
+                  className="btn btn-outline btn-sm justify-center whitespace-nowrap !px-2.5 !text-xs"
                 >
                   PhilGEPS Procurement <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                 </a>
