@@ -16,6 +16,22 @@ function formatPeso(amount: number): string {
   })}`;
 }
 
+function formatCompactPhp(amount: number): string {
+  if (amount >= 1_000_000_000) return `₱${(amount / 1_000_000_000).toFixed(2)}B`;
+  if (amount >= 1_000_000) return `₱${(amount / 1_000_000).toFixed(2)}M`;
+  return `₱${amount.toLocaleString('en-PH')}`;
+}
+
+interface NationalBudgetSummary {
+  gaaCount: number;
+  hgabCount: number;
+  fy2024: number;
+  fy2025: number;
+  fy2026: number;
+  fy2027Nep: number;
+  fy2027House: number;
+}
+
 function isValidBudgetYear(item: unknown): item is BudgetYearRecord {
   if (!item || typeof item !== 'object') return false;
   const r = item as Record<string, unknown>;
@@ -118,7 +134,34 @@ export default function BudgetPage() {
   const [hasManuallySelectedYear, setHasManuallySelectedYear] = useState(false);
   const [projectSearch, setProjectSearch] = useState(() => searchParams.get('project') || '');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [nationalSummary, setNationalSummary] = useState<NationalBudgetSummary | null>(null);
   const activeTabRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/data/national-budget-alcala.json')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (cancelled || !data) return;
+        const gaa = Array.isArray(data.gaaProjects) ? data.gaaProjects : [];
+        const hgab = Array.isArray(data.hgab2027Projects) ? data.hgab2027Projects : [];
+        const sumKey = (rows: Record<string, unknown>[], key: string) =>
+          rows.reduce((total, row) => total + (Number(row[key]) || 0), 0);
+        setNationalSummary({
+          gaaCount: gaa.length,
+          hgabCount: hgab.length,
+          fy2024: sumKey(gaa, 'fy2024Php'),
+          fy2025: sumKey(gaa, 'fy2025Php'),
+          fy2026: sumKey(gaa, 'fy2026Php'),
+          fy2027Nep: sumKey(hgab, 'nepPhp'),
+          fy2027House: sumKey(hgab, 'housePhp'),
+        });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     activeTabRef.current?.scrollIntoView({
@@ -330,13 +373,69 @@ export default function BudgetPage() {
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
                     Project Transparency (GAA &amp; FY 2027)
                   </h3>
-                  <div className="text-2xl font-extrabold text-[#2E8B57] tabular-nums mb-1">
-                    FY 2020–2027 Explorer
-                  </div>
-                  <p className="text-xs text-slate-600 m-0">
-                    Compare FY 2027 NEP vs. House Bill &amp; 2020–2026 GAA for Alcala, Pangasinan,
-                    and nationwide LGUs.
-                  </p>
+                  {nationalSummary ? (
+                    <>
+                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2">
+                        <span className="text-2xl font-extrabold text-[#2E8B57] tabular-nums">
+                          {formatCompactPhp(
+                            nationalSummary.fy2024 + nationalSummary.fy2025 + nationalSummary.fy2026
+                          )}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-500">
+                          FY 2024–2026 GAA ({nationalSummary.gaaCount} projects)
+                        </span>
+                      </div>
+                      <div className="space-y-1.5 mb-2.5">
+                        {[
+                          { label: 'FY 2024 GAA', amount: nationalSummary.fy2024, tone: 'bg-[#26489A]' },
+                          { label: 'FY 2025 GAA', amount: nationalSummary.fy2025, tone: 'bg-[#26489A]' },
+                          { label: 'FY 2026 GAA', amount: nationalSummary.fy2026, tone: 'bg-[#26489A]' },
+                          { label: 'FY 2027 NEP', amount: nationalSummary.fy2027Nep, tone: 'bg-[#008080]' },
+                          { label: 'FY 2027 House', amount: nationalSummary.fy2027House, tone: 'bg-[#2E8B57]' },
+                        ].map((row) => {
+                          const peak = Math.max(
+                            nationalSummary.fy2024,
+                            nationalSummary.fy2025,
+                            nationalSummary.fy2026,
+                            nationalSummary.fy2027Nep,
+                            nationalSummary.fy2027House,
+                            1
+                          );
+                          const widthPct = Math.max(6, Math.round((row.amount / peak) * 100));
+                          return (
+                            <div key={row.label} className="grid grid-cols-[96px_1fr_72px] items-center gap-2 text-[11px]">
+                              <span className="font-mono-data font-semibold text-slate-600">
+                                {row.label}
+                              </span>
+                              <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                                <div
+                                  className={`h-full rounded-full ${row.tone}`}
+                                  style={{ width: `${widthPct}%` }}
+                                />
+                              </div>
+                              <span className="font-mono-data font-bold text-[#0f2342] text-right tabular-nums">
+                                {formatCompactPhp(row.amount)}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <p className="text-[11px] text-slate-500 m-0">
+                        Published GAA/NEP/HGAB allocations for Alcala ({nationalSummary.hgabCount} FY 2027
+                        projects), not actual spending.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-2xl font-extrabold text-[#2E8B57] tabular-nums mb-1">
+                        FY 2020–2027 Explorer
+                      </div>
+                      <p className="text-xs text-slate-600 m-0">
+                        Compare FY 2027 NEP vs. House Bill &amp; 2020–2026 GAA for Alcala,
+                        Pangasinan, and nationwide LGUs.
+                      </p>
+                    </>
+                  )}
                 </div>
                 <span className="mt-4 text-xs font-bold text-[#2E8B57]">
                   Open Project Transparency →
