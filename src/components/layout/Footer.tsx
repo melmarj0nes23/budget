@@ -110,7 +110,7 @@ export default function Footer() {
                 <i className="bi bi-globe2" aria-hidden="true" />
               </a>
               <a
-                href="https://github.com/melmarj0nes23/betteralcala"
+                href="https://github.com/melmarj0nes23/budget"
                 className="footer-social-btn"
                 target="_blank"
                 rel="noopener noreferrer"
