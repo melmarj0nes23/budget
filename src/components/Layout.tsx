@@ -244,7 +244,7 @@ export function Layout({ currentRoute, onNavigate, children }: LayoutProps) {
         <div className="fs-progress" aria-hidden="true" />
       </header>
 
-      <main id="main-content" className="max-w-[1200px] w-full mx-auto px-4 sm:px-6 py-8">
+      <main id="main-content" className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 py-8">
         {children}
       </main>
 
