@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import type { LanguageCode } from '../i18n/types';
 import type { PageRoute } from '../types/budget';
-import HotlineBar from './HotlineBar';
 
 const MAIN_SITE_URL = 'https://betteralcala.org';
 
@@ -105,8 +104,6 @@ export function Layout({ currentRoute, onNavigate, children }: LayoutProps) {
       <a href="#main-content" className="skip-link">
         {t.nav.skipToContent}
       </a>
-
-      <HotlineBar />
 
       <header ref={headerRef} className="site-header">
         <div className="container header-inner">
