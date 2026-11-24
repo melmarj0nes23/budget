@@ -474,14 +474,14 @@ export default function BudgetPage() {
                       </div>
                       <div className="flex flex-wrap gap-1.5 text-[11px]">
                         <span className="inline-flex items-center gap-1 rounded-full bg-[#D1432A]/10 text-[#D1432A] font-semibold px-2.5 py-0.5">
-                          House bill only: {nationalSummary.houseOnlyCount}
+                          Inserted: {nationalSummary.houseOnlyCount}
                         </span>
                         <span className="inline-flex items-center gap-1 rounded-full bg-[#2E8B57]/10 text-[#2E8B57] font-semibold px-2.5 py-0.5">
-                          Same in both: {nationalSummary.sameCount}
+                          Matched: {nationalSummary.sameCount}
                         </span>
                         {nationalSummary.unconfirmedCount > 0 && (
                           <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 text-amber-900 font-semibold px-2.5 py-0.5">
-                            Unconfirmed match: {nationalSummary.unconfirmedCount}
+                            Needs Review: {nationalSummary.unconfirmedCount}
                           </span>
                         )}
                       </div>
