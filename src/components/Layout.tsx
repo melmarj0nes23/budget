@@ -32,12 +32,13 @@ export function Layout({ currentRoute, onNavigate, children }: LayoutProps) {
     { route: 'compare', label: t.nav.compare },
     { route: 'locality', label: t.nav.locality },
     { route: 'socioeconomic', label: t.nav.socioeconomic },
-    { route: 'methodology', label: t.nav.methodology },
-    { route: 'about', label: t.nav.about },
   ];
+
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
 
   const closeMenu = useCallback(() => {
     setMobileMenuOpen(false);
+    setAboutDropdownOpen(false);
   }, []);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, route: PageRoute) => {
@@ -100,7 +101,7 @@ export function Layout({ currentRoute, onNavigate, children }: LayoutProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#0f2342]">
+    <>
       <a href="#main-content" className="skip-link">
         {t.nav.skipToContent}
       </a>
@@ -159,10 +160,62 @@ export function Layout({ currentRoute, onNavigate, children }: LayoutProps) {
                   </li>
                 );
               })}
+              <li className={`has-dropdown ${aboutDropdownOpen ? 'dropdown-open' : ''}`}>
+                <a
+                  href={routeToPath('methodology')}
+                  className={
+                    currentRoute === 'methodology' || currentRoute === 'about' ? 'active' : ''
+                  }
+                  aria-haspopup="true"
+                  aria-expanded={aboutDropdownOpen ? 'true' : 'false'}
+                  onClick={(e) => {
+                    if (isMobileNav()) {
+                      e.preventDefault();
+                      setAboutDropdownOpen((prev) => !prev);
+                    } else {
+                      handleLinkClick(e, 'methodology');
+                    }
+                  }}
+                >
+                  {t.nav.methodology}
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a
+                      href={routeToPath('methodology')}
+                      onClick={(e) => handleLinkClick(e, 'methodology')}
+                    >
+                      {t.nav.methodology}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={routeToPath('about')}
+                      onClick={(e) => handleLinkClick(e, 'about')}
+                    >
+                      {t.nav.about}
+                    </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </nav>
 
           <div className="header-actions flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => {
+                onNavigate('explorer');
+                closeMenu();
+              }}
+              className="header-search-trigger"
+              aria-label="Open Budget Explorer search"
+              title="Search Budget Explorer"
+            >
+              <i className="bi bi-search" aria-hidden="true" />
+              <span className="hidden xl:inline">Search</span>
+            </button>
+
             <div className="lang-selector" role="group" aria-label={t.meta.languageLabel}>
               {langOptions.map((opt) => (
                 <button
@@ -194,7 +247,7 @@ export function Layout({ currentRoute, onNavigate, children }: LayoutProps) {
         <div className="fs-progress" aria-hidden="true" />
       </header>
 
-      <main id="main-content" className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 py-8">
+      <main id="main-content" className="max-w-[1200px] w-full mx-auto px-4 sm:px-6 py-8">
         {children}
       </main>
 
@@ -376,6 +429,6 @@ export function Layout({ currentRoute, onNavigate, children }: LayoutProps) {
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 }
