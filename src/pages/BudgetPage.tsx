@@ -683,7 +683,7 @@ export default function BudgetPage() {
                     </span>
                   </div>
                   <div
-                    className="flex flex-nowrap items-center gap-1 rounded-full bg-slate-100 p-0.5 w-fit max-w-full overflow-x-auto mb-3"
+                    className="flex flex-nowrap items-center gap-1 rounded-full bg-slate-100 p-0.5 w-fit max-w-full overflow-x-auto mb-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
                     role="group"
                     aria-label="Filter barangay distribution by fiscal year"
                   >
