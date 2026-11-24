@@ -411,13 +411,14 @@ export function DashboardPage({ onNavigate, onInspectDepartment }: DashboardPage
                 </span>
               </div>
 
-              <div className="mt-4 h-72 w-full">
+              <div className="mt-4 flex-1 min-h-[320px] lg:min-h-[420px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={trendData} margin={{ top: 10, right: 8, left: 0, bottom: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
                     <XAxis
                       dataKey="label"
-                      tick={{ fontSize: 11, fill: '#475569' }}
+                      interval={0}
+                      tick={{ fontSize: 10.5, fill: '#475569' }}
                       axisLine={{ stroke: '#CBD5E1' }}
                       tickLine={false}
                     />
