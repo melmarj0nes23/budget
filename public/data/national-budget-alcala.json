@@ -1,0 +1,424 @@
+{
+  "syncedAt": "2026-11-21T16:52:51.099Z",
+  "sourceApi": "https://budget.bettergov.ph/api/v1",
+  "sourceDocs": "https://budget.bettergov.ph/docs",
+  "notice": "Independent and unofficial. This comparison is our own reading of the published documents, not an official record of the budget department, the agencies or the House. Figures are the amounts published in the documents, not spending. No allegations. An insertion, deletion, or amount-change candidate describes a provisional comparison between identified sources. That classification alone does not establish irregularity or wrongdoing by any office or official and should not be represented as such. Absence from an API snapshot likewise does not establish absence from the published NEP or concealment. Read the full notice: https://budget.bettergov.ph/hgab/2027/methodology#disclaimer.",
+  "gaaProjects": [
+    {
+      "famKey": "18-001|construction of flood control riverbank structure along agno and allied rivers alcala pangasinan",
+      "name": "Construction of Flood Control Riverbank Structure along Agno and Allied Rivers, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 100000000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|improvement of road alcala pangasinan",
+      "name": "Improvement of Road, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 20000000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "05-001|concreting of purok 5  6 brgy san pedro apartado fmr brgy san pedro apartado alcala pangasinan",
+      "name": "Concreting of Purok 5 & 6 Brgy. San Pedro Apartado FMR, Brgy. San Pedro Apartado, Alcala, Pangasinan",
+      "department": "Department of Agriculture (DA)",
+      "fy2024Php": 15000000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "05-001|concreting of sitio gualao  sitio belidan brgy bersamin fmr brgy bersamin alcala pangasinan",
+      "name": "Concreting of Sitio Gualao - Sitio Belidan, Brgy. Bersamin FMR, Brgy. Bersamin, Alcala, Pangasinan",
+      "department": "Department of Agriculture (DA)",
+      "fy2024Php": 15000000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "05-001|concreting of sitio malaguena brgy macayo fmr brgy macayo alcala pangasinan",
+      "name": "Concreting of Sitio Malaguena, Brgy. Macayo FMR, Brgy. Macayo, Alcala, Pangasinan",
+      "department": "Department of Agriculture (DA)",
+      "fy2024Php": 12500000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of road brgy san pedro ili alcalapangasinan",
+      "name": "Construction of Road, Brgy. San Pedro Ili, Alcala,Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 10000000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multi  purpose building  covered court  at pindangan east elementary school barangay pindangan east alcala pangasinan",
+      "name": "Construction of Multi - Purpose Building  ( Covered Court )  at Pindangan East Elementary School, Barangay Pindangan East, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 7500000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multi  purpose building  covered court  at south central school barangay canarvacanan alcala pangasinan",
+      "name": "Construction of Multi - Purpose Building  ( Covered Court )  at South Central School, Barangay Canarvacanan, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 7500000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multi  purpose building  covered court  at vacante integrated school barangay vacante alcala pangasinan",
+      "name": "Construction of Multi - Purpose Building  ( Covered Court )  at Vacante Integrated School, Barangay Vacante, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 7500000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multi  purpose building  covered court  san pedro 2i elementary school barangay san pedo ili alcala pangasinan",
+      "name": "Construction of Multi - Purpose Building  ( Covered Court )  San PedRO 2I Elementary School, Barangay San Pedo Ili, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 7500000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multi  purpose building at barangay pindangan east alcala pangasinan",
+      "name": "Construction of Multi - Purpose Building at Barangay Pindangan East, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 6000000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multi  purpose building  barangay san nicolas alcala pangasinan",
+      "name": "Construction of Multi - Purpose Building , Barangay San Nicolas, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 5000000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building  senior citizens center   barangay poblacion west alcala pangasinan",
+      "name": "Construction of Multipurpose Building   ( Senior Citizens Center ) , Barangay Poblacion West, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 5000000,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "05-001|concreting of brgy macayo fmr brgy macayo alcala pangasinan",
+      "name": "Concreting of Brgy. Macayo FMR, Brgy. Macayo, Alcala, Pangasinan",
+      "department": "Department of Agriculture (DA)",
+      "fy2024Php": 0,
+      "fy2025Php": 10000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "05-001|concreting of brgy san pedro apartado fmr brgy san pedro apartado alcala pangasinan",
+      "name": "Concreting of Brgy. San Pedro Apartado FMR, Brgy. San Pedro Apartado, Alcala, Pangasinan",
+      "department": "Department of Agriculture (DA)",
+      "fy2024Php": 0,
+      "fy2025Php": 10000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building at barangay anulid alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building at Barangay Anulid, Alcala Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 7500000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building barangay atainan alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Barangay Atainan, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 6000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building barangay san juan alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Barangay San Juan, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 6000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building covered court barangay poblacion west alcala pangasinan 15842992 120 521126",
+      "name": "Construction of Multi-Purpose Building (Covered Court), Barangay Poblacion West, Alcala, Pangasinan (15.842992, 120. 521126)",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 7500000
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building covered court san juan elementary school school id 101704 barangay san juan alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building (Covered Court), San Juan Elementary School (School ID: 101704), Barangay San Juan, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 7500000
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building covered court san vicente elementary school school id 101707 barangay san vicente alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building (Covered Court), San Vicente Elementary School (School ID: 101707), Barangay San Vicente, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 7500000
+    },
+    {
+      "famKey": "18-001|construction of road alcala pangasinan",
+      "name": "Construction of Road, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 32000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of road at brgy gualsic alcala pangasinan",
+      "name": "Construction of Road at Brgy. Gualsic, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 10000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of road barangay atainan alcala pangasinan",
+      "name": "Construction of Road, Barangay Atainan, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 10000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of roads barangay canarvacanan alcala pangasinan sta 0000  sta 0990",
+      "name": "Construction of Roads, Barangay Canarvacanan, Alcala, Pangasinan Sta. 0+000 - Sta. 0+990",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 12155000
+    },
+    {
+      "famKey": "18-001|construction of roads barangay caranglaan alcala pangasinan sta 0000  sta 0793",
+      "name": "Construction of Roads, Barangay Caranglaan, Alcala, Pangasinan  Sta. 0+000 - Sta. 0+793",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 9800000
+    },
+    {
+      "famKey": "18-001|construction of roads barangay curareng alcala pangasinan sta 0000  sta 0793",
+      "name": "Construction of Roads, Barangay Curareng, Alcala, Pangasinan  Sta. 0+000 - Sta. 0+793",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 9800000
+    },
+    {
+      "famKey": "18-001|construction of roads barangay laoac alcala pangasinan sta 0000  sta 0793",
+      "name": "Construction of Roads, Barangay Laoac, Alcala, Pangasinan  Sta. 0+000 - Sta. 0+793",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 9800000
+    },
+    {
+      "famKey": "18-001|rehabilitationimprovement of roads along alcala pangasinan",
+      "name": "Rehabilitation/Improvement of Roads along Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "fy2024Php": 0,
+      "fy2025Php": 20000000,
+      "fy2026Php": 0
+    }
+  ],
+  "hgab2027Projects": [
+    {
+      "id": "house-reading:6581",
+      "dataset": "dpwh",
+      "title": "Reconstruction/Improvement of Roads, s. Pindangan - Poblacion - San Juan, San Vicente, Laoac and Anulid, Alcala, Pangasinan, K0176+200 - K0186+000",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "House bill only",
+      "nepPhp": null,
+      "housePhp": 55000000,
+      "deltaPhp": null,
+      "nepPdfUrl": null,
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=414",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A6581"
+    },
+    {
+      "id": "house-reading:11034",
+      "dataset": "dpwh",
+      "title": "Construction (Completion) of Multi-Purpose Building at Barangay Poblacion West, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 25000000,
+      "housePhp": 25000000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=561",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=632",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11034"
+    },
+    {
+      "id": "house-reading:6564",
+      "dataset": "dpwh",
+      "title": "Construction of Road at Barangay San Vicente, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 9000000,
+      "housePhp": 9000000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=434",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=415",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A6564"
+    },
+    {
+      "id": "house-reading:11039",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building at Barangay Atainan, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Possible match, unconfirmed",
+      "nepPhp": null,
+      "housePhp": 7500000,
+      "deltaPhp": null,
+      "nepPdfUrl": null,
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=633",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11039"
+    },
+    {
+      "id": "house-reading:11053",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building at Barangay Poblacion East, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 7500000,
+      "housePhp": 7500000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=562",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=634",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11053"
+    },
+    {
+      "id": "house-reading:11058",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building (Covered Court) at Convertible to Evacuation Center, Barangay Laoac, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 7500000,
+      "housePhp": 7500000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=561",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=632",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11058"
+    },
+    {
+      "id": "house-reading:11545",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building at Barangay Macayo, Alcala, Pangasinan (15.862021, 120.509975)",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "House bill only",
+      "nepPhp": null,
+      "housePhp": 7000000,
+      "deltaPhp": null,
+      "nepPdfUrl": null,
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=687",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11545"
+    },
+    {
+      "id": "house-reading:11041",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building at Barangay Bersamin, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 6500000,
+      "housePhp": 6500000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=561",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=633",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11041"
+    },
+    {
+      "id": "house-reading:11049",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building at Barangay Gualsic, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 6500000,
+      "housePhp": 6500000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=562",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=633",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11049"
+    },
+    {
+      "id": "house-reading:11056",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building at Barangay San Pedro Apartado, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 6500000,
+      "housePhp": 6500000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=562",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=634",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11056"
+    },
+    {
+      "id": "house-reading:11044",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building at Barangay Canarvacanan, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 5000000,
+      "housePhp": 5000000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=561",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=633",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11044"
+    },
+    {
+      "id": "house-reading:11051",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building at Barangay Pindangan Centro, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 5000000,
+      "housePhp": 5000000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=562",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=633",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11051"
+    },
+    {
+      "id": "house-reading:11052",
+      "dataset": "dpwh",
+      "title": "Construction of Multi-Purpose Building at Barangay Pindangan East, Alcala, Pangasinan",
+      "program": "Convergence and Special Support Program",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 5000000,
+      "housePhp": 5000000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-vol-iib.pdf#page=562",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ic.pdf#page=634",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/dpwh/p/house-reading%3A11052"
+    },
+    {
+      "id": "pair:nep_fmr:p2:r6:ib:p668:r3",
+      "dataset": "fmr",
+      "title": "Construction of Brgy. San Vicente FMR, Brgy. San Vicente, Alcala, Pangasinan",
+      "program": "REPAIR/REHABILITATION AND CONSTRUCTION OF FARM-TO-MARKET ROADS IN DESIGNATED KEY PRODUCTION AREAS",
+      "statusLabel": "Same amount in both",
+      "nepPhp": 15000000,
+      "housePhp": 15000000,
+      "deltaPhp": 0,
+      "nepPdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/nep2027-fmr.pdf#page=2",
+      "housePdfUrl": "https://budget-assets.bettergov.ph/hgab/2027/pdf/hb10858-3r-vol-ib.pdf#page=668",
+      "detailUrl": "https://budget.bettergov.ph/hgab/2027/fmr/p/pair%3Anep_fmr%3Ap2%3Ar6%3Aib%3Ap668%3Ar3"
+    }
+  ]
+}

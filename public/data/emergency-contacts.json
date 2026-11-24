@@ -1,0 +1,278 @@
+{
+  "contacts": [
+    {
+      "id": "alcala-mps",
+      "office": "Alcala Police Station (Municipal Police Station)",
+      "category": "Police",
+      "phones": [
+        "0922-3855616",
+        "0905-3712249",
+        "0998-5985127",
+        "(075) 593-2829",
+        "0917-586-6662",
+        "0929-972-3562",
+        "0998-967-3055"
+      ],
+      "email": "alcala.mps.pppo_r01@pnp.gov.ph",
+      "address": "Poblacion East, Alcala, 2425 Pangasinan",
+      "hours": "24/7 Police Assistance & Emergency Response",
+      "citation": {
+        "sourceTitle": "PNP Pangasinan Directory & Alcala Local Emergency Contact List",
+        "sourceUrl": "https://pnp.gov.ph/",
+        "issuingAgency": "Philippine National Police (PNP) Region I / LGU Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "alcala-bfp",
+      "office": "Alcala Bureau of Fire Protection (BFP Alcala)",
+      "category": "Fire Protection",
+      "phones": [
+        "0917-1893611",
+        "0961-6321000",
+        "911"
+      ],
+      "address": "Alcala Fire Station, Poblacion East, Alcala, 2425 Pangasinan",
+      "hours": "24/7 Fire Suppression & Rescue Dispatch",
+      "citation": {
+        "sourceTitle": "Alcala Local Emergency Contact Directory & BFP Region I",
+        "sourceUrl": "https://bfp.gov.ph/",
+        "issuingAgency": "Bureau of Fire Protection – Alcala / LGU Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "alcala-ambulance",
+      "office": "Alcala Emergency Ambulance Dispatch",
+      "category": "Health & Medical",
+      "phones": [
+        "0946-798-0534",
+        "0946-715-3640",
+        "0981-169-6002",
+        "0963-521-8171"
+      ],
+      "address": "Alcala Emergency Transport & Health Dispatch, Poblacion East, Alcala, Pangasinan",
+      "hours": "24/7 Emergency Medical Transport",
+      "citation": {
+        "sourceTitle": "Alcala Local Emergency Hotlines Directory",
+        "sourceUrl": "https://www.doh.gov.ph/",
+        "issuingAgency": "Alcala Community / LGU Alcala Emergency Dispatch",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "alcala-rescue-drivers",
+      "office": "Alcala Rescue Vehicle Drivers",
+      "category": "Disaster & Rescue",
+      "phones": [
+        "0968-4448918",
+        "0965-8702881"
+      ],
+      "address": "Alcala MDRRMO / Rescue Motorpool, Poblacion East, Alcala, Pangasinan",
+      "hours": "24/7 Rescue Vehicle Dispatch",
+      "citation": {
+        "sourceTitle": "Alcala Local Emergency Hotlines Directory",
+        "sourceUrl": "https://ndrrmc.gov.ph/",
+        "issuingAgency": "Alcala MDRRMO / Community Emergency Directory",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "alcala-mdrrmo-contact",
+      "office": "Alcala MDRRMO & Municipal Hall Trunklines",
+      "category": "Disaster & Rescue",
+      "phones": [
+        "0920-9817724",
+        "0968-4448920",
+        "(075) 632-5938",
+        "(075) 593-3012",
+        "(075) 593-3803",
+        "911"
+      ],
+      "email": "pangasinan_alcala@yahoo.com",
+      "address": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "hours": "24/7 MDRRMO Mobile Hotlines · Hall Trunklines Mon–Fri: 8:00 AM – 5:00 PM",
+      "citation": {
+        "sourceTitle": "Alcala MDRRMO Hotlines & DTI LGU Trunkline Directory",
+        "sourceUrl": "https://ndrrmc.gov.ph/",
+        "issuingAgency": "Alcala MDRRMO / LGU Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "alcala-rhu",
+      "office": "Municipal Health Office / Alcala Rural Health Unit (RHU)",
+      "category": "Health & Medical",
+      "phones": [
+        "0917-8616986",
+        "(075) 593-4992",
+        "0998-572-0248",
+        "0926-282-1002"
+      ],
+      "address": "National Road, Arboleda St., Poblacion East, Alcala, 2425 Pangasinan",
+      "hours": "Mon–Fri: 8:00 AM – 5:00 PM (24/7 Medical Referral Support)",
+      "citation": {
+        "sourceTitle": "DOH / PhilHealth Primary Care Directory & Municipal Health Office Hotline",
+        "sourceUrl": "https://www.doh.gov.ph/",
+        "issuingAgency": "Department of Health / Alcala Municipal Health Office",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "dswd-alcala",
+      "office": "DSWD – Alcala (MSWDO Crisis & Social Welfare Desk)",
+      "category": "Social Welfare & Assistance",
+      "phones": [
+        "0918-3940809",
+        "(075) 632-5938"
+      ],
+      "email": "pangasinan_alcala@yahoo.com",
+      "address": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "hours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "citation": {
+        "sourceTitle": "DSWD-Alcala Contact Directory & Municipal Social Welfare Office",
+        "sourceUrl": "https://www.dswd.gov.ph/",
+        "issuingAgency": "DSWD – Alcala / MSWDO",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "cenpelco",
+      "office": "CENPELCO (Central Pangasinan Electric Cooperative)",
+      "category": "Private / Public Utilities",
+      "phones": [
+        "0943-7095222",
+        "0945-9744878",
+        "0921-5257157",
+        "0947-70648115"
+      ],
+      "phoneNote": "Note: 0947-70648115 contains 12 digits as supplied in the directory; verify before dialing.",
+      "address": "Electric Service, Outage & Line Advisories — Alcala Coverage Area, Pangasinan",
+      "hours": "Power Outage Reporting & Utility Dispatch",
+      "citation": {
+        "sourceTitle": "Alcala Private Utility Hotlines Directory — CENPELCO",
+        "sourceUrl": "https://www.nea.gov.ph/",
+        "issuingAgency": "CENPELCO / Alcala Local Directory",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "First three mobile lines verified format (11 digits); 4th number (0947-70648115) was supplied with 12 digits and awaits confirmation."
+      }
+    },
+    {
+      "id": "alcala-water-district",
+      "office": "Alcala Water District",
+      "category": "Private / Public Utilities",
+      "phones": [
+        "0908-3171303"
+      ],
+      "address": "Municipality of Alcala, 2425 Pangasinan",
+      "hours": "Water Supply, Billing & Line Maintenance Concerns",
+      "citation": {
+        "sourceTitle": "Alcala Local Utility Hotlines Directory — Alcala Water District",
+        "sourceUrl": "https://lwua.gov.ph/",
+        "issuingAgency": "Alcala Water District / Local Directory",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "bfp-pangasinan",
+      "office": "BFP Pangasinan Provincial Office (OPFM) / Fire Escalation",
+      "category": "Fire Protection",
+      "phones": [
+        "(075) 569-5387",
+        "(075) 568-6053",
+        "911"
+      ],
+      "address": "Lingayen, Pangasinan (Provincial Escalation alongside local Alcala BFP hotlines)",
+      "hours": "24/7 Provincial Fire & Rescue Dispatch",
+      "citation": {
+        "sourceTitle": "BFP Region I / Pangasinan OPFM Directory",
+        "sourceUrl": "https://bfp.gov.ph/",
+        "issuingAgency": "Bureau of Fire Protection (BFP)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "pangasinan-toc",
+      "office": "Pangasinan Police Provincial Tactical Operation Center (TOC)",
+      "category": "National / Provincial Escalation",
+      "phones": [
+        "(075) 542-7185",
+        "0998-598-5092",
+        "0917-148-9938"
+      ],
+      "address": "Lingayen, Pangasinan (Provincial Police Command)",
+      "hours": "24/7 Provincial Operations Center",
+      "citation": {
+        "sourceTitle": "PNP Pangasinan Provincial Tactical Operations Directory",
+        "sourceUrl": "https://pnp.gov.ph/",
+        "issuingAgency": "PNP Pangasinan PPO",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "national-hotlines",
+      "office": "National Emergency, ARTA & Citizen Complaint Hotlines",
+      "category": "National / Provincial Escalation",
+      "phones": [
+        "911",
+        "8888",
+        "12782"
+      ],
+      "address": "Nationwide Republic of the Philippines Hotlines (911 · 8888 · 1-ARTA)",
+      "hours": "24/7 National Dispatch & Citizen Feedback",
+      "citation": {
+        "sourceTitle": "DILG / ARTA / Presidential Complaint Center Mandated Hotlines",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "DILG / ARTA / Office of the President",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    }
+  ],
+  "barangayHotlines": [
+    { "barangay": "Anulid", "psgcCode": "0105504001", "phones": ["0917-7752918"] },
+    { "barangay": "Atainan", "psgcCode": "0105504002", "phones": ["0929-1786708"] },
+    { "barangay": "Bersamin", "psgcCode": "0105504003", "phones": ["0977-6745164", "0933-8652984"] },
+    { "barangay": "Canarvacanan", "psgcCode": "0105504004", "phones": ["0933-8128863"] },
+    { "barangay": "Caranglaan", "psgcCode": "0105504005", "phones": ["0928-1749865"] },
+    { "barangay": "Curareng", "psgcCode": "0105504006", "phones": ["0921-9482794"] },
+    { "barangay": "Gualsic", "psgcCode": "0105504007", "phones": ["0968-8810052", "0939-1880276"] },
+    { "barangay": "Kisikis", "psgcCode": "0105504008", "phones": ["0948-1168837"] },
+    { "barangay": "Laoac", "psgcCode": "0105504010", "phones": ["0939-9529359"] },
+    { "barangay": "Macayo", "psgcCode": "0105504011", "phones": ["0961-2484344"] },
+    { "barangay": "Pindangan Centro", "psgcCode": "0105504013", "phones": ["0910-7259417"] },
+    { "barangay": "Pindangan East", "psgcCode": "0105504014", "phones": ["0920-9438498"] },
+    { "barangay": "Pindangan West", "psgcCode": "0105504015", "phones": ["0917-117-7101"] },
+    { "barangay": "Poblacion East", "psgcCode": "0105504016", "phones": ["0946-9647466"] },
+    { "barangay": "Poblacion West", "psgcCode": "0105504017", "phones": ["0966-7010271"] },
+    { "barangay": "San Juan", "psgcCode": "0105504018", "phones": ["0932-8801687"] },
+    { "barangay": "San Nicolas", "psgcCode": "0105504019", "phones": ["0962-8289290"] },
+    { "barangay": "San Pedro Apartado", "psgcCode": "0105504020", "phones": ["0909-4469355"] },
+    { "barangay": "San Pedro Ili", "psgcCode": "0105504021", "phones": ["0919-4668518"] },
+    { "barangay": "San Vicente", "psgcCode": "0105504023", "phones": ["0945-1121016", "0928-3169727"] },
+    { "barangay": "Vacante", "psgcCode": "0105504022", "phones": ["0912-8249909"] }
+  ]
+}

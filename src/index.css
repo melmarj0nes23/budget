@@ -1,43 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Inter Tight", "Inter", system-ui, -apple-system, sans-serif;
-  --font-sans: "Archivo", "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-@layer base {
-  html {
-    font-family: var(--font-sans);
-    color: #0f2342;
-    background-color: #FAF7F2;
-    scroll-behavior: smooth;
-  }
-
-  h1, h2, h3, .font-display {
-    font-family: var(--font-display);
-    text-wrap: balance;
-  }
-
-  button, a, select, input {
-    outline-color: #26489A;
+@media (min-width: 1024px) {
+  .container {
+    max-width: min(1400px, 92vw);
   }
 }
 
+/* BetterAlcala extensions preserving BetterSolano / BetterLGU design tokens */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* BetterAlcala Brand Lockup & Header Styling (from main domain) */
+/* BetterAlcala Brand Lockup & Typography (Header & Footer) */
 .brand-lockup {
   display: inline-flex;
   align-items: center;
@@ -64,7 +44,7 @@
 }
 
 .brand-wordmark {
-  font-family: var(--font-display, 'Inter Tight', sans-serif);
+  font-family: var(--font-display, 'Fraunces', Georgia, serif);
   font-size: 1.38rem;
   font-weight: 700;
   letter-spacing: -0.025em;
@@ -105,10 +85,6 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
-.brand-lockup--footer .footer-logo {
-  margin: 0 !important;
-}
-
 @media (max-width: 575px) {
   .brand-lockup {
     gap: 8px;
@@ -122,6 +98,901 @@
     font-size: 0.59rem;
     letter-spacing: 0.06em;
   }
+}
+
+/* Verification status indicators (paired with explicit text + icon) */
+.verify-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.verify-tag--verified {
+  background: rgba(6, 167, 125, 0.12);
+  color: #046c50;
+}
+
+.verify-tag--review {
+  background: rgba(247, 127, 0, 0.14);
+  color: #9a4a00;
+}
+
+.verify-tag--outdated {
+  background: rgba(107, 114, 128, 0.14);
+  color: #374151;
+}
+
+.verify-tag--unavailable {
+  background: rgba(214, 40, 40, 0.12);
+  color: #9b1c1c;
+}
+
+/* Source citation block */
+.source-citation-box {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #f8f9fa;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  color: #4b5563;
+}
+
+.source-citation-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 6px;
+}
+
+/* Search autocomplete dropdown */
+.search-autocomplete-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-autocomplete-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid rgba(0, 50, 160, 0.16);
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  z-index: 60;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.search-autocomplete-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #1a1a1a;
+  font-size: 0.875rem;
+  transition: background-color 0.15s ease;
+}
+
+.search-autocomplete-item:hover,
+.search-autocomplete-item--active {
+  background: rgba(0, 50, 160, 0.06);
+  color: var(--color-primary);
+}
+
+.search-autocomplete-type {
+  font-size: 0.72rem;
+  color: #6b7280;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Service detail cards (preserving BetterSolano service-details style) */
+.bc-section {
+  padding: 40px 0;
+}
+
+.bc-section.alt-bg {
+  background: var(--color-bg-alt);
+}
+
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  padding: 16px 14px;
+  text-align: center;
+}
+
+.stat-card i {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.stat-card h4 {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.stat-card p {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.process-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.process-card .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.process-card.final .step-num {
+  background: var(--color-success);
+}
+
+.process-card h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.process-card p {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.req-box {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.req-box h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.req-box h4 i {
+  color: var(--color-primary);
+}
+
+.req-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.req-list li {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  padding: 6px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.req-list li:last-child {
+  border-bottom: none;
+}
+
+.req-list li i {
+  color: var(--color-primary);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Filter tabs */
+.filter-tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.filter-tab-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.filter-tab-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filter-tab-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.mobile-filter-select-wrap {
+  display: none;
+}
+
+.mobile-filter-select-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.mobile-filter-select {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+  padding: 10px 12px;
+  line-height: 1.4;
+}
+
+.mobile-filter-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Notice & disclaimer banner */
+.civic-notice-banner {
+  background: rgba(0, 50, 160, 0.04);
+  border: 1px solid rgba(0, 50, 160, 0.14);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.875rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.civic-notice-banner i {
+  color: var(--color-primary);
+  font-size: 1.125rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .quick-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   Mobile UX, Anti-Zoom (iOS Safari) & Overflow Fixes
+   ============================================ */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.breadcrumbs {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+.source-citation-box,
+.home-contact-v2-value,
+.executive-contacts a,
+.barangay-card,
+.home-leader-contacts a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.brand-lockup--footer .footer-logo {
+  margin: 0 !important;
+}
+
+/* Prevent iOS Safari auto-zoom on focus (requires computed font-size >= 16px) */
+@media (max-width: 1024px) {
+  input,
+  input[type='text'],
+  input[type='search'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='number'],
+  input[type='url'],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-header {
+    padding: 28px 0 24px;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+
+  .page-header-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .civic-notice-banner {
+    padding: 12px 14px;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .filter-tab-bar {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .filter-tab-bar--collapsible {
+    display: none;
+  }
+
+  .mobile-filter-select-wrap {
+    display: block;
+  }
+
+  .filter-tab-btn {
+    flex-shrink: 0;
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    line-height: 1.25;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .mobile-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .mobile-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .pwa-install-banner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .pwa-install-content {
+    flex: 1 1 200px;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+  }
+
+  .map-attribution {
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  /* Mobile-only center alignment: Barangays section (GovernmentPage & ContactPage) */
+  #barangays .barangay-card,
+  #barangay-hotlines .barangay-card {
+    align-items: center;
+    text-align: center;
+  }
+
+  #barangays .barangay-card-header,
+  #barangay-hotlines .barangay-card-header {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  #barangays .barangay-card-body,
+  #barangay-hotlines .barangay-card-body {
+    align-items: center;
+    width: 100%;
+  }
+
+  #barangays .barangay-contact,
+  #barangays .barangay-phones,
+  #barangay-hotlines .barangay-phones {
+    justify-content: center;
+  }
+
+  #barangays .source-citation-box {
+    text-align: center;
+  }
+
+  #barangays .source-citation-box > div,
+  #barangays .source-citation-meta {
+    justify-content: center;
+  }
+
+  /* Mobile-only center alignment: ContactPage contact listings */
+  .contact-hall-grid .home-contact-v2-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-hall-grid .home-contact-v2-content {
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact-hall-grid .home-contact-v2-content > div {
+    align-items: center;
+  }
+
+  .contact-directory-card {
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-directory-meta,
+  .contact-directory-phones {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Mobile InfoBar: display "Alcala" instead of "Alcala, Pangasinan" */
+  .weather-location-province {
+    display: none;
+  }
+
+  /* Mobile Alcala at a Glance: compact 2x2 grid */
+  .home-stats-v2-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .home-stat-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 14px 10px;
+    gap: 8px;
+  }
+
+  .home-stat-card-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.05rem;
+  }
+
+  .home-stat-card-value {
+    font-size: 1.2rem;
+  }
+
+  .home-stat-card-label {
+    font-size: 0.8125rem;
+  }
+
+  .home-stat-card-source {
+    font-size: 0.7rem;
+  }
+
+  /* Mobile Weather Forecast: 3x3 grid */
+  .weather-hourly {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .weather-hour {
+    min-width: 0;
+    width: 100%;
+    padding: 8px 6px;
+  }
+
+  /* Mobile-only center alignment: GovernmentPage Executive Leadership & Sangguniang Bayan */
+  .executive-card-header,
+  .executive-card-body {
+    text-align: center;
+  }
+
+  .executive-card-header > div {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .executive-badge {
+    margin-bottom: 0;
+  }
+
+  .executive-contacts a,
+  .executive-contacts span {
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .councilor-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .councilor-card > div:first-child {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .councilor-badge {
+    margin-bottom: 0;
+  }
+
+  /* Eliminate left-right horizontal scrolling on data tables & wide grids on mobile */
+  .table-responsive {
+    overflow-x: visible;
+  }
+
+  .table-responsive .data-table thead {
+    display: none;
+  }
+
+  .table-responsive .data-table {
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .table-responsive .data-table,
+  .table-responsive .data-table tbody,
+  .table-responsive .data-table tr,
+  .table-responsive .data-table td {
+    display: block;
+    width: 100%;
+    min-width: 0 !important;
+    white-space: normal !important;
+  }
+
+  .table-responsive .data-table tbody tr {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  .table-responsive .data-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .table-responsive .data-table tbody td {
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .table-responsive .data-table tbody td:first-child {
+    padding-top: 0;
+  }
+
+  .table-responsive .data-table tbody td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .table-responsive .data-table tbody td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+    margin-bottom: 2px;
+  }
+
+  /* Prevent single-column grids & footer badges from exceeding mobile viewport width */
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .home-services-grid,
+  .home-leadership-grid,
+  .home-contact-v2-grid,
+  .leg-categories-grid,
+  .process-grid,
+  .metrics-grid,
+  .sre-metrics-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .container > *,
+  main > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .footer-cost,
+  .footer-version {
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .weather-hourly .weather-hour:nth-child(n + 7) {
+    display: none;
+  }
+}
+
+/* Desktop keyboard accessibility for navigation dropdowns */
+@media (min-width: 1025px) {
+  .main-nav .has-dropdown:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility Display Controls */
+.a11y-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  margin-bottom: 16px;
+}
+
+.a11y-bar-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.a11y-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.a11y-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.a11y-btn.active {
+  background: #ffffff;
+  color: #0032a0;
+  border-color: #ffffff;
+}
+
+/* Balanced centered layout for Citizen's Charter overview banner */
+.appointment-cta-content {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.appointment-cta-actions {
+  justify-content: center;
+}
+
+/* High Contrast support for Tailwind-styled cards, custom sections & tabs */
+body.high-contrast .bg-white,
+body.high-contrast .bg-slate-50,
+body.high-contrast [class*="bg-slate-50"],
+body.high-contrast [class*="bg-blue-50"],
+body.high-contrast .stat-card,
+body.high-contrast .process-card,
+body.high-contrast .req-box,
+body.high-contrast .source-citation-box,
+body.high-contrast .civic-notice-banner,
+body.high-contrast .search-autocomplete-list,
+body.high-contrast .home-service-card,
+body.high-contrast .home-stat-card,
+body.high-contrast .home-leader-card,
+body.high-contrast .home-contact-v2-card,
+body.high-contrast .weather-widget,
+body.high-contrast .map-card,
+body.high-contrast .timeline-content,
+body.high-contrast .executive-card,
+body.high-contrast .councilor-card,
+body.high-contrast .barangay-card,
+body.high-contrast .sre-metric-card,
+body.high-contrast .sre-period-toggle,
+body.high-contrast .leg-category-card,
+body.high-contrast .leg-flow-card,
+body.high-contrast .data-table tbody tr,
+body.high-contrast .filter-tab-btn,
+body.high-contrast .leg-tab-btn,
+body.high-contrast .mobile-filter-select,
+body.high-contrast .appointment-cta-btn--outline {
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+body.high-contrast .filter-tab-btn.active,
+body.high-contrast .leg-tab-btn.active,
+body.high-contrast .sre-period-btn.active,
+body.high-contrast .data-table th {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border-color: #ffff00 !important;
+}
+
+body.high-contrast .leg-tab-btn.active i,
+body.high-contrast .leg-tab-btn.active span,
+body.high-contrast .leg-tab-btn.active small,
+body.high-contrast .sre-period-btn.active .sre-period-q,
+body.high-contrast .sre-period-btn.active .sre-period-range {
+  color: #000000 !important;
+}
+
+body.high-contrast .text-slate-900,
+body.high-contrast .text-slate-800,
+body.high-contrast .text-slate-700,
+body.high-contrast .text-slate-600,
+body.high-contrast .text-slate-500 {
+  color: #f3f4f6 !important;
+}
+
+.btn-danger-outline {
+  background-color: #ffffff;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.btn-danger-outline:hover {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #f87171;
+  text-decoration: none;
+}
+
+/* ============================================================================
+   Unified Civic Editorial Design System (Upgrading BetterLGU Standards)
+   ============================================================================ */
+
+/* Typographic Voice & Tabular Figures */
+.font-display {
+  font-family: var(--font-display, 'Fraunces', Georgia, serif);
+}
+
+.font-mono-data,
+.metric-value,
+.sre-metric-value,
+.trend-stat-value,
+.home-stat-card-value {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sleek Top Bar & Operational Ribbon */
+.hotline-bar {
+  background-color: #041133;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.info-bar {
+  background-color: #071a4a;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-bar .info-bar-item,
+.info-bar .info-bar-item span,
+.info-bar .rate-display,
+.info-bar .weather-location,
+.info-bar .weather-temp,
+.info-bar .date-value,
+.info-bar .time-value,
+.info-bar .time-label {
+  color: #ffffff;
 }
 
 .site-header {
@@ -159,13 +1030,25 @@
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+  transition: border-color 0.16s var(--ease-editorial), background-color 0.16s var(--ease-editorial),
+    color 0.16s var(--ease-editorial);
 }
 
 .header-search-trigger:hover {
   border-color: var(--color-primary);
   background: #ffffff;
   color: var(--color-primary);
+}
+
+.header-search-trigger kbd {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: #64748b;
 }
 
 @media (max-width: 575px) {
@@ -176,3 +1059,1161 @@
     justify-content: center;
   }
 }
+
+/* Global Command Search Modal (Cmd+K / Ctrl+K) */
+.command-search-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(6, 23, 66, 0.56);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(48px, 10vh, 110px) 16px 24px;
+}
+
+.command-search-dialog {
+  width: 100%;
+  max-width: 640px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 24px 60px -16px rgba(6, 23, 66, 0.36);
+  overflow: hidden;
+}
+
+.command-search-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.command-search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  font-family: var(--font-main);
+  color: #0f172a;
+}
+
+.command-search-input:focus {
+  outline: none;
+}
+
+.command-search-esc {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: #f8fafc;
+  color: #475569;
+  cursor: pointer;
+}
+
+.command-search-body {
+  max-height: min(62vh, 420px);
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.command-search-section-label {
+  padding: 6px 10px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.command-search-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.command-search-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.command-search-item:hover,
+.command-search-item.is-active {
+  background: rgba(0, 50, 160, 0.06);
+  border-color: rgba(0, 50, 160, 0.14);
+}
+
+.command-search-type {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.command-search-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #f8fafc;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.command-search-footer kbd {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+/* Architectural Civic Mastheads (Unified Hero & Subpage Headers) */
+.page-header,
+.trans-hero-v2,
+.leg-hero,
+.stats-hero,
+.home-hero-v2 {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(150deg, #061742 0%, #0b2a78 52%, #0032a0 100%);
+  background-size:
+    32px 32px,
+    32px 32px,
+    100% 100%;
+  border-bottom: 2px solid rgba(247, 127, 0, 0.5);
+  position: relative;
+}
+
+.home-hero-v2 {
+  padding: clamp(56px, 7vw, 96px) 0;
+}
+
+.home-hero-v2-text h1 {
+  font-family: var(--font-display, 'Fraunces', serif);
+  font-size: clamp(2.1rem, 4.2vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+.civic-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #fbd38d;
+  margin-bottom: 14px;
+}
+
+/* Zero-Pill Editorial Discipline on Headers & Section Tags */
+.page-header-badge,
+.trans-hero-badge-v2,
+.leg-hero-badge,
+.stats-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+  border-radius: 0;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #fbd38d;
+  margin-bottom: 12px;
+}
+
+.section-tag,
+.sre-label,
+.leg-info-tag {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* Elevated Civic Finder Workbench inside Hero */
+.home-search-box {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 22px 48px -18px rgba(4, 17, 51, 0.55);
+}
+
+.home-search-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 14px;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.home-search-tags a {
+  border-radius: 6px;
+  padding: 3px 9px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.home-search-tags a:hover {
+  background: rgba(0, 50, 160, 0.06);
+  border-color: rgba(0, 50, 160, 0.25);
+  text-decoration: none;
+}
+
+/* Resident-First Life-Event Triage Workbench */
+.triage-section {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 56px 0;
+}
+
+.triage-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.triage-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px;
+  background: #f1f5f9;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 10px;
+}
+
+.triage-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: #475569;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.triage-tab-btn:hover {
+  color: #0f172a;
+}
+
+.triage-tab-btn.active {
+  background: #ffffff;
+  color: var(--color-primary);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
+}
+
+.triage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .triage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.triage-card {
+  background: #fafbfc;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.18s var(--ease-editorial), background-color 0.18s var(--ease-editorial);
+}
+
+.triage-card:hover {
+  background: #ffffff;
+  border-color: rgba(0, 50, 160, 0.35);
+}
+
+/* Alcala Landscape & Editorial Profile Section */
+.heritage-feature-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .heritage-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.heritage-photo-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.heritage-photo-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 260px;
+  background: linear-gradient(135deg, #061742 0%, #0032a0 100%);
+}
+
+.heritage-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.heritage-caption {
+  padding: 12px 16px;
+  font-size: 0.78rem;
+  color: #475569;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  font-style: italic;
+}
+
+/* Interactive Document Readiness Checklist (ServiceDetailPage) */
+.checklist-progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.checklist-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0032a0 0%, #047857 100%);
+  transition: width 0.25s var(--ease-editorial);
+}
+
+.checklist-item-btn {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  text-align: left;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 0.14s ease, border-color 0.14s ease;
+}
+
+.checklist-item-btn:hover {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+.checklist-item-btn.is-checked {
+  background: rgba(4, 120, 87, 0.06);
+  border-color: rgba(4, 120, 87, 0.2);
+}
+
+.checklist-item-btn.is-checked .checklist-item-text {
+  text-decoration: line-through;
+  color: #475569;
+}
+
+/* Single-Elevation Surface Refinement across BetterLGU cards */
+.home-service-card,
+.home-stat-card,
+.home-leader-card,
+.home-contact-v2-card,
+.metric-card,
+.sre-metric-card,
+.leg-category-card,
+.stat-card,
+.process-card,
+.req-box {
+  border: 1px solid rgba(15, 23, 42, 0.085);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+/* High Contrast support for newly added Editorial & Interactive Components */
+body.high-contrast .site-header {
+  background: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+body.high-contrast .header-search-trigger {
+  background: #111111 !important;
+  color: #ffff00 !important;
+  border-color: #ffff00 !important;
+}
+
+body.high-contrast .command-search-dialog,
+body.high-contrast .triage-section,
+body.high-contrast .triage-card,
+body.high-contrast .heritage-photo-card,
+body.high-contrast .home-search-box {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+body.high-contrast .command-search-input {
+  color: #ffffff !important;
+}
+
+body.high-contrast .command-search-footer,
+body.high-contrast .triage-tabs {
+  background: #1a1a1a !important;
+  border-color: #ffffff !important;
+}
+
+body.high-contrast .triage-tab-btn {
+  color: #ffffff !important;
+}
+
+body.high-contrast .triage-tab-btn.active {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+body.high-contrast .checklist-item-btn {
+  color: #ffffff !important;
+}
+
+body.high-contrast .checklist-item-btn.is-checked {
+  background: #1f2937 !important;
+  border-color: #ffff00 !important;
+}
+
+body.high-contrast .checklist-item-btn.is-checked .checklist-item-text {
+  color: #d1d5db !important;
+}
+
+/* Clean Print Layout for Service Checklists & Public Records */
+@media print {
+  .hotline-bar,
+  .site-header,
+  .info-bar,
+  .site-footer,
+  .pwa-install-banner,
+  .skip-link,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  .page-header {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 12px 0 !important;
+    border-bottom: 2px solid #0032a0;
+  }
+
+  .page-header h1,
+  .page-header-desc {
+    color: #000000 !important;
+  }
+
+  .stat-card,
+  .process-card,
+  .req-box,
+  .source-citation-box {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+}
+
+/* ============================================================================
+   Warm Heritage & 4-Pillar Civic Theme (Alcala, Pangasinan)
+   ============================================================================ */
+html:not(.high-contrast) body {
+  background-color: #faf7f2;
+}
+
+html:not(.high-contrast) .hotline-bar {
+  background: #0f2342;
+  border-bottom: 4px solid transparent;
+  border-image: repeating-linear-gradient(
+      90deg,
+      #26489a 0 18px,
+      #2e8b57 18px 36px,
+      #d1432a 36px 54px,
+      #1976a8 54px 72px
+    )
+    1;
+}
+
+html:not(.high-contrast) .hotline-item {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+html:not(.high-contrast) .hotline-item:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+html:not(.high-contrast) .site-header {
+  background: rgba(250, 247, 242, 0.94);
+  border-bottom: 1px solid rgba(15, 35, 66, 0.08);
+}
+
+/* Warm Editorial Hero */
+.alcala-hero {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(25, 118, 168, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 12% 80%, rgba(209, 67, 42, 0.05) 0%, transparent 40%),
+    #faf7f2;
+  padding: 0 0 clamp(36px, 5vw, 56px);
+  position: relative;
+}
+
+.alcala-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(28px, 4vw, 48px);
+  align-items: center;
+}
+
+.alcala-hero-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #26489a;
+  margin-bottom: 14px;
+}
+
+.alcala-hero-title {
+  font-family: var(--font-display, 'Fraunces', Georgia, serif);
+  font-size: clamp(2.85rem, 5.8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: #0f2342;
+  margin: 0 0 18px;
+}
+
+.alcala-hero-accent {
+  color: #d1432a;
+}
+
+.alcala-hero-subtitle {
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: #475569;
+  margin-top: 0;
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+
+.alcala-hero-search-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 35, 66, 0.12);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 10px 28px rgba(15, 35, 66, 0.06);
+  margin-bottom: 18px;
+}
+
+.alcala-hero-search-card .search-submit-btn {
+  background: #0f2342;
+}
+
+.alcala-hero-search-card .search-submit-btn:hover {
+  background: #26489a;
+}
+
+.alcala-hero-search-card h2 {
+  margin-bottom: 0;
+}
+
+/* Hanging 4-Pillar Pennants */
+.alcala-pennants {
+  position: relative;
+  padding-top: 0;
+}
+
+.alcala-pennants-rod {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .alcala-hero-grid {
+    align-items: center;
+  }
+
+  .alcala-pennant {
+    height: clamp(260px, 28vw, 350px);
+  }
+}
+
+.alcala-pennants-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.alcala-pennant {
+  height: clamp(200px, 24vw, 290px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 10px 44px;
+  color: #ffffff;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+  transition: transform 0.25s ease, filter 0.25s ease;
+  box-shadow: 0 12px 24px rgba(15, 35, 66, 0.12);
+}
+
+.alcala-pennant:hover {
+  transform: translateY(4px);
+  filter: brightness(1.06);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.alcala-pennant-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.94);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.alcala-pennant-icon {
+  width: clamp(46px, 5.5vw, 68px);
+  height: clamp(46px, 5.5vw, 68px);
+  opacity: 0.95;
+}
+
+/* Full-width Woven Cultural Divider Strip */
+.alcala-woven-strip {
+  width: 100%;
+  overflow: hidden;
+  border-top: 2px solid rgba(15, 35, 66, 0.08);
+  border-bottom: 2px solid rgba(15, 35, 66, 0.08);
+  background: #0f2342;
+}
+
+.alcala-woven-track {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+}
+
+.alcala-woven-tile {
+  width: 56px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.alcala-woven-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.92;
+}
+
+/* Color-coded KPI cards */
+.home-stat-card--blue .home-stat-card-value {
+  color: #26489a;
+}
+.home-stat-card--blue .home-stat-card-icon {
+  background: rgba(38, 72, 154, 0.1);
+  color: #26489a;
+}
+
+.home-stat-card--green .home-stat-card-value {
+  color: #2e8b57;
+}
+.home-stat-card--green .home-stat-card-icon {
+  background: rgba(46, 139, 87, 0.12);
+  color: #2e8b57;
+}
+
+.home-stat-card--terracotta .home-stat-card-value {
+  color: #d1432a;
+}
+.home-stat-card--terracotta .home-stat-card-icon {
+  background: rgba(209, 67, 42, 0.1);
+  color: #d1432a;
+}
+
+.home-stat-card--teal .home-stat-card-value {
+  color: #1976a8;
+}
+.home-stat-card--teal .home-stat-card-icon {
+  background: rgba(25, 118, 168, 0.12);
+  color: #1976a8;
+}
+
+#map-container {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 12px;
+  transform: translateZ(0);
+}
+
+/* Evenly spaced single-line hourly weather forecast pills */
+.weather-hourly {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px !important;
+  width: 100%;
+}
+
+.weather-hour {
+  min-width: 0;
+  padding: 10px 4px !important;
+}
+
+.weather-hour-time {
+  white-space: nowrap;
+  font-size: 0.7rem;
+}
+
+@media (max-width: 420px) {
+  .weather-hourly {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Color-blocked Alcala Service Tiles (Original Geometric Patterns) */
+.alcala-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.alcala-service-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 172px;
+  padding: 20px;
+  border-radius: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(15, 35, 66, 0.1);
+}
+
+.alcala-service-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(15, 35, 66, 0.16);
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.alcala-service-tile--blue {
+  background-color: #26489a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath d='M0 64V32a32 32 0 0 1 64 0v32' fill='none' stroke='white' stroke-opacity='0.09' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='4' fill='white' fill-opacity='0.08'/%3E%3C/svg%3E");
+}
+
+.alcala-service-tile--terracotta {
+  background-color: #d1432a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 8v40M8 28h40M14 14l28 28M42 14L14 42' stroke='white' stroke-opacity='0.09' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.alcala-service-tile--navy {
+  background-color: #0f2342;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Crect x='4' y='4' width='18' height='10' rx='2' fill='white' fill-opacity='0.07'/%3E%3Crect x='26' y='18' width='18' height='10' rx='2' fill='white' fill-opacity='0.07'/%3E%3Crect x='4' y='32' width='18' height='10' rx='2' fill='white' fill-opacity='0.07'/%3E%3C/svg%3E");
+}
+
+.alcala-service-tile--green {
+  background-color: #2e8b57;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 52 52'%3E%3Cpath d='M0 36L16 14l14 18 10-12 12 16' fill='none' stroke='white' stroke-opacity='0.11' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.alcala-service-tile--teal {
+  background-color: #1976a8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' viewBox='0 0 64 32'%3E%3Cpath d='M0 16c8-6 16-6 24 0s16 6 24 0 8-6 16 0' fill='none' stroke='white' stroke-opacity='0.12' stroke-width='2.2'/%3E%3C/svg%3E");
+}
+
+.alcala-service-tile--all {
+  background-color: #1e293b;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+.alcala-service-tile-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.alcala-service-tile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.alcala-service-tile-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 35, 66, 0.45);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.alcala-service-tile h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.alcala-service-tile p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 991px) {
+  .alcala-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .alcala-services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1023px) {
+  .alcala-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .alcala-hero-grid > div:last-child {
+    order: -1;
+  }
+
+  .alcala-pennant {
+    height: 150px;
+    padding: 14px 10px 30px;
+  }
+
+  .alcala-pennant-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 575px) {
+  .alcala-pennants-grid {
+    gap: 6px;
+  }
+
+  .alcala-pennant {
+    height: 118px;
+    padding: 10px 6px 24px;
+  }
+
+  .alcala-pennant-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .alcala-pennant-label {
+    font-size: 0.56rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* ============================================================================
+   Global 4-Pillar Civic Theme Propagation (Icons, Badges, Headers, Footer)
+   ============================================================================ */
+html:not(.high-contrast) {
+  --color-primary: #26489a;
+  --color-secondary: #1976a8;
+  --color-bg-alt: #f4efe6;
+  --color-text: #0f2342;
+}
+
+/* Sub-page Headers — Soft Sage + Full Woven 4-Motif Strip (matching Barangay Header) */
+html:not(.high-contrast) .page-header,
+html:not(.high-contrast) .stats-hero,
+html:not(.high-contrast) .trans-hero-v2,
+html:not(.high-contrast) .leg-hero,
+html:not(.high-contrast) .legal-hero {
+  position: relative;
+  background: #eaf2ee;
+  color: #0f2342;
+  border-top: 1px solid rgba(15, 35, 66, 0.08);
+  border-bottom: 0;
+  padding-bottom: calc(clamp(28px, 4vw, 44px) + 40px);
+}
+
+html:not(.high-contrast) .page-header::after,
+html:not(.high-contrast) .stats-hero::after,
+html:not(.high-contrast) .trans-hero-v2::after,
+html:not(.high-contrast) .leg-hero::after,
+html:not(.high-contrast) .legal-hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  background-repeat: repeat-x;
+  background-size: 224px 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='224' height='40' viewBox='0 0 224 40'%3E%3Crect x='0' width='56' height='40' fill='%2326489A'/%3E%3Crect x='56' width='56' height='40' fill='%232E8B57'/%3E%3Crect x='112' width='56' height='40' fill='%23D1432A'/%3E%3Crect x='168' width='56' height='40' fill='%231976A8'/%3E%3Cg stroke='white' stroke-opacity='0.92' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 17l12-7 12 7H16zM20 17v11M25.5 17v11M30.5 17v11M36 17v11M15 30h26'/%3E%3Ccircle cx='84' cy='14' r='2.8'/%3E%3Ccircle cx='76' cy='17' r='2.3'/%3E%3Ccircle cx='92' cy='17' r='2.3'/%3E%3Cpath d='M78.5 29v-4.2a5.5 5.5 0 0 1 11 0V29M72 29v-2.6a4.4 4.4 0 0 1 5.8-4.1M96 29v-2.6a4.4 4.4 0 0 0-5.8-4.1'/%3E%3Cpath d='M140 10l9 3.6v6.8c0 5.6-3.7 9.8-9 11.6-5.3-1.8-9-6-9-11.6v-6.8l9-3.6zM135.5 21l3 3 6-6'/%3E%3Crect x='186' y='10' width='20' height='22' rx='2.5'/%3E%3Cpath d='M191 17h10M191 22h10M191 27h6'/%3E%3Cline x1='55.5' y1='0' x2='55.5' y2='40' stroke-opacity='0.18'/%3E%3Cline x1='111.5' y1='0' x2='111.5' y2='40' stroke-opacity='0.18'/%3E%3Cline x1='167.5' y1='0' x2='167.5' y2='40' stroke-opacity='0.18'/%3E%3Cline x1='223.5' y1='0' x2='223.5' y2='40' stroke-opacity='0.18'/%3E%3C/g%3E%3C/svg%3E");
+  border-top: 2px solid rgba(15, 35, 66, 0.08);
+  border-bottom: 2px solid rgba(15, 35, 66, 0.08);
+  pointer-events: none;
+}
+
+html:not(.high-contrast) .page-header h1,
+html:not(.high-contrast) .stats-hero h1,
+html:not(.high-contrast) .trans-hero-v2 h1,
+html:not(.high-contrast) .leg-hero h1,
+html:not(.high-contrast) .legal-hero h1 {
+  font-family: var(--font-display, 'Fraunces', Georgia, serif);
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #0f2342;
+}
+
+html:not(.high-contrast) .page-header-desc,
+html:not(.high-contrast) .stats-hero p,
+html:not(.high-contrast) .trans-hero-v2 p,
+html:not(.high-contrast) .leg-hero p,
+html:not(.high-contrast) .legal-hero p {
+  font-family: var(--font-main, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(0.95rem, 1.2vw, 1.0625rem);
+  line-height: 1.6;
+  color: #475569;
+}
+
+html:not(.high-contrast) .page-header-badge,
+html:not(.high-contrast) .stats-hero-badge,
+html:not(.high-contrast) .trans-hero-badge-v2,
+html:not(.high-contrast) .leg-hero-badge,
+html:not(.high-contrast) .legal-hero .legal-badge {
+  background: rgba(46, 139, 87, 0.12);
+  border: 1px solid rgba(46, 139, 87, 0.25);
+  color: #2e8b57;
+}
+
+html:not(.high-contrast) .page-header .btn-outline,
+html:not(.high-contrast) .stats-hero .btn-outline {
+  color: #0f2342;
+  border-color: rgba(15, 35, 66, 0.25);
+  background: #ffffff;
+}
+
+/* Leader & Councilor Badges */
+html:not(.high-contrast) .home-leader-card:nth-child(1) .home-leader-badge {
+  background: rgba(38, 72, 154, 0.12);
+  color: #26489a;
+}
+
+html:not(.high-contrast) .home-leader-card:nth-child(2) .home-leader-badge {
+  background: rgba(25, 118, 168, 0.12);
+  color: #1976a8;
+}
+
+html:not(.high-contrast) .councilor-card:nth-child(4n + 1) .councilor-badge {
+  background: rgba(38, 72, 154, 0.12);
+  color: #26489a;
+}
+
+html:not(.high-contrast) .councilor-card:nth-child(4n + 2) .councilor-badge {
+  background: rgba(46, 139, 87, 0.12);
+  color: #2e8b57;
+}
+
+html:not(.high-contrast) .councilor-card:nth-child(4n + 3) .councilor-badge {
+  background: rgba(209, 67, 42, 0.12);
+  color: #d1432a;
+}
+
+html:not(.high-contrast) .councilor-card:nth-child(4n + 4) .councilor-badge {
+  background: rgba(25, 118, 168, 0.12);
+  color: #1976a8;
+}
+
+/* Contact Icons */
+html:not(.high-contrast) .home-contact-v2-card:nth-child(1) .home-contact-v2-icon {
+  background: rgba(38, 72, 154, 0.12);
+  color: #26489a;
+}
+
+html:not(.high-contrast) .home-contact-v2-card:nth-child(2) .home-contact-v2-icon {
+  background: rgba(46, 139, 87, 0.12);
+  color: #2e8b57;
+}
+
+html:not(.high-contrast) .home-contact-v2-card:nth-child(3) .home-contact-v2-icon {
+  background: rgba(209, 67, 42, 0.12);
+  color: #d1432a;
+}
+
+/* Executive Leadership Cards (harmonized with 4-pillar warm palette) */
+html:not(.high-contrast) .executive-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 35, 66, 0.1);
+}
+
+html:not(.high-contrast) .executive-card:nth-child(1) .executive-card-header {
+  background: #edf2fa;
+  border-top: 4px solid #26489a;
+  border-bottom: 1px solid rgba(38, 72, 154, 0.12);
+}
+
+html:not(.high-contrast) .executive-card:nth-child(1) .executive-badge {
+  background: rgba(38, 72, 154, 0.12);
+  color: #26489a;
+}
+
+html:not(.high-contrast) .executive-card:nth-child(2) .executive-card-header {
+  background: #e8f3f8;
+  border-top: 4px solid #1976a8;
+  border-bottom: 1px solid rgba(25, 118, 168, 0.12);
+}
+
+html:not(.high-contrast) .executive-card:nth-child(2) .executive-badge {
+  background: rgba(25, 118, 168, 0.12);
+  color: #1976a8;
+}
+
+html:not(.high-contrast) .executive-name {
+  font-family: var(--font-display, 'Fraunces', Georgia, serif);
+  color: #0f2342;
+}
+
+/* Harmonize remaining gradient icons & volunteer popup with 4-pillar palette */
+html:not(.high-contrast) .vol-popup-header {
+  background: linear-gradient(140deg, #0f2342 0%, #26489a 60%, #1976a8 100%);
+}
+
+html:not(.high-contrast) .metric-card:nth-child(2) .metric-icon {
+  background: linear-gradient(135deg, #2e8b57 0%, #1f6f43 100%);
+}
+
+html:not(.high-contrast) .metric-card:nth-child(3) .metric-icon {
+  background: linear-gradient(135deg, #d1432a 0%, #a8321d 100%);
+}
+
+html:not(.high-contrast) .metric-card:nth-child(4) .metric-icon {
+  background: linear-gradient(135deg, #1976a8 0%, #0f4c75 100%);
+}
+
+/* Verification Badges */
+html:not(.high-contrast) .verify-tag--review {
+  background: rgba(25, 118, 168, 0.1);
+  color: #1976a8;
+  border-color: rgba(25, 118, 168, 0.28);
+}
+
+/* Site Footer */
+html:not(.high-contrast) .site-footer,
+html:not(.high-contrast) .footer-new {
+  background-color: #0f2342;
+  border-top: 4px solid transparent;
+  border-image: repeating-linear-gradient(
+      90deg,
+      #26489a 0 18px,
+      #2e8b57 18px 36px,
+      #d1432a 36px 54px,
+      #1976a8 54px 72px
+    )
+    1;
+}
+

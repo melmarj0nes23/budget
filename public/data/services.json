@@ -1,0 +1,1136 @@
+{
+  "services": [
+    {
+      "id": "birth-certificate",
+      "title": "Birth Certificate Registration & Certified Copy",
+      "category": "Civil Registration & Vital Certificates",
+      "categoryId": "certificates",
+      "icon": "bi-file-earmark-person-fill",
+      "description": "Register a live birth occurring in Alcala or request a certified true copy / LCR endorsement of a registered birth record.",
+      "keywords": [
+        "birth certificate",
+        "lcr",
+        "civil registrar",
+        "born",
+        "baby",
+        "psa endorsement",
+        "late registration"
+      ],
+      "eligibility": [
+        "Parents, registrant (if of legal age), or authorized representative with signed authorization letter and valid ID.",
+        "Event of birth occurred within the Municipality of Alcala, Pangasinan."
+      ],
+      "requirements": [
+        "Accomplished Certificate of Live Birth (COLB / Municipal Form 102) for new registration",
+        "Valid government-issued ID of the requesting party or representative",
+        "Authorization letter or Special Power of Attorney (if requested by a representative)",
+        "For delayed registration: PSA Negative Certification, two disinterested witnesses’ affidavit, and supporting school/baptismal/medical records"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Submit Request at MCR Window",
+          "description": "Present valid ID and complete details of the birth record (full name, date of birth, parents’ names)."
+        },
+        {
+          "step": 2,
+          "title": "Verification & Assessment",
+          "description": "Civil Registry staff verify the municipal registry book and issue an Order of Payment."
+        },
+        {
+          "step": 3,
+          "title": "Pay Fee at Municipal Treasurer",
+          "description": "Settle the applicable local fee at the Treasury window and receive an Official Receipt."
+        },
+        {
+          "step": 4,
+          "title": "Claim Certified Copy",
+          "description": "Return to the Municipal Civil Registrar window with the Official Receipt to claim the signed document."
+        }
+      ],
+      "processingTime": "Needs Review (confirm window turnaround at Alcala MCR)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Needs Review (Statutory timely birth registration is free under Civil Registry Law; copy fees set by Municipal Revenue Code)",
+      "feesStatus": "Needs Review",
+      "office": "Office of the Municipal Civil Registrar (MCR)",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3803"
+      ],
+      "officeEmail": "pangasinan_alcala@yahoo.com",
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "LGU Alcala MCR Request Form",
+          "status": "Unavailable",
+          "note": "Available in person at Municipal Civil Registrar window"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 11032 Citizen’s Charter Framework & LGU Alcala Office Directory (Local fee schedule awaiting published Alcala Citizen’s Charter PDF)",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "marriage-certificate",
+      "title": "Marriage License & Certificate Registration",
+      "category": "Civil Registration & Vital Certificates",
+      "categoryId": "certificates",
+      "icon": "bi-heart-fill",
+      "description": "Apply for a marriage license (Family Code requirement) or obtain a certified copy of a marriage certificate registered in Alcala.",
+      "keywords": [
+        "marriage",
+        "marriage license",
+        "wedding",
+        "kasal",
+        "cenomar",
+        "civil registry"
+      ],
+      "eligibility": [
+        "Contracting parties at least 18 years old (parental consent required for ages 18–21; parental advice for ages 21–25).",
+        "At least one applicant must be a resident of Alcala for marriage license applications."
+      ],
+      "requirements": [
+        "PSA Birth Certificates and CENOMAR of both applicants",
+        "Barangay Clearance and Community Tax Certificate (Cedula)",
+        "Certificate of Attendance in Pre-Marriage Counseling / Family Planning Seminar (MSWDO/RHU)",
+        "Parental Consent (18–21) or Parental Advice (21–25) if applicable",
+        "Valid government-issued IDs"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "File Marriage License Application",
+          "description": "Both applicants submit documentary requirements at the Municipal Civil Registrar."
+        },
+        {
+          "step": 2,
+          "title": "Attend Pre-Marriage Counseling",
+          "description": "Complete the mandated seminar scheduled through MSWDO and Alcala RHU."
+        },
+        {
+          "step": 3,
+          "title": "10-Day Mandatory Posting",
+          "description": "Application is posted for 10 consecutive days as required under the Family Code."
+        },
+        {
+          "step": 4,
+          "title": "Release of Marriage License",
+          "description": "Claim the license after the 10-day posting period and fee payment."
+        }
+      ],
+      "processingTime": "10 consecutive days statutory posting period (for Marriage License)",
+      "processingTimeStatus": "Verified",
+      "fees": "Needs Review (confirm Municipal Revenue Code fee schedule at MCR/Treasurer)",
+      "feesStatus": "Needs Review",
+      "office": "Office of the Municipal Civil Registrar (MCR)",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3803"
+      ],
+      "officeEmail": "pangasinan_alcala@yahoo.com",
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "Application for Marriage License (Municipal Form 90)",
+          "status": "Unavailable",
+          "note": "Issued at Alcala MCR office"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 11032 Citizen’s Charter Framework & LGU Alcala Office Directory (Local fee schedule awaiting published Alcala Citizen’s Charter PDF)",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "death-certificate",
+      "title": "Death Certificate & Burial / Transfer Permit",
+      "category": "Civil Registration & Vital Certificates",
+      "categoryId": "certificates",
+      "icon": "bi-file-earmark-medical-fill",
+      "description": "Register a death that occurred in Alcala and secure certified copies or burial/transfer permits.",
+      "keywords": [
+        "death certificate",
+        "burial permit",
+        "transfer permit",
+        "civil registry",
+        "mortality"
+      ],
+      "eligibility": [
+        "Immediate family member, relative, or authorized funeral representative."
+      ],
+      "requirements": [
+        "Accomplished Certificate of Death (Municipal Form 103) signed by attending physician or Municipal Health Officer",
+        "Valid ID of informant / applicant",
+        "Barangay certification (for deaths outside medical facilities)"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Medical Certification (RHU)",
+          "description": "Have the Certificate of Death reviewed and signed by the Municipal Health Officer if non-hospital death."
+        },
+        {
+          "step": 2,
+          "title": "Submit at MCR Window",
+          "description": "Present accomplished Form 103 for registry verification and entry."
+        },
+        {
+          "step": 3,
+          "title": "Pay Applicable Permit Fees",
+          "description": "Settle local burial/transfer fees at the Municipal Treasurer’s Office."
+        },
+        {
+          "step": 4,
+          "title": "Claim Registered Copy & Permit",
+          "description": "Receive stamped Death Certificate and Burial/Transfer Permit."
+        }
+      ],
+      "processingTime": "Needs Review (confirm same-day turnaround at MCR)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Needs Review (confirm local burial/transfer permit schedule)",
+      "feesStatus": "Needs Review",
+      "office": "Office of the Municipal Civil Registrar (MCR) & Alcala RHU",
+      "officeAddress": "Municipal Hall Compound / Arboleda St., Poblacion East, Alcala, Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-4992"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "Certificate of Death (Form 103)",
+          "status": "Unavailable",
+          "note": "Issued via hospital or Alcala RHU / MCR"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 11032 Citizen’s Charter Framework & LGU Alcala Office Directory (Local fee schedule awaiting published Alcala Citizen’s Charter PDF)",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "business-permits-licensing",
+      "title": "Business Permit (New & Annual Renewal)",
+      "category": "Business Permits & Licensing",
+      "categoryId": "business",
+      "icon": "bi-shop",
+      "description": "Apply for a new Mayor’s Business Permit or renew an existing business permit in Alcala, Pangasinan through the Business One-Stop Shop (BOSS).",
+      "keywords": [
+        "business permit",
+        "mayor permit",
+        "bplo",
+        "renewal",
+        "boss",
+        "dti",
+        "sec",
+        "barangay clearance"
+      ],
+      "eligibility": [
+        "Sole proprietors (DTI registered), partnerships/corporations (SEC registered), or cooperatives (CDA registered) operating in Alcala."
+      ],
+      "requirements": [
+        "Accomplished Unified Business Permit Application Form",
+        "DTI Business Name Registration / SEC Articles / CDA Registration",
+        "Barangay Business Clearance from the host barangay in Alcala",
+        "Contract of Lease or Proof of Ownership / Occupancy Permit",
+        "Fire Safety Inspection Certificate (BFP) & Sanitary Permit (Alcala RHU)",
+        "For renewals: Prior year’s Mayor’s Permit and Sworn Statement of Gross Sales / ITR",
+        "CCTV compliance check pursuant to Alcala Municipal Ordinance No. 2025-04 (for commercial establishments)"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Submit Unified Application at BPLO / BOSS",
+          "description": "File the unified form with DTI/SEC registration and Barangay Clearance."
+        },
+        {
+          "step": 2,
+          "title": "Regulatory Clearances & Assessment",
+          "description": "BPLO coordinates RHU Sanitary, Engineering/Zoning, and BFP Fire Safety assessments."
+        },
+        {
+          "step": 3,
+          "title": "Tax & Fee Payment",
+          "description": "Pay assessed business taxes and regulatory fees at the Municipal Treasurer’s Office."
+        },
+        {
+          "step": 4,
+          "title": "Release of Mayor’s Permit & Plate",
+          "description": "Claim the signed Mayor’s Business Permit and official business plate."
+        }
+      ],
+      "processingTime": "Within 3 working days for simple transactions (RA 11032 EODB statutory maximum; exact Alcala BOSS turnaround: Needs Review)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Based on Alcala Municipal Revenue Code & gross sales bracket (Exact schedule: Needs Review)",
+      "feesStatus": "Needs Review",
+      "office": "Business Permits & Licensing Office (BPLO)",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3012"
+      ],
+      "officeEmail": "pangasinan_alcala@yahoo.com",
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "Unified Business Permit Form (ARTA Standard)",
+          "status": "Needs Review",
+          "note": "Available at BPLO counter"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 11032 (Ease of Doing Business) & Alcala Municipal Ordinance No. 2025-04 (CCTV Requirement)",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "real-property-tax",
+      "title": "Real Property Tax (RPT / Amilyar) & Cedula Payment",
+      "category": "Municipal Treasury & Assessor",
+      "categoryId": "tax-payments",
+      "icon": "bi-cash-coin",
+      "description": "Pay annual or quarterly Real Property Tax (Amilyar), secure Tax Clearances, or obtain a Community Tax Certificate (Cedula).",
+      "keywords": [
+        "real property tax",
+        "rpt",
+        "amilyar",
+        "cedula",
+        "community tax certificate",
+        "treasurer",
+        "tax clearance"
+      ],
+      "eligibility": [
+        "Land, building, and machinery owners in Alcala, Pangasinan; residents age 18+ for Cedula."
+      ],
+      "requirements": [
+        "Latest Tax Declaration Number or previous Official Receipt (for RPT)",
+        "Valid ID and declared annual gross income / property ownership details (for Cedula)"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Request Assessment / Tax Order",
+          "description": "Present previous receipt or Tax Declaration at the Municipal Treasurer’s Office."
+        },
+        {
+          "step": 2,
+          "title": "Verify Balance & Discounts",
+          "description": "Cashier verifies current due, delinquency penalties, or early-payment discounts."
+        },
+        {
+          "step": 3,
+          "title": "Settle Payment",
+          "description": "Pay at the Treasurer’s cash window and receive your Official Receipt / Cedula."
+        }
+      ],
+      "processingTime": "Needs Review (confirm queue turnaround at Municipal Treasurer)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Assessed Value × Municipal/Provincial RPT Rate + SEF (1%); Cedula minimum ₱5.00 basic + ₱1.00 per ₱1,000 income (LGC Art. 157)",
+      "feesStatus": "Verified",
+      "office": "Office of the Municipal Treasurer",
+      "officeAddress": "Municipal Hall, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3803"
+      ],
+      "officeEmail": "pangasinan_alcala@yahoo.com",
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "RPT Payment Statement",
+          "status": "Unavailable",
+          "note": "Generated on-site at Treasury window"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "Local Government Code of 1991 (RA 7160) & LGU Alcala Municipal Hall Directory",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "property-tax-declaration",
+      "title": "Tax Declaration Issuance, Transfer & Property Assessment",
+      "category": "Municipal Treasury & Assessor",
+      "categoryId": "tax-payments",
+      "icon": "bi-house-check-fill",
+      "description": "Transfer Tax Declarations upon sale/inheritance, request certified true copies, or apply for new assessment of land or buildings.",
+      "keywords": [
+        "assessor",
+        "tax declaration",
+        "property transfer",
+        "landholding",
+        "appraisal",
+        "title"
+      ],
+      "eligibility": [
+        "Registered property owners, buyers, heirs, or duly authorized representatives."
+      ],
+      "requirements": [
+        "Deed of Sale / Extrajudicial Settlement / Transfer Certificate of Title (TCT)",
+        "BIR Certificate Authorizing Registration (CAR) and Transfer Tax Receipt",
+        "Updated Real Property Tax Clearance from Municipal Treasurer",
+        "Approved Subdivision Plan / Building Permit (for new improvements)",
+        "Valid ID of applicant"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Submit Documents at Assessor’s Office",
+          "description": "Present deed, title, CAR, and tax clearance for completeness check."
+        },
+        {
+          "step": 2,
+          "title": "Field Appraisal / Verification",
+          "description": "Assessor staff verify parcel boundaries, classification, and market value schedule."
+        },
+        {
+          "step": 3,
+          "title": "Fee Payment & Release",
+          "description": "Pay certification/transfer fee at the Treasurer and claim the updated Tax Declaration."
+        }
+      ],
+      "processingTime": "Needs Review (confirm turnaround at Municipal Assessor)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Needs Review (confirm certification and transfer fee schedule)",
+      "feesStatus": "Needs Review",
+      "office": "Office of the Municipal Assessor",
+      "officeAddress": "Municipal Hall, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3012"
+      ],
+      "officeEmail": "pangasinan_alcala@yahoo.com",
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "Property Assessment Request Form",
+          "status": "Unavailable",
+          "note": "Issued at Municipal Assessor counter"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 11032 Citizen’s Charter Framework & LGU Alcala Office Directory (Local fee schedule awaiting published Alcala Citizen’s Charter PDF)",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "rhu-health-services",
+      "title": "Primary Healthcare, Immunizations & Sanitary Permits (RHU)",
+      "category": "Health Services (Alcala RHU)",
+      "categoryId": "health",
+      "icon": "bi-heart-pulse-fill",
+      "description": "Outpatient medical consultations, maternal/child immunization, PhilHealth YAKAP primary care, medical certificates, and sanitary/health permits.",
+      "keywords": [
+        "rhu",
+        "health center",
+        "doctor",
+        "consultation",
+        "immunization",
+        "sanitary permit",
+        "health certificate",
+        "philhealth"
+      ],
+      "eligibility": [
+        "All residents of Alcala; food handlers and commercial workers for Health Certificates & Sanitary Permits."
+      ],
+      "requirements": [
+        "Valid ID / PhilHealth Member Data Record (for primary care consultation)",
+        "For Sanitary Permit / Health Certificate: Laboratory test results (CBC, Urinalysis, Stool Exam, Chest X-Ray as required)",
+        "Child Immunization Card (for pediatric vaccinations)"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Register at Alcala RHU Triage",
+          "description": "Visit Alcala RHU on National Road, Arboleda St., Poblacion East and sign the triage log."
+        },
+        {
+          "step": 2,
+          "title": "Medical Consultation / Lab Review",
+          "description": "Consult with the Municipal Health Officer or public health nurse."
+        },
+        {
+          "step": 3,
+          "title": "Issuance of Prescription / Clearance",
+          "description": "Receive medicines (if stocked), referrals, or signed Health/Sanitary Permit upon fee settlement if applicable."
+        }
+      ],
+      "processingTime": "Same-day walk-in consultation (Sanitary permit turnaround: Needs Review)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Primary care consultations are generally free at RHU; Sanitary/Medical Certificate fees: Needs Review",
+      "feesStatus": "Needs Review",
+      "office": "Alcala Rural Health Unit (RHU) / Municipal Health Office",
+      "officeAddress": "National Road, Arboleda St., Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 593-4992",
+        "0998-572-0248",
+        "0926-282-1002"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "Sanitary Permit Application Checklist",
+          "status": "Unavailable",
+          "note": "Available at Alcala RHU Sanitation Section"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "DOH / PhilHealth YAKAP Facility Directory — Alcala RHU",
+        "sourceUrl": "https://www.doh.gov.ph/",
+        "issuingAgency": "Department of Health / Alcala RHU",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "RHU address and verified phone numbers confirmed; local certificate fees require Municipal Revenue Code confirmation."
+      }
+    },
+    {
+      "id": "mswdo-aics",
+      "title": "Social Welfare & Crisis Assistance (MSWDO / AICS)",
+      "category": "Social Welfare, Senior, PWD & Solo Parent",
+      "categoryId": "social-services",
+      "icon": "bi-people-fill",
+      "description": "Medical, burial, educational, or emergency crisis referrals and Social Case Study Reports from MSWDO Alcala.",
+      "keywords": [
+        "mswdo",
+        "aics",
+        "social welfare",
+        "medical assistance",
+        "burial assistance",
+        "social case study",
+        "indigency"
+      ],
+      "eligibility": [
+        "Indigent or crisis-affected residents of Alcala, Pangasinan assessed by a Municipal Social Worker."
+      ],
+      "requirements": [
+        "Barangay Certificate of Indigency",
+        "Valid government-issued ID of claimant and beneficiary",
+        "Medical abstract / hospital bill / prescription (for medical assistance) or Death Certificate (for burial assistance)"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Intake & Screening at MSWDO",
+          "description": "Submit documents to the MSWDO duty social worker for intake interview."
+        },
+        {
+          "step": 2,
+          "title": "Social Case Study Assessment",
+          "description": "Social worker evaluates need and prepares a Social Case Study Report or endorsement."
+        },
+        {
+          "step": 3,
+          "title": "Approval & Release / Referral",
+          "description": "Approved municipal assistance or DSWD/provincial referral is released to the beneficiary."
+        }
+      ],
+      "processingTime": "Needs Review (depends on case evaluation and fund availability)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Free (₱0.00)",
+      "feesStatus": "Verified",
+      "office": "Municipal Social Welfare & Development Office (MSWDO)",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3012"
+      ],
+      "officeEmail": "pangasinan_alcala@yahoo.com",
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "MSWDO Intake Sheet",
+          "status": "Unavailable",
+          "note": "Completed during interview at MSWDO"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "DSWD AICS Guidelines & MSWDO Mandate",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "senior-citizen-id",
+      "title": "Senior Citizen ID & OSCA Benefits (RA 9994)",
+      "category": "Social Welfare, Senior, PWD & Solo Parent",
+      "categoryId": "social-services",
+      "icon": "bi-person-heart",
+      "description": "Issuance of Senior Citizen ID and purchase booklets for residents aged 60 and above under the Expanded Senior Citizens Act (RA 9994).",
+      "keywords": [
+        "senior citizen",
+        "osca",
+        "ra 9994",
+        "elderly",
+        "discount",
+        "purchase booklet"
+      ],
+      "eligibility": [
+        "Filipino citizens aged 60 years old and above residing in Alcala, Pangasinan."
+      ],
+      "requirements": [
+        "Proof of Age and Identity (Birth Certificate, Passport, or valid government ID showing birthdate)",
+        "Barangay Clearance / Certificate of Residency in Alcala",
+        "Two (2) recent 1x1 ID pictures"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Submit Application at OSCA / MSWDO",
+          "description": "Fill out the Senior Citizen registration form and attach requirements."
+        },
+        {
+          "step": 2,
+          "title": "Verification of Residency & Age",
+          "description": "OSCA / MSWDO staff validate identity and barangay residency."
+        },
+        {
+          "step": 3,
+          "title": "Issuance of ID & Purchase Booklet",
+          "description": "Claim the official Senior Citizen ID and medicine/grocery purchase booklets."
+        }
+      ],
+      "processingTime": "Needs Review (confirm OSCA printing turnaround at MSWDO)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Free (₱0.00 under RA 9994)",
+      "feesStatus": "Verified",
+      "office": "Office for Senior Citizens Affairs (OSCA) / MSWDO",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3012"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "OSCA Registration Form",
+          "status": "Unavailable",
+          "note": "Provided free at MSWDO / OSCA desk"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 9994 (Expanded Senior Citizens Act of 2010)",
+        "sourceUrl": "https://www.dswd.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "pwd-id",
+      "title": "Persons with Disability (PWD) ID (RA 10754)",
+      "category": "Social Welfare, Senior, PWD & Solo Parent",
+      "categoryId": "social-services",
+      "icon": "bi-universal-access",
+      "description": "Registration and issuance of PWD Identification Card and purchase booklet through PDAO / MSWDO.",
+      "keywords": [
+        "pwd",
+        "disability",
+        "pdao",
+        "ra 10754",
+        "ra 7277",
+        "discount"
+      ],
+      "eligibility": [
+        "Residents of Alcala with certified physical, psychosocial, visual, hearing, learning, or mental disability."
+      ],
+      "requirements": [
+        "Medical Certificate / Clinical Abstract confirming disability issued by a licensed physician (Alcala RHU or government hospital)",
+        "Barangay Certificate of Residency",
+        "Two (2) recent 1x1 ID pictures and valid ID / Birth Certificate"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Secure Medical Certification",
+          "description": "Obtain disability assessment from Alcala RHU or attending specialist."
+        },
+        {
+          "step": 2,
+          "title": "Submit at PDAO / MSWDO",
+          "description": "Complete the DOH-PRPWD application form with photos and residency proof."
+        },
+        {
+          "step": 3,
+          "title": "Claim PWD ID & Booklet",
+          "description": "Receive the laminated PWD ID once encoded into the DOH PRPWD registry."
+        }
+      ],
+      "processingTime": "Needs Review (depends on DOH PRPWD registry encoding)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Free (₱0.00 under RA 7277 / RA 10754)",
+      "feesStatus": "Verified",
+      "office": "Persons with Disability Affairs Office (PDAO) / MSWDO",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-4992"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "DOH-PRPWD Application Form",
+          "status": "Needs Review",
+          "note": "Available at MSWDO / PDAO"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 10754 & DOH Philippine Registry for Persons with Disabilities",
+        "sourceUrl": "https://www.doh.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "solo-parent-id",
+      "title": "Solo Parent ID & Benefits (RA 11861)",
+      "category": "Social Welfare, Senior, PWD & Solo Parent",
+      "categoryId": "social-services",
+      "icon": "bi-person-badge-fill",
+      "description": "Assessment and issuance of Solo Parent Identification Card under the Expanded Solo Parents Welfare Act (RA 11861).",
+      "keywords": [
+        "solo parent",
+        "ra 11861",
+        "single parent",
+        "mswdo",
+        "parental leave"
+      ],
+      "eligibility": [
+        "Qualified solo parents residing in Alcala caring for dependent child/children as defined under RA 11861."
+      ],
+      "requirements": [
+        "Barangay Certificate attesting to Solo Parent status and residency in Alcala",
+        "Birth Certificate(s) of dependent child/children",
+        "Supporting proof of status (Death Certificate of spouse, Affidavit of Abandonment/Separation, etc.)",
+        "Income Tax Return / Certificate of Low Income (if applying for subsidy/discount bracket) and two (2) 1x1 ID pictures"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "File Application at MSWDO",
+          "description": "Submit documentary requirements to MSWDO for assessment."
+        },
+        {
+          "step": 2,
+          "title": "Social Worker Validation",
+          "description": "MSWDO conducts validation/home visit if needed."
+        },
+        {
+          "step": 3,
+          "title": "Issuance of Solo Parent ID",
+          "description": "Claim the official Solo Parent ID (valid for 1 year, renewable)."
+        }
+      ],
+      "processingTime": "Needs Review (confirm MSWDO evaluation turnaround)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Free (₱0.00 under RA 11861)",
+      "feesStatus": "Verified",
+      "office": "Municipal Social Welfare & Development Office (MSWDO)",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3012"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "Solo Parent Application Form (RA 11861)",
+          "status": "Unavailable",
+          "note": "Provided at MSWDO Alcala"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 11861 (Expanded Solo Parents Welfare Act)",
+        "sourceUrl": "https://www.dswd.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "agriculture-rsbsa",
+      "title": "RSBSA Farmer Registration & Agricultural Assistance",
+      "category": "Agriculture & Farmer Support",
+      "categoryId": "agriculture",
+      "icon": "bi-tree-fill",
+      "description": "Enroll in the Registry System for Basic Sectors in Agriculture (RSBSA) and access rice, corn, vegetable, and livestock support.",
+      "keywords": [
+        "agriculture",
+        "rsbsa",
+        "farmer",
+        "rice",
+        "corn",
+        "tobacco",
+        "fertilizer",
+        "seeds",
+        "livestock",
+        "mao"
+      ],
+      "eligibility": [
+        "Active farmers, farmworkers, fisherfolk, and agri-youth residing or tilling land in Alcala, Pangasinan."
+      ],
+      "requirements": [
+        "Accomplished RSBSA Enrollment Form",
+        "Barangay Certification confirming farming activity and parcel location",
+        "Proof of land ownership, lease, or tenant agreement (if applicable)",
+        "Valid government ID and 2x2 ID picture"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Verify Parcel at Barangay & MAO",
+          "description": "Secure Barangay certification and visit the Municipal Agriculture Office."
+        },
+        {
+          "step": 2,
+          "title": "Encoding into DA RSBSA System",
+          "description": "MAO Agricultural Technologist encodes farmer and parcel data."
+        },
+        {
+          "step": 3,
+          "title": "Access Interventions",
+          "description": "Qualified RSBSA registrants become eligible for DA seed/fertilizer vouchers, insurance, and KADIWA grants."
+        }
+      ],
+      "processingTime": "Needs Review (depends on DA Region I validation cycle)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Free (₱0.00)",
+      "feesStatus": "Verified",
+      "office": "Municipal Agriculture Office (MAO)",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3803"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "DA RSBSA Enrollment Form",
+          "status": "Needs Review",
+          "note": "Available at MAO / Barangay Agriculture Committee"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "Department of Agriculture RSBSA Guidelines & Alcala Agricultural Sector Profile",
+        "sourceUrl": "https://www.da.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "building-permit",
+      "title": "Building, Renovation & Occupancy Permits",
+      "category": "Building, Construction & Engineering",
+      "categoryId": "infrastructure",
+      "icon": "bi-building-gear",
+      "description": "Apply for a Building Permit, Fencing Permit, or Certificate of Occupancy under the National Building Code (PD 1096).",
+      "keywords": [
+        "building permit",
+        "occupancy permit",
+        "engineering",
+        "construction",
+        "zoning",
+        "obo",
+        "fencing"
+      ],
+      "eligibility": [
+        "Property owners, lessees with owner’s consent, or licensed contractors constructing/renovating structures in Alcala."
+      ],
+      "requirements": [
+        "Accomplished Building Permit Application Forms (Architectural, Structural, Electrical, Sanitary/Plumbing)",
+        "Signed & Sealed Building Plans and Specifications by licensed engineers/architects",
+        "Certified True Copy of Transfer Certificate of Title (TCT) & Tax Declaration",
+        "Barangay Construction Clearance & Zoning/Locational Clearance",
+        "BFP Fire Safety Evaluation Clearance (FSEC)"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Secure Locational & Barangay Clearances",
+          "description": "Obtain Barangay Clearance and Zoning Clearance from MPDC."
+        },
+        {
+          "step": 2,
+          "title": "Technical Plan Evaluation at OBO",
+          "description": "Submit signed plans to the Municipal Engineer / Office of the Building Official and BFP."
+        },
+        {
+          "step": 3,
+          "title": "Pay Assessed Building Fees",
+          "description": "Settle statutory PD 1096 building fees at the Municipal Treasurer."
+        },
+        {
+          "step": 4,
+          "title": "Release of Building Permit",
+          "description": "Claim signed Building Permit prior to commencing construction."
+        }
+      ],
+      "processingTime": "Needs Review (subject to RA 11032 complex transaction timelines)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Assessed based on floor area and occupancy type per National Building Code (PD 1096) Schedule",
+      "feesStatus": "Verified",
+      "office": "Office of the Municipal Engineer / Office of the Building Official",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3012"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "Unified Building Permit Form (DPWH/PD 1096)",
+          "status": "Needs Review",
+          "note": "Available at Municipal Engineering Office"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "PD 1096 (National Building Code of the Philippines) & Alcala Local Employment Ordinance No. 2025-06",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "peso-employment",
+      "title": "Employment Assistance & First Time Jobseeker Support (PESO)",
+      "category": "Employment Assistance (PESO) & Education",
+      "categoryId": "education",
+      "icon": "bi-briefcase-fill",
+      "description": "Local job referrals, Alcala local-hire prioritization under Ordinance No. 2025-06, SPES student employment, and RA 11261 First Time Jobseekers certification.",
+      "keywords": [
+        "peso",
+        "job",
+        "employment",
+        "first time jobseeker",
+        "ra 11261",
+        "spes",
+        "tupad",
+        "ordinance 2025-06"
+      ],
+      "eligibility": [
+        "Bona fide residents of Alcala seeking local or overseas employment, students (SPES), or first-time jobseekers."
+      ],
+      "requirements": [
+        "Barangay Certificate confirming residency and First Time Jobseeker status (for RA 11261 fee exemption)",
+        "Updated Resume / Bio-data and valid ID",
+        "Oath of Undertaking (signed under RA 11261)"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Register at Barangay & Alcala PESO",
+          "description": "Register in the PESO Skills Registry (noting Alcala Ordinance No. 2025-06 local hiring priority)."
+        },
+        {
+          "step": 2,
+          "title": "Job Matching & Endorsement",
+          "description": "PESO matches qualifications with local public/private project openings or DOLE programs."
+        },
+        {
+          "step": 3,
+          "title": "Fee-Exempt Document Requests",
+          "description": "Present Barangay RA 11261 certificate to waive fees on eligible pre-employment clearances."
+        }
+      ],
+      "processingTime": "Needs Review (confirm PESO desk schedule at Municipal Hall)",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Free (₱0.00; pre-employment documents exempt under RA 11261)",
+      "feesStatus": "Verified",
+      "office": "Public Employment Service Office (PESO)",
+      "officeAddress": "Municipal Hall, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3012"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [
+        {
+          "label": "PESO Applicant Registration Card (NMRS Form 1)",
+          "status": "Needs Review",
+          "note": "Available at PESO desk"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 11261 (First Time Jobseekers Assistance Act) & Alcala Municipal Ordinance No. 2025-06",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "mdrrmo-drrm",
+      "title": "Disaster Risk Reduction, Flood Advisories & Ambulance Use",
+      "category": "Disaster Risk Reduction & Public Safety",
+      "categoryId": "public-safety",
+      "icon": "bi-exclamation-triangle-fill",
+      "description": "Emergency flood/typhoon preparedness, Agno River dike monitoring, and ambulance/patient transport coordination under Municipal Ordinance No. 2026-05.",
+      "keywords": [
+        "mdrrmo",
+        "disaster",
+        "flood",
+        "agno river",
+        "ambulance",
+        "rescue",
+        "evacuation",
+        "emergency"
+      ],
+      "eligibility": [
+        "All residents, barangay DRRM committees, and emergency patients within Alcala, Pangasinan."
+      ],
+      "requirements": [
+        "For emergency response: Immediate call via 911, Alcala MPS, RHU, or Municipal Hall trunkline with exact barangay location",
+        "For scheduled patient transport: Medical referral / hospital endorsement per Municipal Ordinance No. 2026-05"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Contact Emergency Desk or Barangay Officials",
+          "description": "Report incident or patient transport need with exact barangay and contact number."
+        },
+        {
+          "step": 2,
+          "title": "Dispatch & Verification",
+          "description": "MDRRMO / RHU / PNP evaluates priority and dispatches ambulance or rescue team."
+        }
+      ],
+      "processingTime": "Immediate dispatch for emergencies; scheduled transport per Ordinance 2026-05 guidelines",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Emergency rescue is Free (₱0.00); patient transport guidelines governed by Municipal Ordinance No. 2026-05",
+      "feesStatus": "Needs Review",
+      "office": "Municipal Disaster Risk Reduction & Management Office (MDRRMO) / RHU",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-4992",
+        "911"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM (24/7 Emergency Escalation via 911 / MPS)",
+      "downloadableForms": [
+        {
+          "label": "Ordinance No. 2026-05 Ambulance Use Guidelines",
+          "status": "Needs Review",
+          "note": "Summary available on Legislative page"
+        }
+      ],
+      "citation": {
+        "sourceTitle": "RA 10121 (DRRM Act) & Alcala Municipal Ordinance No. 2026-05",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    },
+    {
+      "id": "environment-waste",
+      "title": "Solid Waste Management & Environmental Clearances",
+      "category": "Environment & Solid Waste Services",
+      "categoryId": "environment",
+      "icon": "bi-recycle",
+      "description": "Solid waste collection coordination, Barangay MRF compliance, and local environmental clearances under RA 9003.",
+      "keywords": [
+        "environment",
+        "solid waste",
+        "garbage",
+        "mrf",
+        "menro",
+        "tree cutting",
+        "sanitation"
+      ],
+      "eligibility": [
+        "Households, barangays, and commercial establishments in Alcala, Pangasinan."
+      ],
+      "requirements": [
+        "Letter of request / Barangay endorsement for waste collection concerns or community cleanups",
+        "For tree-cutting endorsement: Barangay Certification and DENR permit application"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "title": "Coordinate with Barangay or Municipal Hall",
+          "description": "Submit request or environmental concern to the designated environmental desk / General Services."
+        },
+        {
+          "step": 2,
+          "title": "Inspection & Scheduling",
+          "description": "Staff coordinate collection schedule or site verification with DENR/barangay officials."
+        }
+      ],
+      "processingTime": "Needs Review",
+      "processingTimeStatus": "Needs Review",
+      "fees": "Needs Review (solid waste fees for commercial establishments follow Municipal Revenue Code)",
+      "feesStatus": "Needs Review",
+      "office": "Municipal Environment / General Services Desk",
+      "officeAddress": "Municipal Hall Compound, Poblacion East, Alcala, 2425 Pangasinan",
+      "officePhones": [
+        "(075) 632-5938",
+        "(075) 593-3012"
+      ],
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "downloadableForms": [],
+      "citation": {
+        "sourceTitle": "RA 11032 Citizen’s Charter Framework & LGU Alcala Office Directory (Local fee schedule awaiting published Alcala Citizen’s Charter PDF)",
+        "sourceUrl": "https://arta.gov.ph/",
+        "issuingAgency": "Anti-Red Tape Authority (ARTA) / Municipality of Alcala",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Statutory Philippine requirements are listed; Alcala-specific local fee ordinances and exact processing minutes are marked Needs Review until the published LGU Alcala Citizen’s Charter document is obtained."
+      }
+    }
+  ]
+}

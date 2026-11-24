@@ -1,0 +1,261 @@
+{
+  "projects": [
+    {
+      "id": "26AI0042",
+      "name": "Construction of Multi-Purpose Building (Covered Court), San Juan Elementary School",
+      "location": "Brgy. San Juan, Alcala, Pangasinan",
+      "barangay": "San Juan",
+      "category": "Public Buildings & Education Facilities",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "See DPWH Award Registry (Needs Review)",
+      "statusLabel": "Verified in DPWH Registry (Completion % Needs Review)",
+      "projectDate": "FY 2026 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "25AI0044",
+      "name": "Construction of Multi-Purpose Building, Barangay Atainan",
+      "location": "Brgy. Atainan, Alcala, Pangasinan",
+      "barangay": "Atainan",
+      "category": "Public Buildings & Community Centers",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "Z-5 Construction, Inc.",
+      "abcAmount": 5940000,
+      "contractCost": 5878898,
+      "statusLabel": "Awarded (₱5,878,898.00)",
+      "projectDate": "FY 2025 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "25AI0045",
+      "name": "Construction of Multi-Purpose Building, Barangay San Juan",
+      "location": "Brgy. San Juan, Alcala, Pangasinan",
+      "barangay": "San Juan",
+      "category": "Public Buildings & Community Centers",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "Z-5 Construction, Inc.",
+      "abcAmount": 5940000,
+      "contractCost": 5878271.9,
+      "statusLabel": "Awarded (₱5,878,271.90)",
+      "projectDate": "FY 2025 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "24AI0191",
+      "name": "Repair/Rehabilitation of Alcala Earthdike at Alcala Section",
+      "location": "Alcala Section, Alcala, Pangasinan",
+      "barangay": "Municipal-wide / Agno River Basin",
+      "category": "Flood Control & Riverbank Protection",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "See DPWH Registry (Needs Review)",
+      "statusLabel": "Verified in DPWH Registry",
+      "projectDate": "FY 2024 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "24AI0084",
+      "name": "Construction of Multi-Purpose Building (Covered Court) at South Central School",
+      "location": "Brgy. Canarvacanan, Alcala, Pangasinan",
+      "barangay": "Canarvacanan",
+      "category": "Public Buildings & Education Facilities",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "See DPWH Registry (Needs Review)",
+      "statusLabel": "Verified in DPWH Registry",
+      "projectDate": "FY 2024 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "22AI0015",
+      "name": "Construction of Multi-Purpose Building (Convertible to Evacuation Center)",
+      "location": "Brgy. San Pedro Apartado, Alcala, Pangasinan",
+      "barangay": "San Pedro Apartado",
+      "category": "DRRM & Evacuation Infrastructure",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "See DPWH Registry (Needs Review)",
+      "statusLabel": "Verified in DPWH Registry",
+      "projectDate": "FY 2022 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "21AI0076",
+      "name": "Construction of Road in Barangays Poblacion West – San Juan – San Vicente – Laoac",
+      "location": "Brgys. Poblacion West, San Juan, San Vicente, Laoac, Alcala, Pangasinan",
+      "barangay": "Poblacion West / San Juan / San Vicente / Laoac",
+      "category": "Roads & Connectivity",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "See DPWH Registry (Needs Review)",
+      "abcAmount": 17820000,
+      "statusLabel": "Verified (ABC ₱17,820,000.00)",
+      "projectDate": "FY 2021 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "21AI0060",
+      "name": "Construction of Multi-Purpose Building, Barangay Pindangan Centro",
+      "location": "Brgy. Pindangan Centro, Alcala, Pangasinan",
+      "barangay": "Pindangan Centro",
+      "category": "Public Buildings & Community Centers",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "See DPWH Registry (Needs Review)",
+      "statusLabel": "Verified in DPWH Registry",
+      "projectDate": "FY 2021 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "21AI0032",
+      "name": "Construction of 135M Drainage with Cover, Brgy. Poblacion East",
+      "location": "Brgy. Poblacion East, Alcala, Pangasinan",
+      "barangay": "Poblacion East",
+      "category": "Drainage & Urban Flood Mitigation",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "Z-5 Construction, Inc.",
+      "statusLabel": "Implemented",
+      "projectDate": "FY 2021 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "19AI0316",
+      "name": "Construction of Multi-Purpose Building, Brgy. San Pedro Ili",
+      "location": "Brgy. San Pedro Ili, Alcala, Pangasinan",
+      "barangay": "San Pedro Ili",
+      "category": "Public Buildings & Community Centers",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "See DPWH Registry (Needs Review)",
+      "statusLabel": "Verified in DPWH Registry",
+      "projectDate": "FY 2019 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "17AI0270",
+      "name": "Construction of Day Care Center Building at Barangay Poblacion West",
+      "location": "Brgy. Poblacion West, Alcala, Pangasinan",
+      "barangay": "Poblacion West",
+      "category": "Social & Early Childhood Facilities",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "See DPWH Registry (Needs Review)",
+      "statusLabel": "Verified in DPWH Registry",
+      "projectDate": "FY 2017 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "17AI0120",
+      "name": "Repair/Rehabilitation of River Bank Control Works, Sta. 0+000 to Sta. 0+424, Brgy. Macayo",
+      "location": "Brgy. Macayo, Alcala, Pangasinan",
+      "barangay": "Macayo",
+      "category": "Flood Control & Riverbank Protection",
+      "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
+      "fundingSource": "General Appropriations Act (DPWH)",
+      "contractor": "See DPWH Registry (Needs Review)",
+      "statusLabel": "Verified in DPWH Registry",
+      "projectDate": "FY 2017 Cycle",
+      "documentUrl": "https://www.dpwh.gov.ph/",
+      "citation": {
+        "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
+        "sourceUrl": "https://www.dpwh.gov.ph/",
+        "issuingAgency": "Department of Public Works and Highways (DPWH)",
+        "publicationDate": "2025-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    }
+  ]
+}

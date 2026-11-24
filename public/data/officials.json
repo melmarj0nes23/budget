@@ -1,0 +1,204 @@
+{
+  "officials": [
+    {
+      "id": "mayor-collado",
+      "name": "Hon. Atty. Manuel T. Collado",
+      "title": "Municipal Mayor",
+      "branch": "Executive",
+      "term": "2025–2028",
+      "email": "pangasinan_alcala@yahoo.com",
+      "phone": "(075) 632-5938",
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "citation": {
+        "sourceTitle": "Alcala, Pangasinan Elected Municipal Officials (2025–2028) & DTI LGU Directory",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "COMELEC / Province of Pangasinan / DTI Directory",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "vicemayor-callejo",
+      "name": "Hon. Jojo B. Callejo",
+      "title": "Municipal Vice Mayor",
+      "branch": "Executive",
+      "term": "2025–2028",
+      "email": "pangasinan_alcala@yahoo.com",
+      "phone": "(075) 593-3012",
+      "officeHours": "Mon–Fri: 8:00 AM – 5:00 PM",
+      "citation": {
+        "sourceTitle": "Alcala, Pangasinan Elected Municipal Officials (2025–2028)",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "COMELEC / BetterGov.ph Election Records",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "sb-labiano",
+      "name": "Hon. Rodelio C. Labiano",
+      "title": "Sangguniang Bayan Member",
+      "branch": "Legislative",
+      "term": "2025–2028",
+      "committees": [
+        "Committee Assignments: Needs Review (awaiting published SB Resolution)"
+      ],
+      "citation": {
+        "sourceTitle": "2025–2028 Sangguniang Bayan of Alcala Roster",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "COMELEC / Provincial Records",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "Committee chairmanships require confirmation from the Sangguniang Bayan Secretariat."
+      }
+    },
+    {
+      "id": "sb-tercias",
+      "name": "Hon. Marcelino B. Tercias",
+      "title": "Sangguniang Bayan Member",
+      "branch": "Legislative",
+      "term": "2025–2028",
+      "committees": [
+        "Committee Assignments: Needs Review"
+      ],
+      "citation": {
+        "sourceTitle": "2025–2028 Sangguniang Bayan of Alcala Roster",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "COMELEC / Provincial Records",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "sb-rosquita",
+      "name": "Hon. Rodolfo C. Rosquita",
+      "title": "Sangguniang Bayan Member",
+      "branch": "Legislative",
+      "term": "2025–2028",
+      "committees": [
+        "Committee Assignments: Needs Review"
+      ],
+      "citation": {
+        "sourceTitle": "2025–2028 Sangguniang Bayan of Alcala Roster",
+        "sourceUrl": "https://bettergov.ph/",
+        "issuingAgency": "COMELEC / BetterGov.ph",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "sb-nartates",
+      "name": "Hon. Janela Love B. Nartates",
+      "title": "Sangguniang Bayan Member",
+      "branch": "Legislative",
+      "term": "2025–2028",
+      "committees": [
+        "Committee Assignments: Needs Review"
+      ],
+      "citation": {
+        "sourceTitle": "2025–2028 Sangguniang Bayan of Alcala Roster",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "COMELEC / Provincial Records",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "sb-bauzon",
+      "name": "Hon. Amado D. Bauzon",
+      "title": "Sangguniang Bayan Member",
+      "branch": "Legislative",
+      "term": "2025–2028",
+      "committees": [
+        "Committee Assignments: Needs Review"
+      ],
+      "citation": {
+        "sourceTitle": "2025–2028 Sangguniang Bayan of Alcala Roster",
+        "sourceUrl": "https://bettergov.ph/",
+        "issuingAgency": "COMELEC / BetterGov.ph",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "sb-mamitag",
+      "name": "Hon. Cherry Beth C. Mamitag",
+      "title": "Sangguniang Bayan Member",
+      "branch": "Legislative",
+      "term": "2025–2028",
+      "committees": [
+        "Committee Assignments: Needs Review"
+      ],
+      "citation": {
+        "sourceTitle": "2025–2028 Sangguniang Bayan of Alcala Roster",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "COMELEC / Provincial Records",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "sb-catalan",
+      "name": "Hon. Mark Ryan C. Catalan",
+      "title": "Sangguniang Bayan Member",
+      "branch": "Legislative",
+      "term": "2025–2028",
+      "committees": [
+        "Committee Assignments: Needs Review"
+      ],
+      "citation": {
+        "sourceTitle": "2025–2028 Sangguniang Bayan of Alcala Roster",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "COMELEC / Provincial Records",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "sb-espiritu",
+      "name": "Hon. Amor G. Espiritu",
+      "title": "Sangguniang Bayan Member",
+      "branch": "Legislative",
+      "term": "2025–2028",
+      "committees": [
+        "Committee Assignments: Needs Review"
+      ],
+      "citation": {
+        "sourceTitle": "2025–2028 Sangguniang Bayan of Alcala Roster",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "COMELEC / Provincial Records",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "id": "sb-liga-sk",
+      "name": "Liga ng mga Barangay & SK Federation Presidents",
+      "title": "Ex-Officio Sangguniang Bayan Members",
+      "branch": "Ex-Officio",
+      "term": "Current Term",
+      "committees": [
+        "Barangay Affairs & Youth and Sports Development"
+      ],
+      "citation": {
+        "sourceTitle": "Local Government Code Ex-Officio Seats (Names pending official directory)",
+        "sourceUrl": "https://www.dilg.gov.ph/",
+        "issuingAgency": "DILG / LGU Alcala",
+        "publicationDate": "2025-05-15",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Needs Review",
+        "notes": "Current sitting Ex-Officio names are awaiting official Municipal Secretary verification."
+      }
+    }
+  ]
+}

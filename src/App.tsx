@@ -1,204 +1,105 @@
-import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
-import { Layout, routeToPath } from './components/Layout';
-import { PanelSkeleton } from './components/States';
-import { BudgetDataProvider } from './hooks/useBudgetData';
-import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
-import { DashboardPage } from './pages/DashboardPage';
-import type { BudgetStage, PageRoute } from './types/budget';
+import { lazy, Suspense, useEffect } from 'react';
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { LanguageProvider } from './contexts/LanguageContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import Layout from './components/layout/Layout';
 
-const BudgetExplorerPage = lazy(() =>
-  import('./pages/BudgetExplorerPage').then((m) => ({ default: m.BudgetExplorerPage }))
-);
-const BudgetComparisonPage = lazy(() =>
-  import('./pages/BudgetComparisonPage').then((m) => ({ default: m.BudgetComparisonPage }))
-);
-const LocalityPage = lazy(() =>
-  import('./pages/LocalityPage').then((m) => ({ default: m.LocalityPage }))
-);
-const SocioeconomicPage = lazy(() =>
-  import('./pages/SocioeconomicPage').then((m) => ({ default: m.SocioeconomicPage }))
-);
-const MethodologyPage = lazy(() =>
-  import('./pages/MethodologyPage').then((m) => ({ default: m.MethodologyPage }))
-);
-const AboutPage = lazy(() =>
-  import('./pages/AboutPage').then((m) => ({ default: m.AboutPage }))
-);
+const BudgetPage = lazy(() => import('./pages/BudgetPage'));
 
-const VALID_ROUTES: PageRoute[] = [
-  'dashboard',
-  'explorer',
-  'compare',
-  'locality',
-  'socioeconomic',
-  'methodology',
-  'about',
-];
-
-function parsePathRoute(): PageRoute {
-  const segment = window.location.pathname
-    .replace(/^\/+|\/+$/g, '')
-    .split('/')[0]
-    ?.toLowerCase();
-
-  if (segment && VALID_ROUTES.includes(segment as PageRoute)) {
-    return segment as PageRoute;
-  }
-
-  // Gracefully upgrade any legacy bookmarked #route URLs to clean SEO paths without #
-  const legacyHash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
-  if (legacyHash && VALID_ROUTES.includes(legacyHash as PageRoute)) {
-    window.history.replaceState(null, '', routeToPath(legacyHash as PageRoute));
-    return legacyHash as PageRoute;
-  }
-
-  return 'dashboard';
-}
-
-function upsertMeta(attr: 'name' | 'property', key: string, content: string): void {
-  let tag = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
-  if (!tag) {
-    tag = document.createElement('meta');
-    tag.setAttribute(attr, key);
-    document.head.appendChild(tag);
-  }
-  tag.setAttribute('content', content);
-}
-
-function RouteSeoSync({ route }: { route: PageRoute }) {
-  const { t } = useLanguage();
+function ScrollManager() {
+  const { pathname, search, hash } = useLocation();
 
   useEffect(() => {
-    const seoByRoute: Record<PageRoute, { title: string; description: string }> = {
-      dashboard: {
-        title: t.meta.siteTitle,
-        description: t.dashboard.heroSubtitle,
-      },
-      explorer: {
-        title: `${t.explorer.title} – BudgetLens PH`,
-        description: t.explorer.subtitle,
-      },
-      compare: {
-        title: `${t.compare.title} – BudgetLens PH`,
-        description: t.compare.subtitle,
-      },
-      locality: {
-        title: `${t.locality.title} – BudgetLens PH`,
-        description: t.locality.subtitle,
-      },
-      socioeconomic: {
-        title: `${t.socioeconomic.title} – BudgetLens PH`,
-        description: t.socioeconomic.subtitle,
-      },
-      methodology: {
-        title: `${t.methodology.title} – BudgetLens PH`,
-        description: t.methodology.subtitle,
-      },
-      about: {
-        title: `${t.about.title} – BudgetLens PH`,
-        description: t.about.subtitle,
-      },
+    const scrollTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     };
 
-    const meta = seoByRoute[route];
-    const canonicalUrl = `${window.location.origin}${routeToPath(route)}`;
-
-    document.title = meta.title;
-    upsertMeta('name', 'description', meta.description);
-    upsertMeta('property', 'og:title', meta.title);
-    upsertMeta('property', 'og:description', meta.description);
-    upsertMeta('property', 'og:url', canonicalUrl);
-    upsertMeta('name', 'twitter:title', meta.title);
-    upsertMeta('name', 'twitter:description', meta.description);
-
-    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
+    if (hash) {
+      const id = hash.slice(1);
+      const tryScrollToAnchor = (attemptsLeft: number) => {
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+        if (attemptsLeft > 0) {
+          timer = setTimeout(() => tryScrollToAnchor(attemptsLeft - 1), 60);
+        } else {
+          scrollTop();
+        }
+      };
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      tryScrollToAnchor(6);
+      return () => {
+        if (timer) clearTimeout(timer);
+      };
     }
-    canonical.setAttribute('href', canonicalUrl);
-  }, [route, t]);
+
+    scrollTop();
+    const raf = requestAnimationFrame(scrollTop);
+    const timer = setTimeout(scrollTop, 80);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
+  }, [pathname, search, hash]);
 
   return null;
 }
 
-export default function App() {
-  const [route, setRoute] = useState<PageRoute>(() => parsePathRoute());
-  const [explorerIntent, setExplorerIntent] = useState<{
-    deptId: string;
-    year: number;
-    stage: BudgetStage;
-  } | null>(null);
-
-  useEffect(() => {
-    // Ensure root "/" displays clean "/dashboard" URL or keeps valid clean path without "#"
-    if (window.location.pathname === '/' && !window.location.hash) {
-      window.history.replaceState(null, '', routeToPath('dashboard'));
-    }
-
-    const onPopState = () => setRoute(parsePathRoute());
-    window.addEventListener('popstate', onPopState);
-    return () => window.removeEventListener('popstate', onPopState);
-  }, []);
-
-  const navigate = useCallback((next: PageRoute) => {
-    setRoute(next);
-    const nextPath = routeToPath(next);
-    if (window.location.pathname !== nextPath || window.location.hash) {
-      window.history.pushState(null, '', nextPath);
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  const handleInspectDepartment = useCallback(
-    (deptId: string, year: number, stage: BudgetStage) => {
-      setExplorerIntent({ deptId, year, stage });
-      navigate('explorer');
-    },
-    [navigate]
-  );
-
-  const clearExplorerIntent = useCallback(() => {
-    setExplorerIntent(null);
-  }, []);
-
+function NotFoundPage() {
   return (
-    <LanguageProvider>
-      <RouteSeoSync route={route} />
-      <BudgetDataProvider>
-        <Layout currentRoute={route} onNavigate={navigate}>
-          {route === 'dashboard' && (
-            <DashboardPage
-              onNavigate={navigate}
-              onInspectDepartment={handleInspectDepartment}
-            />
-          )}
+    <Layout breadcrumbs={[{ label: 'Page Not Found' }]}>
+      <section className="section">
+        <div className="container text-center py-12">
+          <h1 className="mb-3">404 — Page Not Found</h1>
+          <p className="text-slate-600 mb-6">
+            The page you requested could not be found on BetterAlcala Budget.
+          </p>
+          <div className="flex justify-center gap-3">
+            <Link to="/" className="btn btn-primary">
+              Return to Overview
+            </Link>
+            <a href="https://betteralcala.org/" className="btn btn-outline">
+              Visit Main Portal
+            </a>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
 
-          {route !== 'dashboard' && (
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <AuthProvider>
+        <LanguageProvider>
+          <BrowserRouter>
+            <ScrollManager />
             <Suspense
               fallback={
-                <div className="space-y-6">
-                  <PanelSkeleton heightClass="h-64" />
-                  <PanelSkeleton heightClass="h-80" />
+                <div className="min-h-screen flex items-center justify-center text-sm text-slate-600">
+                  Loading BetterAlcala Budget...
                 </div>
               }
             >
-              {route === 'explorer' && (
-                <BudgetExplorerPage
-                  initialSelection={explorerIntent}
-                  onClearInitialSelection={clearExplorerIntent}
-                />
-              )}
-              {route === 'compare' && <BudgetComparisonPage />}
-              {route === 'locality' && <LocalityPage />}
-              {route === 'socioeconomic' && <SocioeconomicPage />}
-              {route === 'methodology' && <MethodologyPage />}
-              {route === 'about' && <AboutPage onNavigate={navigate} />}
+              <Routes>
+                <Route path="/" element={<BudgetPage />} />
+                <Route path="/budget" element={<Navigate to="/" replace />} />
+                <Route path="/tracker" element={<BudgetPage />} />
+                <Route path="/budgetdocs" element={<BudgetPage />} />
+                <Route path="/contracts" element={<BudgetPage />} />
+                <Route path="/transparency" element={<BudgetPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
             </Suspense>
-          )}
-        </Layout>
-      </BudgetDataProvider>
-    </LanguageProvider>
+          </BrowserRouter>
+        </LanguageProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }

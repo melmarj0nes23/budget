@@ -44,7 +44,7 @@
 /* SRE Section V2 */
 .sre-section-v2 {
   padding: 48px 0 64px;
-  background: #FAF7F2;
+  background: #f8fafc;
 }
 
 .sre-header-v2 {
@@ -279,7 +279,7 @@
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: #FAF7F2;
+  background: #f8fafc;
   border-radius: 10px;
   transition: all 0.2s ease;
 }
@@ -585,7 +585,7 @@
 /* Resources Section V2 */
 .resources-section-v2 {
   padding: 64px 0;
-  background: #FAF7F2;
+  background: #f8fafc;
 }
 
 .resources-header-v2 {

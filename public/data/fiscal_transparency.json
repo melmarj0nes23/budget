@@ -1,0 +1,70 @@
+{
+  "fiscal_years": [
+    {
+      "fiscalYear": 2026,
+      "appropriationOrdinance": "Municipal Appropriation Ordinance No. 2025-03 (enacted Dec 1, 2025)",
+      "spResolution": "Sangguniang Panlalawigan Provincial Resolution No. 580-2026 (approved May 11, 2026)",
+      "approvedDate": "2026-05-11",
+      "approvedBudget": 260232497,
+      "obligations": null,
+      "disbursements": null,
+      "actualExpenditures": null,
+      "ntaShareNote": "Includes National Tax Allotment (NTA) share of ₱234,783,497.00 with mandatory 20% Development Fund allocation subject to DBM-DOF-DILG Joint Memorandum Circular No. 1.",
+      "developmentFundNote": "20% Development Fund compliance mandated by SP Res. No. 580-2026",
+      "sreStatus": "Needs Review",
+      "citation": {
+        "sourceTitle": "Sangguniang Panlalawigan of Pangasinan Provincial Resolution No. 580-2026 (CY/FY 2026 Annual Budget Review)",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "Sangguniang Panlalawigan of Pangasinan / SB Alcala",
+        "publicationDate": "2026-05-11",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "Approved Annual Budget (₱260,232,497.00; NTA share ₱234,783,497.00) is verified. Obligations, disbursements, and actual expenditures await BLGF eSRE / Municipal Budget Office publication."
+      }
+    },
+    {
+      "fiscalYear": 2025,
+      "appropriationOrdinance": "Municipal Appropriation Ordinance No. 2024-04 (enacted Dec 2, 2024)",
+      "spResolution": "Sangguniang Panlalawigan Provincial Resolution No. 319-2025 (approved Mar 3, 2025)",
+      "approvedDate": "2025-03-03",
+      "approvedBudget": 230306279,
+      "obligations": null,
+      "disbursements": null,
+      "actualExpenditures": null,
+      "ntaShareNote": "Includes National Tax Allotment (NTA) with mandatory 20% Development Fund allocation subject to DBM-DOF-DILG Joint Memorandum Circular No. 1.",
+      "developmentFundNote": "20% Development Fund compliance mandated by SP Res. No. 319-2025",
+      "sreStatus": "Needs Review",
+      "citation": {
+        "sourceTitle": "Sangguniang Panlalawigan of Pangasinan Provincial Resolution No. 319-2025 (FY 2025 Annual Budget Review)",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "Sangguniang Panlalawigan of Pangasinan / SB Alcala",
+        "publicationDate": "2025-03-03",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "Approved Annual Budget (₱230,306,279.00) is verified. Obligations, disbursements, and actual expenditures await BLGF eSRE / Municipal Budget Office publication."
+      }
+    },
+    {
+      "fiscalYear": 2024,
+      "appropriationOrdinance": "Municipal Annual Budget FY 2024",
+      "spResolution": "Sangguniang Panlalawigan Provincial Resolution No. 406-2024 (approved Mar 25, 2024)",
+      "approvedDate": "2024-03-25",
+      "approvedBudget": 193594983,
+      "obligations": null,
+      "disbursements": null,
+      "actualExpenditures": null,
+      "ntaShareNote": "National Tax Allotment (NTA) & Local Sources (exact breakdown pending BLGF eSRE extraction).",
+      "developmentFundNote": "Declared operative in its entirety by SP Pangasinan",
+      "sreStatus": "Needs Review",
+      "citation": {
+        "sourceTitle": "Sangguniang Panlalawigan of Pangasinan Provincial Resolution No. 406-2024 (FY 2024 Annual Budget Review)",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "Sangguniang Panlalawigan of Pangasinan / SB Alcala",
+        "publicationDate": "2024-03-25",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "Approved Annual Budget (₱193,594,983.00) is verified. Actual expenditure execution awaits BLGF eSRE / COA AAR figure extraction."
+      }
+    }
+  ]
+}

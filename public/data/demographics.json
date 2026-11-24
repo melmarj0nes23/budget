@@ -1,0 +1,393 @@
+{
+  "profile": {
+    "name": "Municipality of Alcala",
+    "province": "Pangasinan",
+    "region": "Region I – Ilocos Region",
+    "congressionalDistrict": "5th Congressional District of Pangasinan",
+    "representative": "Hon. Ramon N. Guico Jr.",
+    "psgcCode": "0105504000",
+    "postalCode": "2425",
+    "coordinates": {
+      "lat": 15.8467,
+      "lon": 120.5219,
+      "label": "15°50′48″N 120°31′19″E"
+    },
+    "incomeClass": "3rd Class Municipality",
+    "incomeClassNote": "Classified as 3rd Class in provincial listings (previously 4th Class prior to reclassification)",
+    "landAreaKm2": 45.71,
+    "landAreaNote": "45.71 km² per PSA/PhilAtlas (~5,508 hectares per Pangasinan provincial profile)",
+    "population2024": 49479,
+    "population2020": 48908,
+    "barangayCount": 21,
+    "foundingDate": "September 20, 1875",
+    "foundingDecree": "Royal Decree No. 682",
+    "formerName": "Barrio Dangla (formerly part of Bayambang)",
+    "townFiesta": "May 1–3",
+    "foundingFestival": "Turak Festival (September 20)",
+    "hallAddress": "Municipal Hall, Santo Tomas–Alcala Highway (National Road), Poblacion East, Alcala, 2425 Pangasinan",
+    "hallPhones": [
+      "(075) 632-5938",
+      "(075) 593-3012",
+      "(075) 593-3803"
+    ],
+    "hallEmail": "pangasinan_alcala@yahoo.com",
+    "officialFacebookUrl": "https://www.facebook.com/Alcala.2016.2019",
+    "boundaries": {
+      "north": "Villasis and Malasiqui",
+      "northeast": "Santo Tomas",
+      "east": "San Manuel (Tarlac)",
+      "south": "Bautista",
+      "west": "Bayambang"
+    },
+    "historyTimeline": [
+      {
+        "year": "Pre-1873",
+        "title": "Barrio Dangla",
+        "description": "Originally a thriving settlement of Bayambang known as \"Dangla,\" named after a medicinal shrub abundant in the area. Early settlers migrated from the Ilocos provinces via animal-drawn carts."
+      },
+      {
+        "year": "1873",
+        "title": "Petition for Independence",
+        "description": "On April 1, 1873, local residents formally petitioned the Spanish colonial government to separate Barrio Dangla from Bayambang and establish an independent pueblo."
+      },
+      {
+        "year": "1875",
+        "title": "Founding of Alcala",
+        "description": "Granted on September 20, 1875 via Royal Decree No. 682. The new municipality was named Alcala in honor of the hometown of the serving Governor of Pangasinan."
+      },
+      {
+        "year": "1881",
+        "title": "Holy Cross Parish Church",
+        "description": "Construction of the historic brick Holy Cross Parish Church began in 1881, establishing an enduring religious and architectural landmark at the town center."
+      },
+      {
+        "year": "Modern Era",
+        "title": "Agri-Industrial Center along the Agno River",
+        "description": "Anchored by rice, corn, tobacco, lowland vegetable farming, livestock, and the Alcala Agro-Industrial Complex in Brgy. Bersamin, Alcala remains a vital agricultural hub in Eastern Pangasinan."
+      }
+    ],
+    "historicalCensus": [
+      {
+        "year": 1990,
+        "population": 30684
+      },
+      {
+        "year": 2000,
+        "population": 35734
+      },
+      {
+        "year": 2010,
+        "population": 41077
+      },
+      {
+        "year": 2015,
+        "population": 43402
+      },
+      {
+        "year": 2020,
+        "population": 48908
+      },
+      {
+        "year": 2024,
+        "population": 49479
+      }
+    ]
+  },
+  "barangays": [
+    {
+      "name": "Anulid",
+      "psgcCode": "0105504001",
+      "population2020": 2594,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Atainan",
+      "psgcCode": "0105504002",
+      "population2020": 1815,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Bersamin",
+      "psgcCode": "0105504003",
+      "population2020": 3679,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Canarvacanan",
+      "psgcCode": "0105504004",
+      "population2020": 1968,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Caranglaan",
+      "psgcCode": "0105504005",
+      "population2020": 1340,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Curareng",
+      "psgcCode": "0105504006",
+      "population2020": 881,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Gualsic",
+      "psgcCode": "0105504007",
+      "population2020": 1945,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Kisikis",
+      "psgcCode": "0105504008",
+      "population2020": 3661,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Laoac",
+      "psgcCode": "0105504010",
+      "population2020": 3829,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Macayo",
+      "psgcCode": "0105504011",
+      "population2020": 2013,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Pindangan Centro",
+      "psgcCode": "0105504013",
+      "population2020": 1757,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Pindangan East",
+      "psgcCode": "0105504014",
+      "population2020": 1763,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Pindangan West",
+      "psgcCode": "0105504015",
+      "population2020": 1352,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Poblacion East",
+      "psgcCode": "0105504016",
+      "population2020": 1474,
+      "classification": "Urban",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Poblacion West",
+      "psgcCode": "0105504017",
+      "population2020": 1783,
+      "classification": "Urban",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "San Juan",
+      "psgcCode": "0105504018",
+      "population2020": 2252,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "San Nicolas",
+      "psgcCode": "0105504019",
+      "population2020": 1084,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "San Pedro Apartado",
+      "psgcCode": "0105504020",
+      "population2020": 3924,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "San Pedro Ili",
+      "psgcCode": "0105504021",
+      "population2020": 4151,
+      "classification": "Urban",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "San Vicente",
+      "psgcCode": "0105504023",
+      "population2020": 4383,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "name": "Vacante",
+      "psgcCode": "0105504022",
+      "population2020": 1260,
+      "population2024": 1318,
+      "classification": "Rural",
+      "citation": {
+        "sourceTitle": "Philippine Standard Geographic Code (PSGC) & 2020 Census of Population and Housing",
+        "sourceUrl": "https://psa.gov.ph/classification/psgc",
+        "issuingAgency": "Philippine Statistics Authority (PSA)",
+        "publicationDate": "2021-07-07",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified"
+      }
+    }
+  ]
+}
