@@ -77,8 +77,8 @@ const TAB_SEO: Record<BudgetTab, { label: string; title: string; description: st
       'Searchable DPWH infrastructure contracts, project budgets, contractors, and completion status in Alcala, Pangasinan.',
   },
   regional: {
-    label: 'Transparency Portal',
-    title: 'Transparency Portal',
+    label: 'Project Transparency',
+    title: 'Project Transparency',
     description:
       'Compare FY 2027 NEP vs. House Bill and 2020–2026 Enacted GAA allocations for Alcala, Pangasinan, and nationwide LGUs.',
   },
@@ -328,7 +328,7 @@ export default function BudgetPage() {
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    Transparency Portal (GAA &amp; FY 2027)
+                    Project Transparency (GAA &amp; FY 2027)
                   </h3>
                   <div className="text-2xl font-extrabold text-[#2E8B57] tabular-nums mb-1">
                     FY 2020–2027 Explorer
@@ -339,7 +339,7 @@ export default function BudgetPage() {
                   </p>
                 </div>
                 <span className="mt-4 text-xs font-bold text-[#2E8B57]">
-                  Open Transparency Portal →
+                  Open Project Transparency →
                 </span>
               </button>
 
@@ -1031,7 +1031,7 @@ export default function BudgetPage() {
           fallback={
             <section className="section bg-alt">
               <div className="container py-12 text-center text-sm text-slate-600">
-                Loading Transparency Portal...
+                Loading Project Transparency...
               </div>
             </section>
           }

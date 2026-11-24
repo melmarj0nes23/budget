@@ -182,7 +182,7 @@ export default function Header() {
                 className={pathname.startsWith('/transparency') ? 'active' : ''}
                 onClick={closeMenu}
               >
-                Transparency Portal
+                Project Transparency
               </Link>
             </li>
           </ul>

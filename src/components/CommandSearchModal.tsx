@@ -38,7 +38,7 @@ const QUICK_JUMPS: { label: string; category: string; route: string; icon: strin
     icon: 'bi-cone-striped',
   },
   {
-    label: 'Transparency Portal (GAA & FY 2027 NEP)',
+    label: 'Project Transparency (GAA & FY 2027 NEP)',
     category: 'Section',
     route: '/transparency',
     icon: 'bi-compass-fill',
