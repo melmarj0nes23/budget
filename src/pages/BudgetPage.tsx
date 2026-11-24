@@ -397,32 +397,89 @@ export default function BudgetPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <button
                 type="button"
-                onClick={() => setActiveTab('tracker')}
-                className="text-left bg-[#EAF2EE] border border-[#2E8B57]/25 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#2E8B57] transition-all cursor-pointer flex flex-col justify-between"
+                onClick={() => setActiveTab('municipal')}
+                className="text-left bg-white border border-black/10 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#26489A]/40 transition-all cursor-pointer flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#2E8B57] text-white">
-                      <i className="bi bi-geo-alt-fill" aria-hidden="true" />
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#26489A]/10 text-[#26489A]">
+                      <i className="bi bi-graph-up-arrow" aria-hidden="true" />
                     </span>
-                    <span className="font-mono-data text-xs font-bold uppercase tracking-wider text-[#2E8B57] bg-[#2E8B57]/12 px-2.5 py-1 rounded-full">
-                      All 21 Barangays
+                    <span className="font-mono-data text-xs font-bold text-[#26489A] bg-[#26489A]/10 px-2.5 py-1 rounded-full">
+                      FY {ascendingBudgets[0]?.fiscalYear ?? 2024}–
+                      {ascendingBudgets[ascendingBudgets.length - 1]?.fiscalYear ?? 2026}
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    Barangay-Level Project Tracker (2024–2027)
+                    Municipal Budget 3-Year Growth
                   </h3>
-                  <div className="text-2xl font-extrabold text-[#2E8B57] tabular-nums mb-1">
-                    Community-Wide
-                  </div>
-                  <p className="text-xs text-slate-600 m-0">
-                    Filter every funded road, FMR, flood control, and multi-purpose building across
-                    all 21 Alcala barangays from GAA (2024–2026), FY 2027 NEP/HGAB, and DPWH
-                    records.
-                  </p>
+                  {(() => {
+                    const first = ascendingBudgets[0];
+                    const latest = ascendingBudgets[ascendingBudgets.length - 1];
+                    const growthPct =
+                      first && latest && first.approvedBudget > 0
+                        ? ((latest.approvedBudget - first.approvedBudget) / first.approvedBudget) *
+                          100
+                        : null;
+                    return (
+                      <>
+                        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2.5">
+                          <span className="text-2xl font-extrabold text-[#26489A] tabular-nums">
+                            {growthPct !== null ? `+${growthPct.toFixed(1)}%` : '—'}
+                          </span>
+                          <span className="text-xs font-semibold text-slate-500">
+                            approved municipal budget growth
+                          </span>
+                        </div>
+                        <div className="space-y-1.5 mb-2.5">
+                          {ascendingBudgets.map((row, idx) => {
+                            const widthPct = Math.max(
+                              8,
+                              Math.round((row.approvedBudget / maxAnnualBudget) * 100)
+                            );
+                            const prev = idx > 0 ? ascendingBudgets[idx - 1] : null;
+                            const yoy =
+                              prev && prev.approvedBudget > 0
+                                ? ((row.approvedBudget - prev.approvedBudget) /
+                                    prev.approvedBudget) *
+                                  100
+                                : null;
+                            return (
+                              <div
+                                key={row.fiscalYear}
+                                className="grid grid-cols-[68px_1fr_118px] items-center gap-2 text-[11px]"
+                              >
+                                <span className="font-mono-data font-semibold text-slate-600">
+                                  FY {row.fiscalYear}
+                                </span>
+                                <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                                  <div
+                                    className="h-full rounded-full bg-[#26489A]"
+                                    style={{ width: `${widthPct}%` }}
+                                  />
+                                </div>
+                                <span className="font-mono-data font-bold text-[#0f2342] text-right tabular-nums">
+                                  {formatCompactPhp(row.approvedBudget)}
+                                  {yoy !== null && (
+                                    <span className="text-[#2E8B57] ml-1">
+                                      (+{yoy.toFixed(1)}%)
+                                    </span>
+                                  )}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <p className="text-[11px] text-slate-500 m-0">
+                          Approved Sangguniang Bayan appropriations; COA/BLGF SRE execution records
+                          inside.
+                        </p>
+                      </>
+                    );
+                  })()}
                 </div>
-                <span className="mt-4 text-xs font-bold text-[#2E8B57]">
-                  Open Tracker →
+                <span className="mt-4 text-xs font-bold text-[#26489A]">
+                  Explore Municipal Budget &amp; Docs →
                 </span>
               </button>
 
