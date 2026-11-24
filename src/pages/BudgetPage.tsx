@@ -682,7 +682,7 @@ export default function BudgetPage() {
                       <i className="bi bi-bar-chart-steps" aria-hidden="true" />
                     </span>
                     <div
-                      className="inline-flex items-center gap-1 rounded-full bg-slate-100 p-0.5"
+                      className="flex flex-wrap items-center gap-1 rounded-2xl bg-slate-100 p-1 max-w-full"
                       role="group"
                       aria-label="Filter barangay distribution by fiscal year"
                     >
