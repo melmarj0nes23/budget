@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { INFRASTRUCTURE_PROJECTS } from '../../data/transparencyData';
 import CommandSearchModal from '../CommandSearchModal';
 
 function isMobileNav(): boolean {
@@ -173,7 +174,7 @@ export default function Header() {
                 className={pathname.startsWith('/contracts') ? 'active' : ''}
                 onClick={closeMenu}
               >
-                DPWH Contracts (12)
+                DPWH Contracts ({INFRASTRUCTURE_PROJECTS.length})
               </Link>
             </li>
             <li>

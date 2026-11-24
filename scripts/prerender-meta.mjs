@@ -16,7 +16,7 @@ const ROUTE_META = [
     route: '/budgetdocs',
     title: 'Municipal Budget & Docs | BetterAlcala Budget',
     description:
-      'Approved municipal appropriations (FY 2024–2026), BLGF SRE, COA audit reports, and procurement disclosures for Alcala, Pangasinan.',
+      'Approved municipal appropriations (FY 2022–2026), supplemental budgets, BLGF SRE, COA audit reports, and procurement disclosures for Alcala, Pangasinan.',
   },
   {
     route: '/contracts',

@@ -28,6 +28,8 @@
       "spResolution": "Sangguniang Panlalawigan Provincial Resolution No. 319-2025 (approved Mar 3, 2025)",
       "approvedDate": "2025-03-03",
       "approvedBudget": 230306279,
+      "supplementalBudgetsTotal": 109566829.52,
+      "supplementalBudgetsNote": "SB No. 1: ₱28,776,435.58 (Mun. Res. 2025-208 / SP Res. No. 85-2026); SB No. 2: ₱80,790,393.94 (Mun. Res. 2025-245 / Supp. AIP No. 02).",
       "obligations": null,
       "disbursements": null,
       "actualExpenditures": null,
@@ -41,7 +43,7 @@
         "publicationDate": "2025-03-03",
         "lastVerified": "2026-11-21",
         "verificationStatus": "Verified",
-        "notes": "Approved Annual Budget (₱230,306,279.00) is verified. Obligations, disbursements, and actual expenditures await BLGF eSRE / Municipal Budget Office publication."
+        "notes": "Approved Annual Budget (₱230,306,279.00) and Supplemental Budgets (₱109,566,829.52) are verified. Obligations, disbursements, and actual expenditures await BLGF eSRE / Municipal Budget Office publication."
       }
     },
     {
@@ -50,6 +52,8 @@
       "spResolution": "Sangguniang Panlalawigan Provincial Resolution No. 406-2024 (approved Mar 25, 2024)",
       "approvedDate": "2024-03-25",
       "approvedBudget": 193594983,
+      "supplementalBudgetsTotal": 4341894.61,
+      "supplementalBudgetsNote": "SB No. 2: ₱4,341,894.61 (SP Res. No. 1134-2024). SB No. 1 status unverified online.",
       "obligations": null,
       "disbursements": null,
       "actualExpenditures": null,
@@ -63,7 +67,55 @@
         "publicationDate": "2024-03-25",
         "lastVerified": "2026-11-21",
         "verificationStatus": "Verified",
-        "notes": "Approved Annual Budget (₱193,594,983.00) is verified. Actual expenditure execution awaits BLGF eSRE / COA AAR figure extraction."
+        "notes": "Approved Annual Budget (₱193,594,983.00) and SB No. 2 (₱4,341,894.61) are verified. Actual expenditure execution awaits BLGF eSRE / COA AAR figure extraction."
+      }
+    },
+    {
+      "fiscalYear": 2023,
+      "appropriationOrdinance": "Municipal Appropriation Ordinance No. 2022-01 (enacted Nov 21, 2022)",
+      "spResolution": "Sangguniang Panlalawigan of Pangasinan Review (approved May 8, 2023)",
+      "approvedDate": "2023-05-08",
+      "approvedBudget": 182292359,
+      "supplementalBudgetsTotal": 51458679.99,
+      "supplementalBudgetsNote": "SB No. 1: ₱48,694,707.49 (Mun. Res. 2023-182 / Supp. AIP No. 01); SB No. 2: ₱2,763,972.50 (Mun. Res. 2023-211 / Supp. AIP No. 02).",
+      "obligations": null,
+      "disbursements": null,
+      "actualExpenditures": null,
+      "ntaShareNote": "National Tax Allotment (NTA) & Local Sources; reflects nationwide CY 2023 NTA adjustment.",
+      "developmentFundNote": "Declared operative in its entirety by SP Pangasinan",
+      "sreStatus": "Needs Review",
+      "citation": {
+        "sourceTitle": "Provincial Government of Pangasinan — CY 2023 Annual & Supplemental Budget Reviews",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "Sangguniang Panlalawigan of Pangasinan / SB Alcala",
+        "publicationDate": "2023-05-08",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "Approved Annual Budget (₱182,292,359.00) and Supplemental Budgets (₱51,458,679.99) verified via SP Pangasinan records."
+      }
+    },
+    {
+      "fiscalYear": 2022,
+      "appropriationOrdinance": "Municipal Appropriation Ordinance No. 2021-05 (enacted Nov 15, 2021)",
+      "spResolution": "Sangguniang Panlalawigan of Pangasinan Review (CY 2022 Annual Budget)",
+      "approvedDate": "2022-01-01",
+      "approvedBudget": 207248033,
+      "supplementalBudgetsTotal": 78152486.32,
+      "supplementalBudgetsNote": "SB No. 1: ₱4,489,540.17 (Mun. Res. 2022-268 / SP Res. No. 33-2023); SB No. 2: ₱73,662,946.15 (Mun. Res. 2022-280 / Supp. AIP No. 02).",
+      "obligations": null,
+      "disbursements": null,
+      "actualExpenditures": null,
+      "ntaShareNote": "National Tax Allotment (NTA) & Local Sources (exact breakdown pending BLGF eSRE extraction).",
+      "developmentFundNote": "Declared operative in its entirety by SP Pangasinan",
+      "sreStatus": "Needs Review",
+      "citation": {
+        "sourceTitle": "Provincial Government of Pangasinan — CY 2022 Annual & Supplemental Budget Reviews",
+        "sourceUrl": "https://www.pangasinan.gov.ph/",
+        "issuingAgency": "Sangguniang Panlalawigan of Pangasinan / SB Alcala",
+        "publicationDate": "2022-01-01",
+        "lastVerified": "2026-11-21",
+        "verificationStatus": "Verified",
+        "notes": "Approved Annual Budget (₱207,248,033.00) and Supplemental Budgets (₱78,152,486.32) verified via SP Pangasinan records."
       }
     }
   ]

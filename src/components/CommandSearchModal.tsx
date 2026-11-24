@@ -26,13 +26,13 @@ const QUICK_JUMPS: { label: string; category: string; route: string; icon: strin
     icon: 'bi-geo-alt-fill',
   },
   {
-    label: 'Municipal Budget & Docs (FY 2024–2026)',
+    label: 'Municipal Budget & Docs (FY 2022–2026)',
     category: 'Section',
     route: '/budgetdocs',
     icon: 'bi-graph-up-arrow',
   },
   {
-    label: 'DPWH Contracts (12 Infrastructure Projects)',
+    label: `DPWH Contracts (${INFRASTRUCTURE_PROJECTS.length} Infrastructure Projects)`,
     category: 'Section',
     route: '/contracts',
     icon: 'bi-cone-striped',

@@ -121,7 +121,7 @@ const TAB_SEO: Record<BudgetTab, { label: string; title: string; description: st
     label: 'Municipal Budget & Docs',
     title: 'Municipal Budget & Docs',
     description:
-      'Approved municipal appropriations (FY 2024–2026), BLGF SRE, COA audit reports, and procurement disclosures for Alcala, Pangasinan.',
+      'Approved municipal appropriations (FY 2022–2026), supplemental budgets, BLGF SRE, COA audit reports, and procurement disclosures for Alcala, Pangasinan.',
   },
   dpwh: {
     label: 'DPWH Contracts',
@@ -379,6 +379,45 @@ export default function BudgetPage() {
     return Array.from(map.entries()).map(([category, stats]) => ({ category, ...stats }));
   }, [infrastructureProjects]);
 
+  const supplementalTotalAll = useMemo(
+    () => budgetRecords.reduce((sum, b) => sum + (b.supplementalBudgetsTotal ?? 0), 0),
+    [budgetRecords]
+  );
+
+  const gaaReconciliation = useMemo(() => {
+    const targetYears = ['2022', '2023', '2024', '2025', '2026'];
+    let gaa2226Total = 0;
+    let gaa2226Count = 0;
+    for (const g of nationalPayload?.gaaProjects || []) {
+      let projTotal = 0;
+      for (const yr of targetYears) {
+        projTotal += Number(g.years?.[yr] || 0);
+      }
+      if (projTotal > 0) {
+        gaa2226Count += 1;
+        gaa2226Total += projTotal;
+      }
+    }
+    const matchedGaaSum = infrastructureProjects.reduce(
+      (sum, p) => sum + (p.gaaAllocation ?? 0),
+      0
+    );
+    const partialCount = infrastructureProjects.filter(
+      (p) => p.evidenceStatus === 'Partially corroborated'
+    ).length;
+    const discrepancyCount = infrastructureProjects.filter(
+      (p) => p.evidenceStatus === 'Documentary discrepancy'
+    ).length;
+    return {
+      gaa2226Total,
+      gaa2226Count,
+      matchedGaaSum,
+      unmatchedGaaSum: Math.max(0, gaa2226Total - matchedGaaSum),
+      partialCount,
+      discrepancyCount,
+    };
+  }, [nationalPayload, infrastructureProjects]);
+
   const seo = TAB_SEO[activeTab];
 
   return (
@@ -438,7 +477,7 @@ export default function BudgetPage() {
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    Municipal Budget 3-Year Growth
+                    Municipal Budget {ascendingBudgets.length}-Year Growth
                   </h3>
                   {(() => {
                     const first = ascendingBudgets[0];
@@ -488,8 +527,12 @@ export default function BudgetPage() {
                                 <span className="font-mono-data font-bold text-[#0f2342] text-right tabular-nums">
                                   {formatCompactPhp(row.approvedBudget)}
                                   {yoy !== null && (
-                                    <span className="text-[#2E8B57] ml-1">
-                                      (+{yoy.toFixed(1)}%)
+                                    <span
+                                      className={`ml-1 ${
+                                        yoy >= 0 ? 'text-[#2E8B57]' : 'text-amber-700'
+                                      }`}
+                                    >
+                                      ({yoy >= 0 ? `+${yoy.toFixed(1)}%` : `${yoy.toFixed(1)}%`})
                                     </span>
                                   )}
                                 </span>
@@ -498,8 +541,8 @@ export default function BudgetPage() {
                           })}
                         </div>
                         <p className="text-[11px] text-slate-500 m-0">
-                          Approved Sangguniang Bayan appropriations; COA/BLGF SRE execution records
-                          inside.
+                          Plus {formatCompactPhp(supplementalTotalAll)} in CY 2022–2025 supplemental
+                          budgets; COA/BLGF execution records inside.
                         </p>
                       </>
                     );
@@ -736,7 +779,9 @@ export default function BudgetPage() {
                         </span>
                         <span className="text-xs font-semibold text-slate-500">
                           across {barangayDistribution.fundedBarangayCount} of 21 barangays
-                          {distYear === 'all' ? ' (2024–2027)' : ` (FY ${distYear})`}
+                          {distYear === 'all'
+                            ? ` (${nationalPayload?.gaaYears[0] ?? 2020}–${nationalPayload?.proposedYear ?? 2027})`
+                            : ` (FY ${distYear})`}
                         </span>
                       </div>
                       <div className="space-y-1.5 mb-2.5">
@@ -946,7 +991,7 @@ export default function BudgetPage() {
                               <span className="text-slate-500 font-normal">({cat.count})</span>
                             </span>
                             <span className="font-mono-data font-bold text-[#0f2342] tabular-nums">
-                              {formatPeso(cat.total)}
+                              {cat.total > 0 ? formatPeso(cat.total) : 'Pending / N/A'}
                             </span>
                           </div>
                           <div className="h-2 w-full rounded-full bg-slate-100 overflow-hidden">
@@ -959,6 +1004,25 @@ export default function BudgetPage() {
                       );
                     })}
                 </div>
+
+                {gaaReconciliation.gaa2226Total > 0 && (
+                  <div className="mt-4 pt-3 border-t border-black/5 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-600">
+                    <span>
+                      <strong>FY 2022–2026 GAA ({gaaReconciliation.gaa2226Count} lines):</strong>{' '}
+                      <span className="font-mono-data font-bold text-[#0f2342]">
+                        {formatCompactPhp(gaaReconciliation.gaa2226Total)}
+                      </span>
+                      {' · '}
+                      <span className="text-amber-800 font-semibold">
+                        {formatCompactPhp(gaaReconciliation.unmatchedGaaSum)} awaiting contract match
+                      </span>
+                    </span>
+                    <span className="font-mono-data text-slate-500">
+                      {gaaReconciliation.partialCount} partial · {gaaReconciliation.discrepancyCount}{' '}
+                      discrepancy
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -1102,8 +1166,12 @@ export default function BudgetPage() {
                         <span className="font-mono-data font-bold text-[#0032a0]">
                           {formatPeso(b.approvedBudget)}
                           {pctDiff && (
-                            <span className="ml-2 text-emerald-700 font-semibold">
-                              (+{pctDiff}% YoY)
+                            <span
+                              className={`ml-2 font-semibold ${
+                                Number(pctDiff) >= 0 ? 'text-emerald-700' : 'text-amber-700'
+                              }`}
+                            >
+                              ({Number(pctDiff) >= 0 ? `+${pctDiff}%` : `${pctDiff}%`} YoY)
                             </span>
                           )}
                         </span>
@@ -1141,6 +1209,14 @@ export default function BudgetPage() {
                   <dt className="font-semibold text-slate-900">National Tax Allotment (NTA) &amp; 20% DF</dt>
                   <dd className="m-0">{activeBudget.ntaShareNote}</dd>
                 </div>
+                {activeBudget.supplementalBudgetsTotal && (
+                  <div>
+                    <dt className="font-semibold text-slate-900">
+                      Supplemental Budgets ({formatPeso(activeBudget.supplementalBudgetsTotal)})
+                    </dt>
+                    <dd className="m-0">{activeBudget.supplementalBudgetsNote}</dd>
+                  </div>
+                )}
               </dl>
             </div>
 
@@ -1231,6 +1307,17 @@ export default function BudgetPage() {
                   </td>
                 </tr>
                 <tr>
+                  <td data-label="Document Category">Supplemental Budgets (CY 2022–2025)</td>
+                  <td data-label="Issuing / Oversight Agency">SB Alcala / SP Pangasinan</td>
+                  <td data-label="Current Public Availability">
+                    {formatPeso(supplementalTotalAll)} enacted across CY 2022–2025 (SP Res. Nos.
+                    33-2023, 1134-2024, 85-2026; Mun. Res. Nos. 2022-280, 2023-182/211, 2025-245)
+                  </td>
+                  <td data-label="Verification Status">
+                    <span className="text-xs font-medium text-slate-600">Confirmed</span>
+                  </td>
+                </tr>
+                <tr>
                   <td data-label="Document Category">Annual Investment Program (AIP)</td>
                   <td data-label="Issuing / Oversight Agency">MPDC / Municipal Budget Office</td>
                   <td data-label="Current Public Availability">
@@ -1258,20 +1345,24 @@ export default function BudgetPage() {
                     Commission on Audit (COA Region I)
                   </td>
                   <td data-label="Current Public Availability">
-                    Archived on{' '}
+                    Official AAR PDFs archived on{' '}
                     <a href="https://www.coa.gov.ph/" target="_blank" rel="noopener noreferrer">
                       coa.gov.ph
-                    </a>
+                    </a>{' '}
+                    (direct extraction pending)
                   </td>
                   <td data-label="Verification Status">
-                    <span className="text-xs font-medium text-slate-600">Archived online</span>
+                    <VerificationBadge status="Needs Review" />
                   </td>
                 </tr>
                 <tr>
                   <td data-label="Document Category">Municipal Procurement Notices &amp; Bids</td>
-                  <td data-label="Issuing / Oversight Agency">BAC Alcala / PhilGEPS</td>
+                  <td data-label="Issuing / Oversight Agency">
+                    BAC Alcala / Alcala Water District / PhilGEPS
+                  </td>
                   <td data-label="Current Public Availability">
-                    Published via{' '}
+                    LGU &amp; Water District notices (e.g. Brgy. Vacante MPB, VFD/water metering)
+                    published via{' '}
                     <a
                       href="https://notices.philgeps.gov.ph/"
                       target="_blank"
@@ -1279,6 +1370,7 @@ export default function BudgetPage() {
                     >
                       PhilGEPS
                     </a>
+                    ; bulk 20% DF extraction pending
                   </td>
                   <td data-label="Verification Status">
                     <VerificationBadge status="Needs Review" />
@@ -1307,6 +1399,28 @@ export default function BudgetPage() {
               barangays (total documented ABC/awarded allocations shown:{' '}
               <strong className="tabular-nums">{formatPeso(totalVerifiedContractValue)}</strong>).
             </p>
+            {gaaReconciliation.gaa2226Total > 0 && (
+              <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50/70 px-4 py-3 text-xs text-amber-950 flex flex-wrap items-center justify-between gap-2">
+                <span>
+                  <strong>FY 2022–2026 GAA Reconciliation:</strong>{' '}
+                  {formatPeso(gaaReconciliation.gaa2226Total)} appropriated across{' '}
+                  {gaaReconciliation.gaa2226Count} GAA lines ·{' '}
+                  <strong>{formatPeso(gaaReconciliation.matchedGaaSum)}</strong> matched to DPWH
+                  contracts ·{' '}
+                  <strong>{formatPeso(gaaReconciliation.unmatchedGaaSum)}</strong> awaiting contract
+                  ID / PhilGEPS matching.
+                </span>
+                <span className="font-mono-data font-semibold">
+                  {gaaReconciliation.partialCount} Partially corroborated ·{' '}
+                  {gaaReconciliation.discrepancyCount} Documentary discrepancy
+                </span>
+                <span className="w-full text-[11px] text-amber-900/90">
+                  Note: &ldquo;Documentary discrepancy&rdquo; indicates a title, multi-LGU bundling,
+                  or record-matching difference across public documents—not irregularity or
+                  wrongdoing.
+                </span>
+              </div>
+            )}
           </div>
 
           {categoryTotals.length > 0 && (
@@ -1422,7 +1536,22 @@ export default function BudgetPage() {
                       <span className="text-xs font-bold text-[#0032a0] tabular-nums">
                         Contract ID: {proj.id} · {proj.projectDate}
                       </span>
-                      <VerificationBadge status={proj.citation.verificationStatus} />
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        {proj.evidenceStatus && (
+                          <span
+                            className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                              proj.evidenceStatus === 'Documentary discrepancy'
+                                ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                : proj.evidenceStatus === 'Corroborated implementation'
+                                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                                  : 'bg-blue-50 text-[#26489A] border-blue-200'
+                            }`}
+                          >
+                            {proj.evidenceStatus}
+                          </span>
+                        )}
+                        <VerificationBadge status={proj.citation.verificationStatus} />
+                      </div>
                     </div>
                     <h3 className="text-base font-bold text-slate-900 mb-2">{proj.name}</h3>
                     <div className="text-xs text-slate-600 space-y-1 mb-3">
@@ -1441,6 +1570,11 @@ export default function BudgetPage() {
                       <div>
                         <strong>Contractor:</strong> {proj.contractor}
                       </div>
+                      {proj.gaaAllocation && (
+                        <div className="tabular-nums">
+                          <strong>GAA Appropriation:</strong> {formatPeso(proj.gaaAllocation)}
+                        </div>
+                      )}
                       {proj.abcAmount && (
                         <div className="tabular-nums">
                           <strong>Approved Budget (ABC):</strong> {formatPeso(proj.abcAmount)}
@@ -1451,18 +1585,26 @@ export default function BudgetPage() {
                           <strong>Awarded Contract Cost:</strong> {formatPeso(proj.contractCost)}
                         </div>
                       )}
+                      {proj.ntpDate && (
+                        <div className="tabular-nums">
+                          <strong>Notice to Proceed / Start:</strong> {proj.ntpDate}
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   <div className="border-t border-black/5 pt-3 flex flex-wrap items-center justify-between gap-2 text-xs">
                     <span className="font-semibold text-emerald-700">{proj.statusLabel}</span>
                     <a
-                      href={proj.citation.sourceUrl}
+                      href={proj.documentUrl || proj.citation.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="font-medium text-[#0032a0]"
                     >
-                      DPWH Source <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                      {proj.documentUrl && proj.documentUrl.endsWith('.pdf')
+                        ? 'DPWH Document (PDF)'
+                        : 'DPWH Source'}{' '}
+                      <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                     </a>
                   </div>
                 </article>

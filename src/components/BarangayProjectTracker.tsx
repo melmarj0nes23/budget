@@ -42,8 +42,17 @@ function matchesBarangay(text: string, barangayName: string): boolean {
   const needle = barangayName.toLowerCase();
   if (hay.includes(needle)) return true;
   // Handle common Pindangan / San Pedro variants in official records
-  if (needle === 'pindangan centro' && hay.includes('pindangan')) return true;
-  if (needle === 'san pedro ili' && hay.includes('san pedo ili')) return true;
+  if (
+    needle === 'pindangan centro' &&
+    hay.includes('pindangan') &&
+    !hay.includes('pindangan east') &&
+    !hay.includes('pindangan west') &&
+    !hay.includes('pinadangan east')
+  ) {
+    return true;
+  }
+  if (needle === 'pindangan east' && hay.includes('pinadangan east')) return true;
+  if (needle === 'san pedro ili' && (hay.includes('san pedo ili') || hay.includes('san pedro 2i'))) return true;
   return false;
 }
 
@@ -134,10 +143,10 @@ export default function BarangayProjectTracker({
             <span>Community-Wide Barangay Project Tracker</span>
           </span>
           <h2 className="mt-3 mb-1 text-2xl font-bold text-[#0f2342]">
-            Track Projects Across All 21 Alcala Barangays (2024–2027)
+            Track Projects Across All 21 Alcala Barangays (2020–2027)
           </h2>
           <p className="text-sm text-slate-600 m-0">
-            Combined view of FY 2027 NEP/House Bill proposals, enacted FY 2024–2026 GAA records, and
+            Combined view of FY 2027 NEP/House Bill proposals, enacted FY 2020–2026 GAA records, and
             DPWH district projects—filterable by any barangay for the entire Alcala community.
           </p>
         </div>
@@ -197,7 +206,7 @@ export default function BarangayProjectTracker({
             </div>
             <div className="rounded-xl bg-[#FAF7F2] p-3.5">
               <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                Enacted GAA (2024–2026)
+                Enacted GAA (2020–2026)
               </div>
               <div className="text-xl font-extrabold text-[#2E8B57] tabular-nums mt-0.5">
                 {formatPhp(filteredData.gaaTotal)}
@@ -268,13 +277,18 @@ export default function BarangayProjectTracker({
             ))}
 
             {filteredData.gaa.map((g) => {
-              const years = [
-                g.fy2024Php > 0 ? `FY24: ${formatPhp(g.fy2024Php)}` : null,
-                g.fy2025Php > 0 ? `FY25: ${formatPhp(g.fy2025Php)}` : null,
-                g.fy2026Php > 0 ? `FY26: ${formatPhp(g.fy2026Php)}` : null,
-              ]
-                .filter(Boolean)
-                .join(' · ');
+              const yearEntries =
+                g.years && Object.keys(g.years).length > 0
+                  ? Object.entries(g.years)
+                      .filter(([, amt]) => Number(amt) > 0)
+                      .sort(([a], [b]) => Number(a) - Number(b))
+                      .map(([yr, amt]) => `FY${yr.slice(-2)}: ${formatPhp(Number(amt))}`)
+                  : [
+                      g.fy2024Php > 0 ? `FY24: ${formatPhp(g.fy2024Php)}` : null,
+                      g.fy2025Php > 0 ? `FY25: ${formatPhp(g.fy2025Php)}` : null,
+                      g.fy2026Php > 0 ? `FY26: ${formatPhp(g.fy2026Php)}` : null,
+                    ].filter(Boolean);
+              const years = yearEntries.join(' · ');
               return (
                 <article
                   key={`gaa-${g.famKey}`}
@@ -282,7 +296,7 @@ export default function BarangayProjectTracker({
                 >
                   <div className="min-w-0">
                     <span className="inline-block font-mono-data text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-[#2E8B57]/12 text-[#2E8B57] mb-1">
-                      Enacted GAA (2024–2026)
+                      Enacted GAA (2020–2026)
                     </span>
                     <h3 className="m-0 text-sm sm:text-base font-bold text-[#0f2342]">{g.name}</h3>
                     <p className="m-0 mt-0.5 text-xs text-slate-500">{g.department}</p>
@@ -302,18 +316,38 @@ export default function BarangayProjectTracker({
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2 mb-1">
                     <span className="font-mono-data text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-[#1976A8]/12 text-[#1976A8]">
-                      DPWH Registry · {d.category}
+                      DPWH {d.id} · {d.category}
                     </span>
                     <span className="text-xs text-slate-500">{d.barangay}</span>
+                    {d.evidenceStatus && (
+                      <span className="font-mono-data text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#26489A] border border-blue-200">
+                        {d.evidenceStatus}
+                      </span>
+                    )}
                   </div>
                   <h3 className="m-0 text-sm sm:text-base font-bold text-[#0f2342]">{d.name}</h3>
                   <p className="m-0 mt-0.5 text-xs text-slate-500">
                     {d.contractor} · {d.statusLabel}
                   </p>
                 </div>
-                <span className="font-mono-data text-xs font-semibold text-slate-600 shrink-0">
-                  {d.projectDate}
-                </span>
+                <div className="flex flex-wrap items-center gap-3 shrink-0">
+                  <span className="font-mono-data text-xs font-semibold text-slate-600">
+                    {d.projectDate}
+                  </span>
+                  {(d.documentUrl || d.citation.sourceUrl) && (
+                    <a
+                      href={d.documentUrl || d.citation.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 rounded-lg border border-black/15 px-2.5 py-1 text-xs font-semibold text-[#26489A] no-underline"
+                    >
+                      <i className="bi bi-file-earmark-pdf" aria-hidden="true" />
+                      <span>
+                        {(d.documentUrl || '').endsWith('.pdf') ? 'PDF' : 'Source'}
+                      </span>
+                    </a>
+                  )}
+                </div>
               </article>
             ))}
           </div>

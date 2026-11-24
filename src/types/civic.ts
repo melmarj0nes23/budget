@@ -115,12 +115,21 @@ export interface ResolutionRecord {
   citation: SourceCitation;
 }
 
+export type EvidenceStatus =
+  | 'Corroborated implementation'
+  | 'Partially corroborated'
+  | 'Documentary discrepancy'
+  | 'Unverified'
+  | 'Insufficient evidence';
+
 export interface BudgetYearRecord {
   fiscalYear: number;
   appropriationOrdinance: string;
   spResolution: string;
   approvedDate: string;
   approvedBudget: number;
+  supplementalBudgetsTotal?: number;
+  supplementalBudgetsNote?: string;
   obligations: number | null;
   disbursements: number | null;
   actualExpenditures: number | null;
@@ -139,8 +148,11 @@ export interface InfrastructureProject {
   implementingAgency: string;
   fundingSource: string;
   contractor: string;
+  gaaAllocation?: number;
   abcAmount?: number;
   contractCost?: number;
+  ntpDate?: string;
+  evidenceStatus?: EvidenceStatus;
   statusLabel: string;
   progressPercent?: number;
   projectDate: string;
