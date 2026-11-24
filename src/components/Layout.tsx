@@ -137,11 +137,6 @@ export function Layout({ currentRoute, onNavigate, children }: LayoutProps) {
             aria-label="Main Navigation"
           >
             <ul>
-              <li>
-                <a href={`${MAIN_SITE_URL}/`} onClick={closeMenu}>
-                  Home
-                </a>
-              </li>
               {primaryNav.map((item) => {
                 const active = currentRoute === item.route;
                 return (
