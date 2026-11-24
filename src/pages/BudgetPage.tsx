@@ -472,7 +472,7 @@ export default function BudgetPage() {
                           </span>
                         </div>
                       </div>
-                      <div className="flex flex-wrap gap-1.5 text-[11px]">
+                      <div className="flex flex-wrap justify-center gap-1.5 text-[11px]">
                         <span className="inline-flex items-center gap-1 rounded-full bg-[#D1432A]/10 text-[#D1432A] font-semibold px-2.5 py-0.5">
                           Inserted: {nationalSummary.houseOnlyCount}
                         </span>
