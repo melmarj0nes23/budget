@@ -5,6 +5,7 @@ import BarangayProjectTracker from '../components/BarangayProjectTracker';
 
 const RegionalBudgetSection = lazy(() => import('../components/RegionalBudgetSection'));
 import { SourceCitationBox, VerificationBadge } from '../components/VerificationBadge';
+import { BARANGAYS_DATA } from '../data/municipalInfo';
 import { BUDGET_RECORDS, INFRASTRUCTURE_PROJECTS } from '../data/transparencyData';
 import { isValidCitation, useCivicDataset } from '../hooks/useCivicDataset';
 import { BudgetYearRecord, InfrastructureProject } from '../types/civic';
@@ -22,14 +23,34 @@ function formatCompactPhp(amount: number): string {
   return `₱${amount.toLocaleString('en-PH')}`;
 }
 
-interface NationalBudgetSummary {
-  gaaCount: number;
-  hgabCount: number;
-  fy2024: number;
-  fy2025: number;
-  fy2026: number;
-  fy2027Nep: number;
-  fy2027House: number;
+interface NationalBudgetRow {
+  name?: string;
+  title?: string;
+  fy2024Php?: number;
+  fy2025Php?: number;
+  fy2026Php?: number;
+  nepPhp?: number | null;
+  housePhp?: number | null;
+}
+
+interface NationalBudgetPayload {
+  gaaProjects: NationalBudgetRow[];
+  hgab2027Projects: NationalBudgetRow[];
+}
+
+type DistributionYear = 'all' | '2024' | '2025' | '2026' | '2027';
+
+function matchBarangayName(text: string): string | null {
+  const hay = text.toLowerCase();
+  for (const b of BARANGAYS_DATA) {
+    const needle = b.name.toLowerCase();
+    if (hay.includes(needle)) return b.name;
+    if (needle === 'san pedro ili' && hay.includes('san pedo ili')) return b.name;
+  }
+  if (hay.includes('pindangan') && !hay.includes('pindangan east') && !hay.includes('pindangan west')) {
+    return 'Pindangan Centro';
+  }
+  return null;
 }
 
 function isValidBudgetYear(item: unknown): item is BudgetYearRecord {
@@ -134,7 +155,8 @@ export default function BudgetPage() {
   const [hasManuallySelectedYear, setHasManuallySelectedYear] = useState(false);
   const [projectSearch, setProjectSearch] = useState(() => searchParams.get('project') || '');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [nationalSummary, setNationalSummary] = useState<NationalBudgetSummary | null>(null);
+  const [nationalPayload, setNationalPayload] = useState<NationalBudgetPayload | null>(null);
+  const [distYear, setDistYear] = useState<DistributionYear>('all');
   const activeTabRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
@@ -143,18 +165,9 @@ export default function BudgetPage() {
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (cancelled || !data) return;
-        const gaa = Array.isArray(data.gaaProjects) ? data.gaaProjects : [];
-        const hgab = Array.isArray(data.hgab2027Projects) ? data.hgab2027Projects : [];
-        const sumKey = (rows: Record<string, unknown>[], key: string) =>
-          rows.reduce((total, row) => total + (Number(row[key]) || 0), 0);
-        setNationalSummary({
-          gaaCount: gaa.length,
-          hgabCount: hgab.length,
-          fy2024: sumKey(gaa, 'fy2024Php'),
-          fy2025: sumKey(gaa, 'fy2025Php'),
-          fy2026: sumKey(gaa, 'fy2026Php'),
-          fy2027Nep: sumKey(hgab, 'nepPhp'),
-          fy2027House: sumKey(hgab, 'housePhp'),
+        setNationalPayload({
+          gaaProjects: Array.isArray(data.gaaProjects) ? data.gaaProjects : [],
+          hgab2027Projects: Array.isArray(data.hgab2027Projects) ? data.hgab2027Projects : [],
         });
       })
       .catch(() => {});
@@ -162,6 +175,80 @@ export default function BudgetPage() {
       cancelled = true;
     };
   }, []);
+
+  const nationalSummary = useMemo(() => {
+    if (!nationalPayload) return null;
+    const { gaaProjects: gaa, hgab2027Projects: hgab } = nationalPayload;
+    const sumKey = (rows: NationalBudgetRow[], key: keyof NationalBudgetRow) =>
+      rows.reduce((total, row) => total + (Number(row[key]) || 0), 0);
+    return {
+      gaaCount: gaa.length,
+      hgabCount: hgab.length,
+      fy2024: sumKey(gaa, 'fy2024Php'),
+      fy2025: sumKey(gaa, 'fy2025Php'),
+      fy2026: sumKey(gaa, 'fy2026Php'),
+      fy2027Nep: sumKey(hgab, 'nepPhp'),
+      fy2027House: sumKey(hgab, 'housePhp'),
+    };
+  }, [nationalPayload]);
+
+  const barangayDistribution = useMemo(() => {
+    if (!nationalPayload) return null;
+    const totals = new Map<string, { amount: number; count: number }>();
+    let townWideAmount = 0;
+    let townWideCount = 0;
+
+    const addEntry = (text: string, amount: number) => {
+      if (amount <= 0) return;
+      const brgy = matchBarangayName(text);
+      if (brgy) {
+        const prev = totals.get(brgy) || { amount: 0, count: 0 };
+        totals.set(brgy, { amount: prev.amount + amount, count: prev.count + 1 });
+      } else {
+        townWideAmount += amount;
+        townWideCount += 1;
+      }
+    };
+
+    if (distYear === 'all' || distYear === '2024' || distYear === '2025' || distYear === '2026') {
+      for (const row of nationalPayload.gaaProjects) {
+        const amt =
+          distYear === '2024'
+            ? Number(row.fy2024Php) || 0
+            : distYear === '2025'
+              ? Number(row.fy2025Php) || 0
+              : distYear === '2026'
+                ? Number(row.fy2026Php) || 0
+                : (Number(row.fy2024Php) || 0) +
+                  (Number(row.fy2025Php) || 0) +
+                  (Number(row.fy2026Php) || 0);
+        addEntry(row.name || '', amt);
+      }
+    }
+
+    if (distYear === 'all' || distYear === '2027') {
+      for (const row of nationalPayload.hgab2027Projects) {
+        const amt = Number(row.housePhp ?? row.nepPhp) || 0;
+        addEntry(row.title || '', amt);
+      }
+    }
+
+    const ranked = Array.from(totals.entries())
+      .map(([name, info]) => ({ name, ...info }))
+      .sort((a, b) => b.amount - a.amount);
+
+    const barangayTotal = ranked.reduce((s, r) => s + r.amount, 0);
+    const grandTotal = barangayTotal + townWideAmount;
+
+    return {
+      ranked,
+      fundedBarangayCount: ranked.length,
+      townWideAmount,
+      townWideCount,
+      barangayTotal,
+      grandTotal,
+    };
+  }, [nationalPayload, distYear]);
 
   useEffect(() => {
     activeTabRef.current?.scrollIntoView({
@@ -442,35 +529,137 @@ export default function BudgetPage() {
                 </span>
               </button>
 
-              <button
-                type="button"
-                onClick={() => setActiveTab('dpwh')}
-                className="text-left bg-white border border-black/10 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#D1432A]/40 transition-all cursor-pointer flex flex-col justify-between"
-              >
+              <div className="bg-white border border-black/10 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                     <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#D1432A]/10 text-[#D1432A]">
-                      <i className="bi bi-cone-striped" aria-hidden="true" />
+                      <i className="bi bi-bar-chart-steps" aria-hidden="true" />
                     </span>
-                    <span className="font-mono-data text-xs font-bold text-[#D1432A] bg-[#D1432A]/10 px-2.5 py-1 rounded-full">
-                      {infrastructureProjects.length} Records
-                    </span>
+                    <div
+                      className="inline-flex items-center gap-1 rounded-full bg-slate-100 p-0.5"
+                      role="group"
+                      aria-label="Filter barangay distribution by fiscal year"
+                    >
+                      {(
+                        [
+                          { id: 'all', label: 'All' },
+                          { id: '2024', label: '2024' },
+                          { id: '2025', label: '2025' },
+                          { id: '2026', label: '2026' },
+                          { id: '2027', label: '2027' },
+                        ] as const
+                      ).map((yr) => (
+                        <button
+                          key={yr.id}
+                          type="button"
+                          onClick={() => setDistYear(yr.id)}
+                          className={`px-2 py-0.5 rounded-full text-[11px] font-bold transition-colors cursor-pointer ${
+                            distYear === yr.id
+                              ? 'bg-[#0f2342] text-white'
+                              : 'text-slate-600 hover:text-[#0f2342]'
+                          }`}
+                        >
+                          {yr.label}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    DPWH Infrastructure Registry
+                    Barangay Budget Distribution
                   </h3>
-                  <div className="text-2xl font-extrabold text-[#D1432A] tabular-nums mb-1">
-                    {infrastructureProjects.length} Documented Projects
-                  </div>
-                  <p className="text-xs text-slate-600 m-0">
-                    Searchable public works projects across Alcala barangays by category and
-                    status.
-                  </p>
+                  {barangayDistribution ? (
+                    <>
+                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2.5">
+                        <span className="text-2xl font-extrabold text-[#D1432A] tabular-nums">
+                          {formatCompactPhp(barangayDistribution.grandTotal)}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-500">
+                          across {barangayDistribution.fundedBarangayCount} of 21 barangays
+                          {distYear === 'all' ? ' (2024–2027)' : ` (FY ${distYear})`}
+                        </span>
+                      </div>
+                      <div className="space-y-1.5 mb-2.5">
+                        {barangayDistribution.ranked.slice(0, 5).map((item) => {
+                          const peak = Math.max(
+                            barangayDistribution.ranked[0]?.amount || 0,
+                            barangayDistribution.townWideAmount,
+                            1
+                          );
+                          const widthPct = Math.max(6, Math.round((item.amount / peak) * 100));
+                          return (
+                            <div
+                              key={item.name}
+                              className="grid grid-cols-[120px_1fr_72px] items-center gap-2 text-[11px]"
+                            >
+                              <span className="font-semibold text-[#0f2342] truncate" title={item.name}>
+                                {item.name}
+                              </span>
+                              <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                                <div
+                                  className="h-full rounded-full bg-[#D1432A]"
+                                  style={{ width: `${widthPct}%` }}
+                                />
+                              </div>
+                              <span className="font-mono-data font-bold text-[#0f2342] text-right tabular-nums">
+                                {formatCompactPhp(item.amount)}
+                              </span>
+                            </div>
+                          );
+                        })}
+                        {barangayDistribution.townWideAmount > 0 && (
+                          <div className="grid grid-cols-[120px_1fr_72px] items-center gap-2 text-[11px]">
+                            <span
+                              className="font-semibold text-slate-500 truncate"
+                              title="Town-wide or multi-barangay projects without a single barangay label"
+                            >
+                              Town-Wide / Other
+                            </span>
+                            <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                              <div
+                                className="h-full rounded-full bg-slate-400"
+                                style={{
+                                  width: `${Math.max(
+                                    6,
+                                    Math.round(
+                                      (barangayDistribution.townWideAmount /
+                                        Math.max(
+                                          barangayDistribution.ranked[0]?.amount || 0,
+                                          barangayDistribution.townWideAmount,
+                                          1
+                                        )) *
+                                        100
+                                    )
+                                  )}%`,
+                                }}
+                              />
+                            </div>
+                            <span className="font-mono-data font-bold text-slate-700 text-right tabular-nums">
+                              {formatCompactPhp(barangayDistribution.townWideAmount)}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <p className="text-[11px] text-slate-500 m-0">
+                        {barangayDistribution.ranked.length > 5
+                          ? `Top 5 of ${barangayDistribution.ranked.length} funded barangays shown. `
+                          : ''}
+                        2027 reflects House Bill (HGAB) amounts.
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-xs text-slate-600 m-0">
+                      Loading barangay-level allocation distribution...
+                    </p>
+                  )}
                 </div>
-                <span className="mt-4 text-xs font-bold text-[#D1432A]">
-                  Browse DPWH Projects →
-                </span>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('tracker')}
+                  className="mt-4 text-left text-xs font-bold text-[#D1432A] hover:underline cursor-pointer w-fit"
+                >
+                  Explore All 21 Barangays →
+                </button>
+              </div>
             </div>
 
             {/* Executive Visual Breakdown */}
