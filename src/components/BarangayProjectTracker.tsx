@@ -6,6 +6,7 @@ interface GaaProject {
   famKey: string;
   name: string;
   department: string;
+  years?: Record<string, number>;
   fy2024Php: number;
   fy2025Php: number;
   fy2026Php: number;
@@ -106,10 +107,12 @@ export default function BarangayProjectTracker({
         filterBySearch(`${d.name} ${d.barangay} ${d.category}`)
     );
 
-    const gaaTotal = gaa.reduce(
-      (sum, g) => sum + (g.fy2024Php || 0) + (g.fy2025Php || 0) + (g.fy2026Php || 0),
-      0
-    );
+    const gaaTotal = gaa.reduce((sum, g) => {
+      if (g.years && Object.keys(g.years).length > 0) {
+        return sum + Object.values(g.years).reduce((s, v) => s + (Number(v) || 0), 0);
+      }
+      return sum + (g.fy2024Php || 0) + (g.fy2025Php || 0) + (g.fy2026Php || 0);
+    }, 0);
     const hgabTotal = hgab.reduce((sum, p) => sum + (p.housePhp || p.nepPhp || 0), 0);
 
     return {

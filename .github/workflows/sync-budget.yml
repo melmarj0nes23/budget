@@ -1,0 +1,37 @@
+name: Sync BetterGov Budget Data
+
+on:
+  schedule:
+    # Runs every Monday at 02:00 UTC (10:00 AM PHT)
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run BetterGov budget sync
+        run: npm run sync:budget
+
+      - name: Commit updated snapshot if changed
+        run: |
+          if git diff --quiet public/data/national-budget-alcala.json; then
+            echo "No changes to national-budget-alcala.json"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/national-budget-alcala.json
+          git commit -m "chore(data): auto-sync BetterGov GAA & NEP/HGAB snapshot"
+          git push

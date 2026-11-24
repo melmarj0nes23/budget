@@ -27,6 +27,7 @@ interface NationalBudgetRow {
   name?: string;
   title?: string;
   statusLabel?: string;
+  years?: Record<string, number>;
   fy2024Php?: number;
   fy2025Php?: number;
   fy2026Php?: number;
@@ -36,11 +37,24 @@ interface NationalBudgetRow {
 }
 
 interface NationalBudgetPayload {
+  gaaYears: number[];
+  proposedYear: number;
   gaaProjects: NationalBudgetRow[];
   hgab2027Projects: NationalBudgetRow[];
 }
 
-type DistributionYear = 'all' | '2024' | '2025' | '2026' | '2027';
+type DistributionYear = string;
+
+function getGaaRowYearAmount(row: NationalBudgetRow, year: number): number {
+  const key = String(year);
+  if (row.years && typeof row.years[key] === 'number') {
+    return row.years[key];
+  }
+  if (year === 2024) return Number(row.fy2024Php) || 0;
+  if (year === 2025) return Number(row.fy2025Php) || 0;
+  if (year === 2026) return Number(row.fy2026Php) || 0;
+  return 0;
+}
 
 function matchBarangayName(text: string): string | null {
   const hay = text.toLowerCase();
@@ -167,8 +181,19 @@ export default function BudgetPage() {
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (cancelled || !data) return;
+        const gaaProjects = Array.isArray(data.gaaProjects) ? data.gaaProjects : [];
+        const gaaYears =
+          Array.isArray(data.gaaYears) && data.gaaYears.length > 0
+            ? data.gaaYears.map(Number).filter(Number.isFinite)
+            : [2024, 2025, 2026];
+        const proposedYear =
+          typeof data.proposedYear === 'number' && Number.isFinite(data.proposedYear)
+            ? data.proposedYear
+            : 2027;
         setNationalPayload({
-          gaaProjects: Array.isArray(data.gaaProjects) ? data.gaaProjects : [],
+          gaaYears,
+          proposedYear,
+          gaaProjects,
           hgab2027Projects: Array.isArray(data.hgab2027Projects) ? data.hgab2027Projects : [],
         });
       })
@@ -180,7 +205,7 @@ export default function BudgetPage() {
 
   const nationalSummary = useMemo(() => {
     if (!nationalPayload) return null;
-    const { gaaProjects: gaa, hgab2027Projects: hgab } = nationalPayload;
+    const { gaaYears, proposedYear, gaaProjects: gaa, hgab2027Projects: hgab } = nationalPayload;
     const sumKey = (rows: NationalBudgetRow[], key: keyof NationalBudgetRow) =>
       rows.reduce((total, row) => total + (Number(row[key]) || 0), 0);
     const houseOnlyCount = hgab.filter((r) => r.statusLabel === 'House bill only').length;
@@ -188,17 +213,23 @@ export default function BudgetPage() {
     const unconfirmedCount = hgab.filter(
       (r) => r.statusLabel && r.statusLabel !== 'House bill only' && r.statusLabel !== 'Same amount in both'
     ).length;
-    const fy2027Nep = sumKey(hgab, 'nepPhp');
-    const fy2027House = sumKey(hgab, 'housePhp');
+    const gaaTotalsByYear = gaaYears.map((yr) => ({
+      year: yr,
+      amount: gaa.reduce((total, row) => total + getGaaRowYearAmount(row, yr), 0),
+    }));
+    const gaaGrandTotal = gaaTotalsByYear.reduce((s, r) => s + r.amount, 0);
+    const fyProposedNep = sumKey(hgab, 'nepPhp');
+    const fyProposedHouse = sumKey(hgab, 'housePhp');
     return {
+      gaaYears,
+      proposedYear,
       gaaCount: gaa.length,
       hgabCount: hgab.length,
-      fy2024: sumKey(gaa, 'fy2024Php'),
-      fy2025: sumKey(gaa, 'fy2025Php'),
-      fy2026: sumKey(gaa, 'fy2026Php'),
-      fy2027Nep,
-      fy2027House,
-      fy2027Delta: fy2027House - fy2027Nep,
+      gaaTotalsByYear,
+      gaaGrandTotal,
+      fyProposedNep,
+      fyProposedHouse,
+      fyProposedDelta: fyProposedHouse - fyProposedNep,
       houseOnlyCount,
       sameCount,
       unconfirmedCount,
@@ -207,6 +238,7 @@ export default function BudgetPage() {
 
   const barangayDistribution = useMemo(() => {
     if (!nationalPayload) return null;
+    const { gaaYears, proposedYear } = nationalPayload;
     const totals = new Map<string, { amount: number; count: number }>();
     let townWideAmount = 0;
     let townWideCount = 0;
@@ -223,23 +255,18 @@ export default function BudgetPage() {
       }
     };
 
-    if (distYear === 'all' || distYear === '2024' || distYear === '2025' || distYear === '2026') {
+    const selectedNumYear = distYear === 'all' ? null : Number(distYear);
+    if (distYear === 'all' || (selectedNumYear !== null && gaaYears.includes(selectedNumYear))) {
       for (const row of nationalPayload.gaaProjects) {
         const amt =
-          distYear === '2024'
-            ? Number(row.fy2024Php) || 0
-            : distYear === '2025'
-              ? Number(row.fy2025Php) || 0
-              : distYear === '2026'
-                ? Number(row.fy2026Php) || 0
-                : (Number(row.fy2024Php) || 0) +
-                  (Number(row.fy2025Php) || 0) +
-                  (Number(row.fy2026Php) || 0);
+          selectedNumYear !== null
+            ? getGaaRowYearAmount(row, selectedNumYear)
+            : gaaYears.reduce((sum, yr) => sum + getGaaRowYearAmount(row, yr), 0);
         addEntry(row.name || '', amt);
       }
     }
 
-    if (distYear === 'all' || distYear === '2027') {
+    if (distYear === 'all' || selectedNumYear === proposedYear) {
       for (const row of nationalPayload.hgab2027Projects) {
         const amt = Number(row.housePhp ?? row.nepPhp) || 0;
         addEntry(row.title || '', amt);
@@ -494,18 +521,18 @@ export default function BudgetPage() {
                       <i className="bi bi-arrow-left-right" aria-hidden="true" />
                     </span>
                     <span className="font-mono-data text-xs font-bold text-[#26489A] bg-[#26489A]/10 px-2.5 py-1 rounded-full">
-                      FY 2027 NEP → House Bill
+                      FY {nationalSummary?.proposedYear ?? 2027} NEP → House Bill
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    FY 2027 Proposed Budget Changes
+                    FY {nationalSummary?.proposedYear ?? 2027} Proposed Budget Changes
                   </h3>
                   {nationalSummary ? (
                     <>
                       <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2.5">
                         <span className="text-2xl font-extrabold text-[#26489A] tabular-nums">
-                          {nationalSummary.fy2027Delta >= 0 ? '+' : '−'}
-                          {formatCompactPhp(Math.abs(nationalSummary.fy2027Delta))}
+                          {nationalSummary.fyProposedDelta >= 0 ? '+' : '−'}
+                          {formatCompactPhp(Math.abs(nationalSummary.fyProposedDelta))}
                         </span>
                         <span className="text-xs font-semibold text-slate-500">
                           net change across {nationalSummary.hgabCount} projects
@@ -517,7 +544,7 @@ export default function BudgetPage() {
                             Proposed (NEP)
                           </span>
                           <span className="font-mono-data text-sm font-extrabold text-[#0f2342] tabular-nums">
-                            {formatCompactPhp(nationalSummary.fy2027Nep)}
+                            {formatCompactPhp(nationalSummary.fyProposedNep)}
                           </span>
                         </div>
                         <div className="rounded-xl bg-[#26489A]/5 border border-[#26489A]/15 px-3 py-2">
@@ -525,7 +552,7 @@ export default function BudgetPage() {
                             House Bill (HGAB)
                           </span>
                           <span className="font-mono-data text-sm font-extrabold text-[#26489A] tabular-nums">
-                            {formatCompactPhp(nationalSummary.fy2027House)}
+                            {formatCompactPhp(nationalSummary.fyProposedHouse)}
                           </span>
                         </div>
                       </div>
@@ -569,34 +596,42 @@ export default function BudgetPage() {
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    Project Transparency (GAA &amp; FY 2027)
+                    Project Transparency (GAA &amp; FY {nationalSummary?.proposedYear ?? 2027})
                   </h3>
                   {nationalSummary ? (
                     <>
                       <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2">
                         <span className="text-2xl font-extrabold text-[#2E8B57] tabular-nums">
-                          {formatCompactPhp(
-                            nationalSummary.fy2024 + nationalSummary.fy2025 + nationalSummary.fy2026
-                          )}
+                          {formatCompactPhp(nationalSummary.gaaGrandTotal)}
                         </span>
                         <span className="text-xs font-semibold text-slate-500">
-                          FY 2024–2026 GAA ({nationalSummary.gaaCount} projects)
+                          FY {nationalSummary.gaaYears[0]}–
+                          {nationalSummary.gaaYears[nationalSummary.gaaYears.length - 1]} GAA (
+                          {nationalSummary.gaaCount} projects)
                         </span>
                       </div>
                       <div className="space-y-1.5 mb-2.5">
                         {[
-                          { label: 'FY 2024 GAA', amount: nationalSummary.fy2024, tone: 'bg-[#26489A]' },
-                          { label: 'FY 2025 GAA', amount: nationalSummary.fy2025, tone: 'bg-[#26489A]' },
-                          { label: 'FY 2026 GAA', amount: nationalSummary.fy2026, tone: 'bg-[#26489A]' },
-                          { label: 'FY 2027 NEP', amount: nationalSummary.fy2027Nep, tone: 'bg-[#008080]' },
-                          { label: 'FY 2027 House', amount: nationalSummary.fy2027House, tone: 'bg-[#2E8B57]' },
+                          ...nationalSummary.gaaTotalsByYear.map((row) => ({
+                            label: `FY ${row.year} GAA`,
+                            amount: row.amount,
+                            tone: 'bg-[#26489A]',
+                          })),
+                          {
+                            label: `FY ${nationalSummary.proposedYear} NEP`,
+                            amount: nationalSummary.fyProposedNep,
+                            tone: 'bg-[#008080]',
+                          },
+                          {
+                            label: `FY ${nationalSummary.proposedYear} House`,
+                            amount: nationalSummary.fyProposedHouse,
+                            tone: 'bg-[#2E8B57]',
+                          },
                         ].map((row) => {
                           const peak = Math.max(
-                            nationalSummary.fy2024,
-                            nationalSummary.fy2025,
-                            nationalSummary.fy2026,
-                            nationalSummary.fy2027Nep,
-                            nationalSummary.fy2027House,
+                            ...nationalSummary.gaaTotalsByYear.map((r) => r.amount),
+                            nationalSummary.fyProposedNep,
+                            nationalSummary.fyProposedHouse,
                             1
                           );
                           const widthPct = Math.max(6, Math.round((row.amount / peak) * 100));
@@ -651,15 +686,30 @@ export default function BudgetPage() {
                       role="group"
                       aria-label="Filter barangay distribution by fiscal year"
                     >
-                      {(
-                        [
-                          { id: 'all', label: 'All' },
-                          { id: '2024', label: '2024' },
-                          { id: '2025', label: '2025' },
-                          { id: '2026', label: '2026' },
-                          { id: '2027', label: '2027' },
-                        ] as const
-                      ).map((yr) => (
+                      {[
+                        { id: 'all', label: 'All' },
+                        ...(nationalPayload
+                          ? [
+                              ...nationalPayload.gaaYears.map((yr) => ({
+                                id: String(yr),
+                                label: String(yr),
+                              })),
+                              ...(!nationalPayload.gaaYears.includes(nationalPayload.proposedYear)
+                                ? [
+                                    {
+                                      id: String(nationalPayload.proposedYear),
+                                      label: String(nationalPayload.proposedYear),
+                                    },
+                                  ]
+                                : []),
+                            ]
+                          : [
+                              { id: '2024', label: '2024' },
+                              { id: '2025', label: '2025' },
+                              { id: '2026', label: '2026' },
+                              { id: '2027', label: '2027' },
+                            ]),
+                      ].map((yr) => (
                         <button
                           key={yr.id}
                           type="button"

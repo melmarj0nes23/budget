@@ -1,13 +1,26 @@
 {
-  "syncedAt": "2026-11-21T16:52:51.099Z",
+  "syncedAt": "2026-11-24T17:21:58.273Z",
   "sourceApi": "https://budget.bettergov.ph/api/v1",
   "sourceDocs": "https://budget.bettergov.ph/docs",
+  "gaaYears": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "proposedYear": 2027,
   "notice": "Independent and unofficial. This comparison is our own reading of the published documents, not an official record of the budget department, the agencies or the House. Figures are the amounts published in the documents, not spending. No allegations. An insertion, deletion, or amount-change candidate describes a provisional comparison between identified sources. That classification alone does not establish irregularity or wrongdoing by any office or official and should not be represented as such. Absence from an API snapshot likewise does not establish absence from the published NEP or concealment. Read the full notice: https://budget.bettergov.ph/hgab/2027/methodology#disclaimer.",
   "gaaProjects": [
     {
       "famKey": "18-001|construction of flood control riverbank structure along agno and allied rivers alcala pangasinan",
       "name": "Construction of Flood Control Riverbank Structure along Agno and Allied Rivers, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 100000000
+      },
       "fy2024Php": 100000000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -16,6 +29,9 @@
       "famKey": "18-001|improvement of road alcala pangasinan",
       "name": "Improvement of Road, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 20000000
+      },
       "fy2024Php": 20000000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -24,6 +40,9 @@
       "famKey": "05-001|concreting of purok 5  6 brgy san pedro apartado fmr brgy san pedro apartado alcala pangasinan",
       "name": "Concreting of Purok 5 & 6 Brgy. San Pedro Apartado FMR, Brgy. San Pedro Apartado, Alcala, Pangasinan",
       "department": "Department of Agriculture (DA)",
+      "years": {
+        "2024": 15000000
+      },
       "fy2024Php": 15000000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -32,6 +51,9 @@
       "famKey": "05-001|concreting of sitio gualao  sitio belidan brgy bersamin fmr brgy bersamin alcala pangasinan",
       "name": "Concreting of Sitio Gualao - Sitio Belidan, Brgy. Bersamin FMR, Brgy. Bersamin, Alcala, Pangasinan",
       "department": "Department of Agriculture (DA)",
+      "years": {
+        "2024": 15000000
+      },
       "fy2024Php": 15000000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -40,6 +62,9 @@
       "famKey": "05-001|concreting of sitio malaguena brgy macayo fmr brgy macayo alcala pangasinan",
       "name": "Concreting of Sitio Malaguena, Brgy. Macayo FMR, Brgy. Macayo, Alcala, Pangasinan",
       "department": "Department of Agriculture (DA)",
+      "years": {
+        "2024": 12500000
+      },
       "fy2024Php": 12500000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -48,6 +73,9 @@
       "famKey": "18-001|construction of road brgy san pedro ili alcalapangasinan",
       "name": "Construction of Road, Brgy. San Pedro Ili, Alcala,Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 10000000
+      },
       "fy2024Php": 10000000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -56,6 +84,9 @@
       "famKey": "18-001|construction of multi  purpose building  covered court  at pindangan east elementary school barangay pindangan east alcala pangasinan",
       "name": "Construction of Multi - Purpose Building  ( Covered Court )  at Pindangan East Elementary School, Barangay Pindangan East, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 7500000
+      },
       "fy2024Php": 7500000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -64,6 +95,9 @@
       "famKey": "18-001|construction of multi  purpose building  covered court  at south central school barangay canarvacanan alcala pangasinan",
       "name": "Construction of Multi - Purpose Building  ( Covered Court )  at South Central School, Barangay Canarvacanan, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 7500000
+      },
       "fy2024Php": 7500000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -72,6 +106,9 @@
       "famKey": "18-001|construction of multi  purpose building  covered court  at vacante integrated school barangay vacante alcala pangasinan",
       "name": "Construction of Multi - Purpose Building  ( Covered Court )  at Vacante Integrated School, Barangay Vacante, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 7500000
+      },
       "fy2024Php": 7500000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -80,6 +117,9 @@
       "famKey": "18-001|construction of multi  purpose building  covered court  san pedro 2i elementary school barangay san pedo ili alcala pangasinan",
       "name": "Construction of Multi - Purpose Building  ( Covered Court )  San PedRO 2I Elementary School, Barangay San Pedo Ili, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 7500000
+      },
       "fy2024Php": 7500000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -88,6 +128,9 @@
       "famKey": "18-001|construction of multi  purpose building at barangay pindangan east alcala pangasinan",
       "name": "Construction of Multi - Purpose Building at Barangay Pindangan East, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 6000000
+      },
       "fy2024Php": 6000000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -96,6 +139,9 @@
       "famKey": "18-001|construction of multi  purpose building  barangay san nicolas alcala pangasinan",
       "name": "Construction of Multi - Purpose Building , Barangay San Nicolas, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 5000000
+      },
       "fy2024Php": 5000000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -104,6 +150,9 @@
       "famKey": "18-001|construction of multipurpose building  senior citizens center   barangay poblacion west alcala pangasinan",
       "name": "Construction of Multipurpose Building   ( Senior Citizens Center ) , Barangay Poblacion West, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2024": 5000000
+      },
       "fy2024Php": 5000000,
       "fy2025Php": 0,
       "fy2026Php": 0
@@ -112,6 +161,9 @@
       "famKey": "05-001|concreting of brgy macayo fmr brgy macayo alcala pangasinan",
       "name": "Concreting of Brgy. Macayo FMR, Brgy. Macayo, Alcala, Pangasinan",
       "department": "Department of Agriculture (DA)",
+      "years": {
+        "2025": 10000000
+      },
       "fy2024Php": 0,
       "fy2025Php": 10000000,
       "fy2026Php": 0
@@ -120,38 +172,241 @@
       "famKey": "05-001|concreting of brgy san pedro apartado fmr brgy san pedro apartado alcala pangasinan",
       "name": "Concreting of Brgy. San Pedro Apartado FMR, Brgy. San Pedro Apartado, Alcala, Pangasinan",
       "department": "Department of Agriculture (DA)",
+      "years": {
+        "2020": 12500000,
+        "2025": 10000000
+      },
       "fy2024Php": 0,
       "fy2025Php": 10000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "05-001|concreting of zone iii brgy pindangan east fmr brgy pinadangan east alcala pangasinan",
+      "name": "Concreting of Zone III, Brgy. Pindangan East FMR, Brgy. Pinadangan East, Alcala, Pangasinan",
+      "department": "Department of Agriculture (DA)",
+      "years": {
+        "2023": 12500000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of 135m drainage with cover barangay poblacion east alcala pangasinan",
+      "name": "Construction of 135m Drainage with Cover, Barangay Poblacion East, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2021": 2000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of flood control structure along agno river brgy laoac left bank alcala pangasinan",
+      "name": "Construction of Flood Control Structure along Agno River, Brgy. Laoac (Left Bank),  Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2020": 40000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of flood control structure along agno river package 1 alcala pangasinan",
+      "name": "Construction of Flood Control Structure along Agno River (Package 1), Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2020": 50000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of flood control structure along agno river package 2 alcala pangasinan",
+      "name": "Construction of Flood Control Structure along Agno River (Package 2), Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2022": 35000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of flood control structure along agno river sta 0000  sta 0600 brgy macayo alcala pangasinan",
+      "name": "Construction of Flood Control Structure along Agno River, Sta. 0+000 - Sta. 0+600, Brgy. Macayo, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2022": 10000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
       "fy2026Php": 0
     },
     {
       "famKey": "18-001|construction of multipurpose building at barangay anulid alcala pangasinan",
       "name": "Construction of Multi-Purpose Building at Barangay Anulid, Alcala Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2025": 7500000
+      },
       "fy2024Php": 0,
       "fy2025Php": 7500000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building barangay anulid alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Barangay Anulid, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2021": 5500000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
       "fy2026Php": 0
     },
     {
       "famKey": "18-001|construction of multipurpose building barangay atainan alcala pangasinan",
       "name": "Construction of Multi-Purpose Building, Barangay Atainan, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2025": 6000000
+      },
       "fy2024Php": 0,
       "fy2025Php": 6000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building barangay canarvacanan alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Barangay Canarvacanan, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2021": 2000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building barangay kisikis alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Barangay Kisikis, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2021": 5500000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building barangay pindangan centro alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Barangay Pindangan Centro, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2021": 5500000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
       "fy2026Php": 0
     },
     {
       "famKey": "18-001|construction of multipurpose building barangay san juan alcala pangasinan",
       "name": "Construction of Multi-Purpose Building, Barangay San Juan, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2025": 6000000
+      },
       "fy2024Php": 0,
       "fy2025Php": 6000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building brgy atainan alcala pangasinan",
+      "name": "Construction of Multi-purpose Building, Brgy. Atainan, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2020": 2000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building brgy canarvacanan alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Brgy. Canarvacanan, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2021": 3000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building brgy san pedro ili alcala pangasinan",
+      "name": "Construction of Multi-purpose Building, Brgy. San Pedro Ili, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2020": 6000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building brgy vacante alcala pangasinan",
+      "name": "Construction of Multi-purpose Building, Brgy. Vacante, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2020": 4725000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building convertible to evacuation center barangay caranglaan alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Convertible to Evacuation Center, Barangay Caranglaan, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2022": 6000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building convertible to evacuation center barangay gualsic alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Convertible to Evacuation Center, Barangay Gualsic, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2022": 7000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of multipurpose building convertible to evacuation center barangay san pedro apartado alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Convertible to Evacuation Center, Barangay San Pedro Apartado, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2022": 7000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
       "fy2026Php": 0
     },
     {
       "famKey": "18-001|construction of multipurpose building covered court barangay poblacion west alcala pangasinan 15842992 120 521126",
       "name": "Construction of Multi-Purpose Building (Covered Court), Barangay Poblacion West, Alcala, Pangasinan (15.842992, 120. 521126)",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2026": 7500000
+      },
       "fy2024Php": 0,
       "fy2025Php": 0,
       "fy2026Php": 7500000
@@ -160,6 +415,9 @@
       "famKey": "18-001|construction of multipurpose building covered court san juan elementary school school id 101704 barangay san juan alcala pangasinan",
       "name": "Construction of Multi-Purpose Building (Covered Court), San Juan Elementary School (School ID: 101704), Barangay San Juan, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2026": 7500000
+      },
       "fy2024Php": 0,
       "fy2025Php": 0,
       "fy2026Php": 7500000
@@ -168,14 +426,31 @@
       "famKey": "18-001|construction of multipurpose building covered court san vicente elementary school school id 101707 barangay san vicente alcala pangasinan",
       "name": "Construction of Multi-Purpose Building (Covered Court), San Vicente Elementary School (School ID: 101707), Barangay San Vicente, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2026": 7500000
+      },
       "fy2024Php": 0,
       "fy2025Php": 0,
       "fy2026Php": 7500000
     },
     {
+      "famKey": "18-001|construction of multipurpose building curareng alcala pangasinan",
+      "name": "Construction of Multi-Purpose Building, Curareng, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2020": 5500000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
       "famKey": "18-001|construction of road alcala pangasinan",
       "name": "Construction of Road, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2025": 32000000
+      },
       "fy2024Php": 0,
       "fy2025Php": 32000000,
       "fy2026Php": 0
@@ -184,6 +459,9 @@
       "famKey": "18-001|construction of road at brgy gualsic alcala pangasinan",
       "name": "Construction of Road at Brgy. Gualsic, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2025": 10000000
+      },
       "fy2024Php": 0,
       "fy2025Php": 10000000,
       "fy2026Php": 0
@@ -192,14 +470,42 @@
       "famKey": "18-001|construction of road barangay atainan alcala pangasinan",
       "name": "Construction of Road, Barangay Atainan, Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2025": 10000000
+      },
       "fy2024Php": 0,
       "fy2025Php": 10000000,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of road barangay laoac alcala pangasinan",
+      "name": "Construction of Road, Barangay Laoac, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2022": 5000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
+      "fy2026Php": 0
+    },
+    {
+      "famKey": "18-001|construction of road in barangays poblacion westsan juansan vicentelaoac alcala pangasinan",
+      "name": "Construction of Road in Barangays Poblacion West-San Juan-San Vicente-Laoac, Alcala, Pangasinan",
+      "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2021": 18000000
+      },
+      "fy2024Php": 0,
+      "fy2025Php": 0,
       "fy2026Php": 0
     },
     {
       "famKey": "18-001|construction of roads barangay canarvacanan alcala pangasinan sta 0000  sta 0990",
       "name": "Construction of Roads, Barangay Canarvacanan, Alcala, Pangasinan Sta. 0+000 - Sta. 0+990",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2026": 12155000
+      },
       "fy2024Php": 0,
       "fy2025Php": 0,
       "fy2026Php": 12155000
@@ -208,6 +514,9 @@
       "famKey": "18-001|construction of roads barangay caranglaan alcala pangasinan sta 0000  sta 0793",
       "name": "Construction of Roads, Barangay Caranglaan, Alcala, Pangasinan  Sta. 0+000 - Sta. 0+793",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2026": 9800000
+      },
       "fy2024Php": 0,
       "fy2025Php": 0,
       "fy2026Php": 9800000
@@ -216,6 +525,9 @@
       "famKey": "18-001|construction of roads barangay curareng alcala pangasinan sta 0000  sta 0793",
       "name": "Construction of Roads, Barangay Curareng, Alcala, Pangasinan  Sta. 0+000 - Sta. 0+793",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2026": 9800000
+      },
       "fy2024Php": 0,
       "fy2025Php": 0,
       "fy2026Php": 9800000
@@ -224,6 +536,9 @@
       "famKey": "18-001|construction of roads barangay laoac alcala pangasinan sta 0000  sta 0793",
       "name": "Construction of Roads, Barangay Laoac, Alcala, Pangasinan  Sta. 0+000 - Sta. 0+793",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2026": 9800000
+      },
       "fy2024Php": 0,
       "fy2025Php": 0,
       "fy2026Php": 9800000
@@ -232,6 +547,9 @@
       "famKey": "18-001|rehabilitationimprovement of roads along alcala pangasinan",
       "name": "Rehabilitation/Improvement of Roads along Alcala, Pangasinan",
       "department": "Department of Public Works and Highways (DPWH)",
+      "years": {
+        "2025": 20000000
+      },
       "fy2024Php": 0,
       "fy2025Php": 20000000,
       "fy2026Php": 0
