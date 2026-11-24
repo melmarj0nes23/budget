@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline | BetterAlcala</title>
+    <meta name="theme-color" content="#0032a0" />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #f8f9fa;
+        color: #1a1a1a;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .card {
+        max-width: 520px;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        padding: 36px 28px;
+        text-align: center;
+        box-shadow: 0 4px 16px rgba(0, 50, 160, 0.06);
+      }
+      .badge {
+        display: inline-block;
+        background: rgba(0, 50, 160, 0.1);
+        color: #0032a0;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 6px 14px;
+        border-radius: 999px;
+        margin-bottom: 16px;
+      }
+      h1 { font-size: 1.5rem; color: #0032a0; margin-bottom: 10px; }
+      p { font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 20px; }
+      .hotlines {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: left;
+        margin-bottom: 24px;
+        font-size: 0.875rem;
+      }
+      .hotlines h2 { font-size: 0.875rem; color: #0032a0; margin-bottom: 8px; }
+      .hotlines li { list-style: none; padding: 4px 0; color: #333; }
+      .btn {
+        display: inline-block;
+        background: #0032a0;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9375rem;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <span class="badge">BetterAlcala · Offline Mode</span>
+      <h1>You are currently offline</h1>
+      <p>
+        Please check your internet connection to load live weather updates and external records.
+        Cached pages and emergency numbers remain available below.
+      </p>
+      <div class="hotlines">
+        <h2>Alcala, Pangasinan Emergency Contacts</h2>
+        <ul>
+          <li><strong>National Emergency:</strong> 911</li>
+          <li><strong>Alcala Police Station:</strong> 0922-3855616 / 0905-3712249 / (075) 593-2829</li>
+          <li><strong>Alcala Bureau of Fire (BFP):</strong> 0917-1893611 / 0961-6321000</li>
+          <li><strong>Alcala Ambulance:</strong> 0946-798-0534 / 0946-715-3640</li>
+          <li><strong>Alcala MDRRMO:</strong> 0920-9817724 / 0968-4448920</li>
+          <li><strong>Municipal Health Office (RHU):</strong> 0917-8616986 / (075) 593-4992</li>
+          <li><strong>DSWD-Alcala:</strong> 0918-3940809</li>
+          <li><strong>Alcala Municipal Hall:</strong> (075) 632-5938 / (075) 593-3012</li>
+        </ul>
+      </div>
+      <button class="btn" onclick="window.location.reload()">Try Again</button>
+    </main>
+  </body>
+</html>
