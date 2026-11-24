@@ -675,14 +675,14 @@ export default function BudgetPage() {
                 </span>
               </button>
 
-              <div className="bg-white border border-black/10 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
-                <div>
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#D1432A]/10 text-[#D1432A]">
+              <div className="bg-white border border-black/10 rounded-2xl p-5 shadow-xs flex flex-col justify-between min-w-0">
+                <div className="min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-3 min-w-0">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#D1432A]/10 text-[#D1432A]">
                       <i className="bi bi-bar-chart-steps" aria-hidden="true" />
                     </span>
                     <div
-                      className="flex flex-wrap items-center gap-1 rounded-2xl bg-slate-100 p-1 max-w-full"
+                      className="flex flex-nowrap items-center gap-1 rounded-full bg-slate-100 p-0.5 max-w-full overflow-x-auto"
                       role="group"
                       aria-label="Filter barangay distribution by fiscal year"
                     >
@@ -714,7 +714,7 @@ export default function BudgetPage() {
                           key={yr.id}
                           type="button"
                           onClick={() => setDistYear(yr.id)}
-                          className={`px-2 py-0.5 rounded-full text-[11px] font-bold transition-colors cursor-pointer ${
+                          className={`px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
                             distYear === yr.id
                               ? 'bg-[#0f2342] text-white'
                               : 'text-slate-600 hover:text-[#0f2342]'
