@@ -26,11 +26,13 @@ function formatCompactPhp(amount: number): string {
 interface NationalBudgetRow {
   name?: string;
   title?: string;
+  statusLabel?: string;
   fy2024Php?: number;
   fy2025Php?: number;
   fy2026Php?: number;
   nepPhp?: number | null;
   housePhp?: number | null;
+  deltaPhp?: number | null;
 }
 
 interface NationalBudgetPayload {
@@ -181,14 +183,25 @@ export default function BudgetPage() {
     const { gaaProjects: gaa, hgab2027Projects: hgab } = nationalPayload;
     const sumKey = (rows: NationalBudgetRow[], key: keyof NationalBudgetRow) =>
       rows.reduce((total, row) => total + (Number(row[key]) || 0), 0);
+    const houseOnlyCount = hgab.filter((r) => r.statusLabel === 'House bill only').length;
+    const sameCount = hgab.filter((r) => r.statusLabel === 'Same amount in both').length;
+    const unconfirmedCount = hgab.filter(
+      (r) => r.statusLabel && r.statusLabel !== 'House bill only' && r.statusLabel !== 'Same amount in both'
+    ).length;
+    const fy2027Nep = sumKey(hgab, 'nepPhp');
+    const fy2027House = sumKey(hgab, 'housePhp');
     return {
       gaaCount: gaa.length,
       hgabCount: hgab.length,
       fy2024: sumKey(gaa, 'fy2024Php'),
       fy2025: sumKey(gaa, 'fy2025Php'),
       fy2026: sumKey(gaa, 'fy2026Php'),
-      fy2027Nep: sumKey(hgab, 'nepPhp'),
-      fy2027House: sumKey(hgab, 'housePhp'),
+      fy2027Nep,
+      fy2027House,
+      fy2027Delta: fy2027House - fy2027Nep,
+      houseOnlyCount,
+      sameCount,
+      unconfirmedCount,
     };
   }, [nationalPayload]);
 
@@ -415,31 +428,72 @@ export default function BudgetPage() {
 
               <button
                 type="button"
-                onClick={() => setActiveTab('municipal')}
+                onClick={() => setActiveTab('regional')}
                 className="text-left bg-white border border-black/10 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#26489A]/40 transition-all cursor-pointer flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#26489A]/10 text-[#26489A]">
-                      <i className="bi bi-graph-up-arrow" aria-hidden="true" />
+                      <i className="bi bi-arrow-left-right" aria-hidden="true" />
                     </span>
                     <span className="font-mono-data text-xs font-bold text-[#26489A] bg-[#26489A]/10 px-2.5 py-1 rounded-full">
-                      FY {activeBudget.fiscalYear}
+                      FY 2027 NEP → House Bill
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    Municipal Annual Budget &amp; SRE
+                    FY 2027 Proposed Budget Changes
                   </h3>
-                  <div className="text-2xl font-extrabold text-[#26489A] tabular-nums mb-1">
-                    {formatPeso(activeBudget.approvedBudget)}
-                  </div>
-                  <p className="text-xs text-slate-600 m-0">
-                    Approved appropriations, multi-year comparison (FY 2024–2026), and execution
-                    status.
-                  </p>
+                  {nationalSummary ? (
+                    <>
+                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2.5">
+                        <span className="text-2xl font-extrabold text-[#26489A] tabular-nums">
+                          {nationalSummary.fy2027Delta >= 0 ? '+' : '−'}
+                          {formatCompactPhp(Math.abs(nationalSummary.fy2027Delta))}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-500">
+                          net change across {nationalSummary.hgabCount} projects
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 mb-2.5">
+                        <div className="rounded-xl bg-slate-50 border border-black/5 px-3 py-2">
+                          <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            Proposed (NEP)
+                          </span>
+                          <span className="font-mono-data text-sm font-extrabold text-[#0f2342] tabular-nums">
+                            {formatCompactPhp(nationalSummary.fy2027Nep)}
+                          </span>
+                        </div>
+                        <div className="rounded-xl bg-[#26489A]/5 border border-[#26489A]/15 px-3 py-2">
+                          <span className="block text-[10px] font-bold uppercase tracking-wider text-[#26489A]">
+                            House Bill (HGAB)
+                          </span>
+                          <span className="font-mono-data text-sm font-extrabold text-[#26489A] tabular-nums">
+                            {formatCompactPhp(nationalSummary.fy2027House)}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 text-[11px]">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-[#D1432A]/10 text-[#D1432A] font-semibold px-2.5 py-0.5">
+                          House bill only: {nationalSummary.houseOnlyCount}
+                        </span>
+                        <span className="inline-flex items-center gap-1 rounded-full bg-[#2E8B57]/10 text-[#2E8B57] font-semibold px-2.5 py-0.5">
+                          Same in both: {nationalSummary.sameCount}
+                        </span>
+                        {nationalSummary.unconfirmedCount > 0 && (
+                          <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 text-amber-900 font-semibold px-2.5 py-0.5">
+                            Unconfirmed match: {nationalSummary.unconfirmedCount}
+                          </span>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <p className="text-xs text-slate-600 m-0">
+                      Loading FY 2027 NEP vs. House Bill comparison...
+                    </p>
+                  )}
                 </div>
                 <span className="mt-4 text-xs font-bold text-[#26489A]">
-                  Explore Municipal Budget →
+                  Inspect FY 2027 Diff →
                 </span>
               </button>
 
