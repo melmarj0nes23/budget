@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import TransparencySplashScreen from './TransparencySplashScreen';
+import { useLanguage } from '../contexts/LanguageContext';
 import {
   DatasetKey,
   fetchRegionalBudget,
@@ -98,6 +99,7 @@ const CHANGE_META: Record<
 };
 
 export default function RegionalBudgetSection() {
+  const { t } = useLanguage();
   const [selectedProvinceCode, setSelectedProvinceCode] = useState<string>('015500000');
   const [selectedMuniPsgc, setSelectedMuniPsgc] = useState<string>('0105504000');
   const [data, setData] = useState<RegionalBudgetResult | null>(null);
@@ -388,11 +390,10 @@ export default function RegionalBudgetSection() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-5">
               <div>
                 <h2 className="m-0 text-2xl sm:text-3xl font-bold text-[#0f2342] font-serif">
-                  {data ? data.scopeLabel : 'Regional & LGU Budget Tracker'}
+                  {data ? data.scopeLabel : t('budget-regional-title')}
                 </h2>
                 <p className="m-0 mt-1.5 text-sm text-slate-600 max-w-2xl">
-                  Compare FY 2027 NEP vs. House Bill allocations and enacted 2020–2026 GAA budgets
-                  for Pangasinan, Region I, or any province, city, and municipality nationwide.
+                  {t('budget-regional-desc')}
                 </p>
               </div>
 
@@ -422,7 +423,7 @@ export default function RegionalBudgetSection() {
                     }}
                     className="rounded-lg border border-black/15 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-[#0f2342] focus:border-[#26489A] focus:outline-none min-w-[200px]"
                   >
-                    <option value="all">All (Philippines)</option>
+                    <option value="all">{t('budget-all-ph')}</option>
                     {PSGC_PROVINCES.map((p) => (
                       <option key={p.code} value={p.code}>
                         {p.name === 'Metro Manila (NCR)'
@@ -441,8 +442,8 @@ export default function RegionalBudgetSection() {
                   >
                     <option value="all">
                       {selectedProvinceCode === 'all'
-                        ? 'All of Philippines'
-                        : `All of ${selectedProvince?.name || 'Province'}`}
+                        ? t('budget-all-of-ph')
+                        : `${t('budget-all-of')} ${selectedProvince?.name || 'Province'}`}
                     </option>
                     {provinceMunicipalities.map((m) => (
                       <option key={m.psgc} value={m.psgc}>
@@ -457,7 +458,7 @@ export default function RegionalBudgetSection() {
 
           <div className="p-2.5 sm:p-8">
             {loading && (
-              <TransparencySplashScreen message="Fetching live allocations from BetterGov Budget API..." />
+              <TransparencySplashScreen />
             )}
 
             {!loading && error && (

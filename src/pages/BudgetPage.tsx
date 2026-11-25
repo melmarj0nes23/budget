@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
+import { useLanguage } from '../contexts/LanguageContext';
 import BarangayProjectTracker from '../components/BarangayProjectTracker';
 import RegionalBudgetSection from '../components/RegionalBudgetSection';
 import { SourceCitationBox, VerificationBadge } from '../components/VerificationBadge';
@@ -137,6 +138,7 @@ const TAB_SEO: Record<BudgetTab, { label: string; title: string; description: st
 };
 
 export default function BudgetPage() {
+  const { t } = useLanguage();
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -434,13 +436,10 @@ export default function BudgetPage() {
           <div className="trans-hero-content-v2">
             <span className="trans-hero-badge-v2">
               <i className="bi bi-shield-check" aria-hidden="true" />{' '}
-              <span>Fiscal &amp; Project Transparency</span>
+              <span>{t('budget-hero-badge')}</span>
             </span>
-            <h1>Budget &amp; Financial Transparency</h1>
-            <p>
-              Approved municipal appropriations, execution status, COA/BLGF reporting, and DPWH
-              infrastructure projects in Alcala
-            </p>
+            <h1>{t('budget-hero-title')}</h1>
+            <p>{t('budget-hero-desc')}</p>
           </div>
         </div>
       </section>
@@ -451,7 +450,7 @@ export default function BudgetPage() {
           <div className="container">
             <div className="mb-6">
               <h2 className="text-xl font-bold text-[#0f2342] m-0">
-                Transparency &amp; Budget Summary
+                {t('budget-summary-title')}
               </h2>
               <p className="text-sm text-slate-600 m-0 mt-1">
                 FY {activeBudget.fiscalYear} fiscal snapshot, BLGF/COA execution, and direct access

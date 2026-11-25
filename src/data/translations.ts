@@ -134,6 +134,26 @@ export const translations: Record<Language, Record<string, string>> = {
     'contact-copy-report': 'Copy Inquiry Text',
     'contact-copied-report': 'Copied to Clipboard!',
     'contact-open-email': 'Open Email Client to Send',
+
+    // Budget Subdomain Navigation & Pages
+    'budget-nav-overview': 'Overview Summary',
+    'budget-nav-tracker': 'Barangay Tracker',
+    'budget-nav-docs': 'Municipal Budget & Docs',
+    'budget-nav-contracts': 'DPWH Contracts',
+    'budget-nav-transparency': 'Project Transparency',
+    'budget-hero-badge': 'Fiscal & Project Transparency',
+    'budget-hero-title': 'Budget & Financial Transparency',
+    'budget-hero-desc':
+      'Approved municipal appropriations, execution status, COA/BLGF reporting, and DPWH infrastructure projects in Alcala',
+    'budget-summary-title': 'Transparency & Budget Summary',
+    'budget-splash-sub': 'Project Transparency',
+    'budget-splash-msg': 'Fetching live allocations from BetterGov Budget API...',
+    'budget-regional-title': 'Regional & LGU Budget Tracker',
+    'budget-regional-desc':
+      'Compare FY 2027 NEP vs. House Bill allocations and enacted 2020–2026 GAA budgets for Pangasinan, Region I, or any province, city, and municipality nationwide.',
+    'budget-all-ph': 'All (Philippines)',
+    'budget-all-of-ph': 'All of Philippines',
+    'budget-all-of': 'All of',
   },
   fil: {
     'nav-home': 'Tahanan',
@@ -268,6 +288,26 @@ export const translations: Record<Language, Record<string, string>> = {
     'contact-copy-report': 'Kopyahin ang Mensahe',
     'contact-copied-report': 'Nakopya na!',
     'contact-open-email': 'Buksan ang Email App',
+
+    // Budget Subdomain Navigation & Pages
+    'budget-nav-overview': 'Buod ng Badyet',
+    'budget-nav-tracker': 'Tracker ng Barangay',
+    'budget-nav-docs': 'Badyet at Dokumento',
+    'budget-nav-contracts': 'Mga Kontrata ng DPWH',
+    'budget-nav-transparency': 'Transparency ng Proyekto',
+    'budget-hero-badge': 'Transparency sa Pondo at Proyekto',
+    'budget-hero-title': 'Badyet at Transparency sa Pananalapi',
+    'budget-hero-desc':
+      'Aprubadong pondo ng munisipyo, estado ng pagpapatupad, ulat ng COA/BLGF, at mga proyektong pang-imprastraktura ng DPWH sa Alcala',
+    'budget-summary-title': 'Buod ng Badyet at Transparency',
+    'budget-splash-sub': 'Transparency ng Proyekto',
+    'budget-splash-msg': 'Kinukuha ang live na alokasyon mula sa BetterGov Budget API...',
+    'budget-regional-title': 'Tracker ng Badyet ng Rehiyon at LGU',
+    'budget-regional-desc':
+      'Ihambing ang panukalang FY 2027 NEP laban sa House Bill at pinagtibay na 2020–2026 GAA para sa Pangasinan, Region I, o anumang LGU sa bansa.',
+    'budget-all-ph': 'Lahat (Pilipinas)',
+    'budget-all-of-ph': 'Buong Pilipinas',
+    'budget-all-of': 'Buong',
   },
   ilo: {
     'nav-home': 'Pagtaengan',
@@ -402,5 +442,25 @@ export const translations: Record<Language, Record<string, string>> = {
     'contact-copy-report': 'Kopiaen ti Mensahe',
     'contact-copied-report': 'Nakopiaen!',
     'contact-open-email': 'Luktan ti Email App',
+
+    // Budget Subdomain Navigation & Pages
+    'budget-nav-overview': 'Pakabuklan ti Badyet',
+    'budget-nav-tracker': 'Tracker ti Barangay',
+    'budget-nav-docs': 'Badyet ken Dokumento',
+    'budget-nav-contracts': 'Kontrata ti DPWH',
+    'budget-nav-transparency': 'Transparency ti Proyekto',
+    'budget-hero-badge': 'Transparency ti Pondo ken Proyekto',
+    'budget-hero-title': 'Badyet ken Transparency ti Panagiggem ti Pondo',
+    'budget-hero-desc':
+      'Naaprobaran a pondo ti munisipio, kasasaad ti proyekto, report ti COA/BLGF, ken proyekto ti DPWH iti Alcala',
+    'budget-summary-title': 'Pakabuklan ti Badyet ken Transparency',
+    'budget-splash-sub': 'Transparency ti Proyekto',
+    'budget-splash-msg': 'Al-alaen ti live a datos manipud iti BetterGov Budget API...',
+    'budget-regional-title': 'Tracker ti Badyet ti Rehion ken LGU',
+    'budget-regional-desc':
+      'Idilig ti FY 2027 NEP kontra iti House Bill ken naaprobaran a 2020–2026 GAA para iti Pangasinan, Region I, wenno aniaman nga LGU iti pagilian.',
+    'budget-all-ph': 'Amin (Pilipinas)',
+    'budget-all-of-ph': 'Intero a Pilipinas',
+    'budget-all-of': 'Intero a',
   },
 };

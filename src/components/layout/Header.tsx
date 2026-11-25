@@ -147,7 +147,7 @@ export default function Header() {
                 className={pathname === '/' || pathname === '/budget' ? 'active' : ''}
                 onClick={closeMenu}
               >
-                Overview Summary
+                {t('budget-nav-overview')}
               </Link>
             </li>
             <li>
@@ -156,7 +156,7 @@ export default function Header() {
                 className={pathname.startsWith('/tracker') ? 'active' : ''}
                 onClick={closeMenu}
               >
-                Barangay Tracker
+                {t('budget-nav-tracker')}
               </Link>
             </li>
             <li>
@@ -165,7 +165,7 @@ export default function Header() {
                 className={pathname.startsWith('/budgetdocs') ? 'active' : ''}
                 onClick={closeMenu}
               >
-                Municipal Budget &amp; Docs
+                {t('budget-nav-docs')}
               </Link>
             </li>
             <li>
@@ -174,7 +174,7 @@ export default function Header() {
                 className={pathname.startsWith('/contracts') ? 'active' : ''}
                 onClick={closeMenu}
               >
-                DPWH Contracts ({INFRASTRUCTURE_PROJECTS.length})
+                {t('budget-nav-contracts')} ({INFRASTRUCTURE_PROJECTS.length})
               </Link>
             </li>
             <li>
@@ -183,7 +183,7 @@ export default function Header() {
                 className={pathname.startsWith('/transparency') ? 'active' : ''}
                 onClick={closeMenu}
               >
-                Project Transparency
+                {t('budget-nav-transparency')}
               </Link>
             </li>
           </ul>
