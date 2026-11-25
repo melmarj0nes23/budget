@@ -455,8 +455,8 @@ export default function BudgetPage() {
                 Transparency &amp; Budget Summary
               </h2>
               <p className="text-sm text-slate-600 m-0 mt-1">
-                FY {activeBudget.fiscalYear} fiscal snapshot, funding mix, and direct access to
-                project trackers.
+                FY {activeBudget.fiscalYear} fiscal snapshot, BLGF/COA execution, and direct access
+                to project trackers.
               </p>
             </div>
 
@@ -541,8 +541,20 @@ export default function BudgetPage() {
                           })}
                         </div>
                         <p className="text-[11px] text-slate-500 m-0">
-                          Plus {formatCompactPhp(supplementalTotalAll)} in CY 2022–2025 supplemental
-                          budgets; COA/BLGF execution records inside.
+                          BLGF Actuals (2022–2025):{' '}
+                          {formatCompactPhp(
+                            budgetRecords.reduce((s, b) => s + (b.actualReceipts ?? 0), 0)
+                          )}{' '}
+                          receipts ·{' '}
+                          {formatCompactPhp(
+                            budgetRecords.reduce((s, b) => s + (b.actualExpenditures ?? 0), 0)
+                          )}{' '}
+                          spent (
+                          {formatCompactPhp(
+                            budgetRecords.reduce((s, b) => s + (b.capitalOutlay ?? 0), 0)
+                          )}{' '}
+                          Capital Outlay); +{formatCompactPhp(supplementalTotalAll)} supplemental;
+                          COA Qualified Opinion (₱0 disallowances).
                         </p>
                       </>
                     );
@@ -1018,8 +1030,13 @@ export default function BudgetPage() {
                       </span>
                     </span>
                     <span className="font-mono-data text-slate-500">
-                      {gaaReconciliation.partialCount} partial · {gaaReconciliation.discrepancyCount}{' '}
-                      discrepancy
+                      {
+                        infrastructureProjects.filter((p) =>
+                          (p.documentUrl || '').toLowerCase().endsWith('.pdf')
+                        ).length
+                      }
+                      /{infrastructureProjects.length} PDFs · {gaaReconciliation.partialCount}{' '}
+                      partial · {gaaReconciliation.discrepancyCount} discrepancy
                     </span>
                   </div>
                 )}
@@ -1085,10 +1102,16 @@ export default function BudgetPage() {
                 <i className="bi bi-clipboard-data" aria-hidden="true" />
               </div>
               <div className="sre-metric-data">
-                <span className="sre-metric-value">Pending Release</span>
-                <span className="sre-metric-label">Obligations (Allotments Committed)</span>
+                <span className="sre-metric-value tabular-nums">
+                  {activeBudget.obligations != null
+                    ? formatPeso(activeBudget.obligations)
+                    : 'Pending Release'}
+                </span>
+                <span className="sre-metric-label">Obligations (COA Executive Summary)</span>
                 <div className="mt-1">
-                  <VerificationBadge status={activeBudget.sreStatus} />
+                  <VerificationBadge
+                    status={activeBudget.obligations != null ? 'Verified' : activeBudget.sreStatus}
+                  />
                 </div>
               </div>
             </div>
@@ -1098,10 +1121,16 @@ export default function BudgetPage() {
                 <i className="bi bi-cash-stack" aria-hidden="true" />
               </div>
               <div className="sre-metric-data">
-                <span className="sre-metric-value">Pending Release</span>
-                <span className="sre-metric-label">Disbursements (Cash Paid)</span>
+                <span className="sre-metric-value tabular-nums">
+                  {activeBudget.disbursements != null
+                    ? formatPeso(activeBudget.disbursements)
+                    : 'Pending Release'}
+                </span>
+                <span className="sre-metric-label">Disbursements (COA Executive Summary)</span>
                 <div className="mt-1">
-                  <VerificationBadge status={activeBudget.sreStatus} />
+                  <VerificationBadge
+                    status={activeBudget.disbursements != null ? 'Verified' : activeBudget.sreStatus}
+                  />
                 </div>
               </div>
             </div>
@@ -1111,7 +1140,11 @@ export default function BudgetPage() {
                 <i className="bi bi-receipt" aria-hidden="true" />
               </div>
               <div className="sre-metric-data">
-                <span className="sre-metric-value">Pending Release</span>
+                <span className="sre-metric-value tabular-nums">
+                  {activeBudget.actualExpenditures
+                    ? formatPeso(activeBudget.actualExpenditures)
+                    : 'Pending Release'}
+                </span>
                 <span className="sre-metric-label">Actual Expenditures (BLGF eSRE)</span>
                 <div className="mt-1">
                   <VerificationBadge status={activeBudget.sreStatus} />
@@ -1215,6 +1248,49 @@ export default function BudgetPage() {
                       Supplemental Budgets ({formatPeso(activeBudget.supplementalBudgetsTotal)})
                     </dt>
                     <dd className="m-0">{activeBudget.supplementalBudgetsNote}</dd>
+                  </div>
+                )}
+                {activeBudget.actualReceipts != null && (
+                  <div>
+                    <dt className="font-semibold text-slate-900">
+                      BLGF eSRE Receipts &amp; Capital Outlay
+                    </dt>
+                    <dd className="m-0">
+                      Receipts: {formatPeso(activeBudget.actualReceipts)} · Capital Outlay:{' '}
+                      {formatPeso(activeBudget.capitalOutlay ?? 0)} · Ending Cash:{' '}
+                      {formatPeso(activeBudget.endingCashBalance ?? 0)}{' '}
+                      {activeBudget.sreDocumentUrl && (
+                        <a
+                          href={activeBudget.sreDocumentUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="ml-1 font-semibold text-[#26489A]"
+                        >
+                          Official XLSX <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                        </a>
+                      )}
+                    </dd>
+                  </div>
+                )}
+                {activeBudget.coaOpinion && (
+                  <div>
+                    <dt className="font-semibold text-slate-900">
+                      COA Audit Opinion ({activeBudget.coaOpinion})
+                    </dt>
+                    <dd className="m-0">
+                      {activeBudget.coaHighlightsNote}{' '}
+                      {activeBudget.coaPdfUrl && (
+                        <a
+                          href={activeBudget.coaPdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="ml-1 font-semibold text-[#26489A]"
+                        >
+                          COA Executive Summary (PDF){' '}
+                          <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                        </a>
+                      )}
+                    </dd>
                   </div>
                 )}
               </dl>
@@ -1333,10 +1409,18 @@ export default function BudgetPage() {
                     Bureau of Local Government Finance (BLGF)
                   </td>
                   <td data-label="Current Public Availability">
-                    Routed via BLGF eSRE portal; municipal breakdown pending extraction
+                    FY 2022–2025 official BLGF workbooks extracted (₱1.16B receipts · ₱877.37M
+                    expenditures; FY 2025 prelim.) via{' '}
+                    <a
+                      href="https://blgf.gov.ph/lgu-fiscal-data/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      blgf.gov.ph
+                    </a>
                   </td>
                   <td data-label="Verification Status">
-                    <VerificationBadge status="Needs Review" />
+                    <VerificationBadge status="Verified" />
                   </td>
                 </tr>
                 <tr>
@@ -1345,14 +1429,14 @@ export default function BudgetPage() {
                     Commission on Audit (COA Region I)
                   </td>
                   <td data-label="Current Public Availability">
-                    Official AAR PDFs archived on{' '}
+                    CY 2022–2025 Executive Summary PDFs extracted (Qualified Opinion across all 4
+                    years; ₱0.00 ending suspensions/disallowances) via{' '}
                     <a href="https://www.coa.gov.ph/" target="_blank" rel="noopener noreferrer">
                       coa.gov.ph
-                    </a>{' '}
-                    (direct extraction pending)
+                    </a>
                   </td>
                   <td data-label="Verification Status">
-                    <VerificationBadge status="Needs Review" />
+                    <VerificationBadge status="Verified" />
                   </td>
                 </tr>
                 <tr>
@@ -1601,9 +1685,9 @@ export default function BudgetPage() {
                       rel="noopener noreferrer"
                       className="font-medium text-[#0032a0]"
                     >
-                      {proj.documentUrl && proj.documentUrl.endsWith('.pdf')
+                      {proj.documentUrl && proj.documentUrl.toLowerCase().endsWith('.pdf')
                         ? 'DPWH Document (PDF)'
-                        : 'DPWH Source'}{' '}
+                        : 'DPWH Submission Record'}{' '}
                       <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                     </a>
                   </div>

@@ -130,6 +130,13 @@ export interface BudgetYearRecord {
   approvedBudget: number;
   supplementalBudgetsTotal?: number;
   supplementalBudgetsNote?: string;
+  actualReceipts?: number | null;
+  capitalOutlay?: number | null;
+  endingCashBalance?: number | null;
+  sreDocumentUrl?: string;
+  coaOpinion?: string;
+  coaPdfUrl?: string;
+  coaHighlightsNote?: string;
   obligations: number | null;
   disbursements: number | null;
   actualExpenditures: number | null;

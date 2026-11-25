@@ -160,7 +160,7 @@
       "evidenceStatus": "Partially corroborated",
       "statusLabel": "Verified in DPWH FY 2026 Procurement Registry (Award pending)",
       "projectDate": "FY 2026 Cycle",
-      "documentUrl": "https://www.dpwh.gov.ph/",
+      "documentUrl": "https://www.dpwh.gov.ph/DPWH/sites/default/files/webform/civil_works/contract_of_agreement/26ai0037-_contract.pdf",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",
@@ -204,9 +204,9 @@
       "contractor": "See DPWH Award Registry",
       "gaaAllocation": 10000000,
       "evidenceStatus": "Partially corroborated",
-      "statusLabel": "Verified in DPWH FY 2025 Registry (Award details pending)",
+      "statusLabel": "Certification of No Allotment (DPWH PDF)",
       "projectDate": "FY 2025 Cycle",
-      "documentUrl": "https://www.dpwh.gov.ph/",
+      "documentUrl": "https://www.dpwh.gov.ph/DPWH/sites/default/files/webform/civil_works/contract_of_agreement/25ai0174_-_certification_no_allotment.pdf",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",
@@ -227,9 +227,9 @@
       "contractor": "See DPWH Award Registry",
       "gaaAllocation": 10000000,
       "evidenceStatus": "Partially corroborated",
-      "statusLabel": "Verified in DPWH FY 2025 Registry (Award details pending)",
+      "statusLabel": "Certification of No Allotment (DPWH PDF)",
       "projectDate": "FY 2025 Cycle",
-      "documentUrl": "https://www.dpwh.gov.ph/",
+      "documentUrl": "https://www.dpwh.gov.ph/DPWH/sites/default/files/webform/civil_works/contract_of_agreement/25ai0151_-_contract.pdf",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",
@@ -255,7 +255,7 @@
       "evidenceStatus": "Partially corroborated",
       "statusLabel": "Ongoing (Awarded May 16, 2025 · ₱19,507,518.47)",
       "projectDate": "FY 2025 Cycle",
-      "documentUrl": "https://bisto.ph/projects/25AI0075",
+      "documentUrl": "https://www.dpwh.gov.ph/DPWH/sites/default/files/webform/civil_works/notice_to_proceed/25ai0075_-_ntp.pdf",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",
@@ -574,7 +574,7 @@
       "evidenceStatus": "Partially corroborated",
       "statusLabel": "NTP Issued Mar 13, 2024 (₱7,417,495.00)",
       "projectDate": "FY 2024 Cycle",
-      "documentUrl": "https://www.dpwh.gov.ph/",
+      "documentUrl": "https://www.dpwh.gov.ph/DPWH/sites/default/files/webform/civil_works/contract_of_agreement/24ai0083_-_contract.pdf",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",
@@ -598,7 +598,7 @@
       "evidenceStatus": "Partially corroborated",
       "statusLabel": "NTP Issued Mar 4, 2024 (Exact amount pending PDF)",
       "projectDate": "FY 2024 Cycle",
-      "documentUrl": "https://www.dpwh.gov.ph/",
+      "documentUrl": "https://www.dpwh.gov.ph/DPWH/sites/default/files/webform/civil_works/contract_of_agreement/24ai0068_-_contract.pdf",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",
@@ -643,7 +643,7 @@
       "evidenceStatus": "Documentary discrepancy",
       "statusLabel": "Contract Processed Feb 2024 (Multi-LGU bundle)",
       "projectDate": "FY 2023 Cycle",
-      "documentUrl": "https://www.dpwh.gov.ph/",
+      "documentUrl": "https://www.dpwh.gov.ph/DPWH/sites/default/files/webform/civil_works/contract_of_agreement/23ai0243_-_contract_.pdf",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",
@@ -665,7 +665,7 @@
       "evidenceStatus": "Partially corroborated",
       "statusLabel": "Contract Processed Feb 2024 (Amount pending)",
       "projectDate": "FY 2023 Cycle",
-      "documentUrl": "https://www.dpwh.gov.ph/",
+      "documentUrl": "https://www.dpwh.gov.ph/DPWH/sites/default/files/webform/civil_works/contract_of_agreement/23ai0241_-_contract.pdf",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",
@@ -687,7 +687,7 @@
       "evidenceStatus": "Partially corroborated",
       "statusLabel": "Contract Processed Feb 2024 (Amount pending)",
       "projectDate": "FY 2023 Cycle",
-      "documentUrl": "https://www.dpwh.gov.ph/",
+      "documentUrl": "https://www.dpwh.gov.ph/dpwh/business/procurement/civil_works/submissions/notice_of_award?data=&page=15987",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",
@@ -825,10 +825,12 @@
       "category": "Public Buildings & Community Centers",
       "implementingAgency": "DPWH Pangasinan 3rd District Engineering Office",
       "fundingSource": "General Appropriations Act (DPWH)",
-      "contractor": "See DPWH Registry",
-      "statusLabel": "Verified in DPWH Registry",
+      "contractor": "Z-5 Construction, Inc.",
+      "contractCost": 5349468.9,
+      "evidenceStatus": "Partially corroborated",
+      "statusLabel": "Awarded (₱5,349,468.90)",
       "projectDate": "FY 2021 Cycle",
-      "documentUrl": "https://www.dpwh.gov.ph/",
+      "documentUrl": "https://www.dpwh.gov.ph/dpwh/sites/default/files/webform/civil_works/notice_of_award/21AI0060%20-%20NOA.pdf",
       "citation": {
         "sourceTitle": "DPWH Procurement & Contract Awards Registry (Pangasinan 3rd District Engineering Office)",
         "sourceUrl": "https://www.dpwh.gov.ph/",

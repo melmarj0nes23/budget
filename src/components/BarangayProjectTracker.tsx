@@ -37,6 +37,69 @@ function formatPhp(amount: number | null | undefined): string {
   })}`;
 }
 
+function normalizeProjectText(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/san pedo ili|san pedro 2i/g, 'san pedro ili')
+    .replace(/pinadangan east/g, 'pindangan east')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function findMatchingDpwh(
+  g: GaaProject,
+  dpwhProjects: InfrastructureProject[]
+): InfrastructureProject | undefined {
+  const gNorm = normalizeProjectText(g.name);
+  const gYears = Object.entries(g.years || {})
+    .filter(([, v]) => Number(v) > 0)
+    .map(([yr, amt]) => ({ yr, amt: Number(amt) }));
+
+  return dpwhProjects.find((d) => {
+    const dNorm = normalizeProjectText(`${d.name} ${d.barangay}`);
+    const dYearMatch = d.projectDate.match(/\b(20\d{2})\b/);
+    const dYear = dYearMatch ? dYearMatch[1] : null;
+
+    if (d.gaaAllocation && dYear) {
+      const yrMatch = gYears.find((y) => y.yr === dYear && y.amt === d.gaaAllocation);
+      if (!yrMatch) return false;
+    } else if (dYear) {
+      const hasYear = gYears.some((y) => y.yr === dYear);
+      if (!hasYear) return false;
+    }
+
+    const brgy = normalizeProjectText(d.barangay);
+    if (brgy && brgy !== 'municipal wide' && !brgy.includes('agno river')) {
+      const brgyParts = brgy.split(' ').filter((w) => w.length > 2);
+      const hasBrgy = brgyParts.every((part) => gNorm.includes(part));
+      if (!hasBrgy) return false;
+    }
+
+    // Disambiguate projects in the same barangay and year (e.g. school covered court vs barangay MPB)
+    const keywords = [
+      'covered court',
+      'elementary school',
+      'integrated school',
+      'central school',
+      'fmr',
+      'road',
+      'flood control',
+      'drainage',
+      'evacuation',
+      'senior citizens',
+      'day care',
+    ];
+    for (const kw of keywords) {
+      if (dNorm.includes(kw) && !gNorm.includes(kw)) {
+        if (kw === 'road' && gNorm.includes('fmr')) continue;
+        return false;
+      }
+    }
+    return true;
+  });
+}
+
 function matchesBarangay(text: string, barangayName: string): boolean {
   const hay = text.toLowerCase();
   const needle = barangayName.toLowerCase();
@@ -289,20 +352,60 @@ export default function BarangayProjectTracker({
                       g.fy2026Php > 0 ? `FY26: ${formatPhp(g.fy2026Php)}` : null,
                     ].filter(Boolean);
               const years = yearEntries.join(' · ');
+              const latestYr =
+                Object.entries(g.years || {})
+                  .filter(([, amt]) => Number(amt) > 0)
+                  .sort(([a], [b]) => Number(b) - Number(a))[0]?.[0] ||
+                (g.fy2026Php > 0 ? '2026' : g.fy2025Php > 0 ? '2025' : '2024');
+              const gaaApiUrl = `https://budget.bettergov.ph/api/v1/gaa/search?q=Alcala%2C%20Pangasinan&year=${latestYr}&limit=100`;
+              const matchedDpwh = findMatchingDpwh(g, dpwhProjects);
+              const dpwhUrl = matchedDpwh?.documentUrl || matchedDpwh?.citation.sourceUrl;
+              const isPdf = Boolean(dpwhUrl && dpwhUrl.toLowerCase().endsWith('.pdf'));
               return (
                 <article
                   key={`gaa-${g.famKey}`}
                   className="bg-white border border-black/10 rounded-xl p-4 sm:p-5 shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-3"
                 >
                   <div className="min-w-0">
-                    <span className="inline-block font-mono-data text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-[#2E8B57]/12 text-[#2E8B57] mb-1">
-                      Enacted GAA (2020–2026)
-                    </span>
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className="inline-block font-mono-data text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-[#2E8B57]/12 text-[#2E8B57]">
+                        Enacted GAA (2020–2026)
+                      </span>
+                      {matchedDpwh && (
+                        <span className="font-mono-data text-[11px] font-semibold px-2 py-0.5 rounded bg-[#1976A8]/10 text-[#1976A8]">
+                          Matched DPWH {matchedDpwh.id}
+                        </span>
+                      )}
+                    </div>
                     <h3 className="m-0 text-sm sm:text-base font-bold text-[#0f2342]">{g.name}</h3>
                     <p className="m-0 mt-0.5 text-xs text-slate-500">{g.department}</p>
                   </div>
-                  <div className="font-mono-data text-xs sm:text-sm font-bold text-[#26489A] tabular-nums shrink-0">
-                    {years}
+                  <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                    <div className="font-mono-data text-xs sm:text-sm font-bold text-[#26489A] tabular-nums">
+                      {years}
+                    </div>
+                    {dpwhUrl && isPdf && matchedDpwh ? (
+                      <a
+                        href={dpwhUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-lg border border-black/15 px-2.5 py-1 text-xs font-semibold text-[#26489A] no-underline"
+                      >
+                        <i className="bi bi-file-earmark-pdf" aria-hidden="true" />
+                        <span>DPWH PDF ({matchedDpwh.id})</span>
+                      </a>
+                    ) : (
+                      <a
+                        href={gaaApiUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-lg border border-black/10 px-2.5 py-1 text-xs font-medium text-slate-600 no-underline hover:text-[#26489A]"
+                        title="Direct BetterGov GAA API JSON record used to populate this entry"
+                      >
+                        <i className="bi bi-filetype-json" aria-hidden="true" />
+                        <span>GAA API Record</span>
+                      </a>
+                    )}
                   </div>
                 </article>
               );
@@ -341,9 +444,14 @@ export default function BarangayProjectTracker({
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 rounded-lg border border-black/15 px-2.5 py-1 text-xs font-semibold text-[#26489A] no-underline"
                     >
-                      <i className="bi bi-file-earmark-pdf" aria-hidden="true" />
+                      <i
+                        className={`bi ${(d.documentUrl || '').toLowerCase().endsWith('.pdf') ? 'bi-file-earmark-pdf' : 'bi-box-arrow-up-right'}`}
+                        aria-hidden="true"
+                      />
                       <span>
-                        {(d.documentUrl || '').endsWith('.pdf') ? 'PDF' : 'Source'}
+                        {(d.documentUrl || '').toLowerCase().endsWith('.pdf')
+                          ? 'PDF'
+                          : 'DPWH Record'}
                       </span>
                     </a>
                   )}
