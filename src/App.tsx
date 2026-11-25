@@ -1,11 +1,10 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import Layout from './components/layout/Layout';
-
-const BudgetPage = lazy(() => import('./pages/BudgetPage'));
+import BudgetPage from './pages/BudgetPage';
 
 function ScrollManager() {
   const { pathname, search, hash } = useLocation();
@@ -80,23 +79,15 @@ export default function App() {
         <LanguageProvider>
           <BrowserRouter>
             <ScrollManager />
-            <Suspense
-              fallback={
-                <div className="min-h-screen flex items-center justify-center text-sm text-slate-600">
-                  Loading BetterAlcala Budget...
-                </div>
-              }
-            >
-              <Routes>
-                <Route path="/" element={<BudgetPage />} />
-                <Route path="/budget" element={<Navigate to="/" replace />} />
-                <Route path="/tracker" element={<BudgetPage />} />
-                <Route path="/budgetdocs" element={<BudgetPage />} />
-                <Route path="/contracts" element={<BudgetPage />} />
-                <Route path="/transparency" element={<BudgetPage />} />
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            </Suspense>
+            <Routes>
+              <Route path="/" element={<BudgetPage />} />
+              <Route path="/budget" element={<Navigate to="/" replace />} />
+              <Route path="/tracker" element={<BudgetPage />} />
+              <Route path="/budgetdocs" element={<BudgetPage />} />
+              <Route path="/contracts" element={<BudgetPage />} />
+              <Route path="/transparency" element={<BudgetPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
           </BrowserRouter>
         </LanguageProvider>
       </AuthProvider>

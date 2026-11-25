@@ -1,9 +1,8 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import BarangayProjectTracker from '../components/BarangayProjectTracker';
-
-const RegionalBudgetSection = lazy(() => import('../components/RegionalBudgetSection'));
+import RegionalBudgetSection from '../components/RegionalBudgetSection';
 import { SourceCitationBox, VerificationBadge } from '../components/VerificationBadge';
 import { BARANGAYS_DATA } from '../data/municipalInfo';
 import { BUDGET_RECORDS, INFRASTRUCTURE_PROJECTS } from '../data/transparencyData';
@@ -1703,19 +1702,7 @@ export default function BudgetPage() {
         <BarangayProjectTracker dpwhProjects={infrastructureProjects} />
       )}
 
-      {activeTab === 'regional' && (
-        <Suspense
-          fallback={
-            <section className="section bg-alt">
-              <div className="container py-12 text-center text-sm text-slate-600">
-                Loading Project Transparency...
-              </div>
-            </section>
-          }
-        >
-          <RegionalBudgetSection />
-        </Suspense>
-      )}
+      {activeTab === 'regional' && <RegionalBudgetSection />}
     </Layout>
   );
 }

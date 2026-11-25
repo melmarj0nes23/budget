@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import TransparencySplashScreen from './TransparencySplashScreen';
 import {
   DatasetKey,
   fetchRegionalBudget,
@@ -456,10 +457,7 @@ export default function RegionalBudgetSection() {
 
           <div className="p-2.5 sm:p-8">
             {loading && (
-              <div className="py-12 text-center text-sm text-slate-600">
-                <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-[#26489A] border-t-transparent mb-2" />
-                <p className="m-0">Fetching live allocations from BetterGov Budget API...</p>
-              </div>
+              <TransparencySplashScreen message="Fetching live allocations from BetterGov Budget API..." />
             )}
 
             {!loading && error && (
