@@ -1606,6 +1606,18 @@ html:not(.high-contrast) .hotline-bar {
     1;
 }
 
+/* Tighten gap between hero woven strip and first content section across all budget tabs */
+.trans-hero-v2 {
+  padding-bottom: 36px;
+}
+
+.trans-hero-v2 + .section,
+.trans-hero-v2 + .sre-section-v2,
+.trans-hero-v2 + #barangay-tracker,
+.trans-hero-v2 + section {
+  padding-top: 24px !important;
+}
+
 html:not(.high-contrast) .hotline-item {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -2215,5 +2227,17 @@ html:not(.high-contrast) .footer-new {
       #1976a8 54px 72px
     )
     1;
+}
+
+/* Tighten gap between hero woven strip and first content section across all budget tabs */
+.trans-hero-v2 {
+  padding-bottom: 36px;
+}
+
+.trans-hero-v2 + .section,
+.trans-hero-v2 + .sre-section-v2,
+.trans-hero-v2 + #barangay-tracker,
+.trans-hero-v2 + section {
+  padding-top: 24px !important;
 }
 

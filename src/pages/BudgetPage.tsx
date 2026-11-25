@@ -209,11 +209,19 @@ export default function BudgetPage() {
     const { gaaYears, proposedYear, gaaProjects: gaa, hgab2027Projects: hgab } = nationalPayload;
     const sumKey = (rows: NationalBudgetRow[], key: keyof NationalBudgetRow) =>
       rows.reduce((total, row) => total + (Number(row[key]) || 0), 0);
-    const houseOnlyCount = hgab.filter((r) => r.statusLabel === 'House bill only').length;
-    const sameCount = hgab.filter((r) => r.statusLabel === 'Same amount in both').length;
-    const unconfirmedCount = hgab.filter(
+    const houseOnlyRows = hgab.filter((r) => r.statusLabel === 'House bill only');
+    const sameRows = hgab.filter((r) => r.statusLabel === 'Same amount in both');
+    const unconfirmedRows = hgab.filter(
       (r) => r.statusLabel && r.statusLabel !== 'House bill only' && r.statusLabel !== 'Same amount in both'
-    ).length;
+    );
+    const houseOnlyCount = houseOnlyRows.length;
+    const sameCount = sameRows.length;
+    const unconfirmedCount = unconfirmedRows.length;
+    const sumRowValue = (rows: NationalBudgetRow[]) =>
+      rows.reduce((total, r) => total + (Number(r.housePhp ?? r.nepPhp) || 0), 0);
+    const houseOnlyAmount = sumRowValue(houseOnlyRows);
+    const sameAmount = sumRowValue(sameRows);
+    const unconfirmedAmount = sumRowValue(unconfirmedRows);
     const gaaTotalsByYear = gaaYears.map((yr) => ({
       year: yr,
       amount: gaa.reduce((total, row) => total + getGaaRowYearAmount(row, yr), 0),
@@ -234,6 +242,9 @@ export default function BudgetPage() {
       houseOnlyCount,
       sameCount,
       unconfirmedCount,
+      houseOnlyAmount,
+      sameAmount,
+      unconfirmedAmount,
     };
   }, [nationalPayload]);
 
@@ -453,8 +464,7 @@ export default function BudgetPage() {
                 {t('budget-summary-title')}
               </h2>
               <p className="text-sm text-slate-600 m-0 mt-1">
-                FY {activeBudget.fiscalYear} fiscal snapshot, BLGF/COA execution, and direct access
-                to project trackers.
+                FY {activeBudget.fiscalYear} {t('budget-summary-desc')}
               </p>
             </div>
 
@@ -475,7 +485,7 @@ export default function BudgetPage() {
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    Municipal Budget {ascendingBudgets.length}-Year Growth
+                    {t('budget-card-growth-title')} ({ascendingBudgets.length}{t('budget-card-growth-suffix')})
                   </h3>
                   {(() => {
                     const first = ascendingBudgets[0];
@@ -492,7 +502,7 @@ export default function BudgetPage() {
                             {growthPct !== null ? `+${growthPct.toFixed(1)}%` : '—'}
                           </span>
                           <span className="text-xs font-semibold text-slate-500">
-                            approved municipal budget growth
+                            {t('budget-card-growth-sub')}
                           </span>
                         </div>
                         <div className="space-y-1.5 mb-2.5">
@@ -539,27 +549,27 @@ export default function BudgetPage() {
                           })}
                         </div>
                         <p className="text-[11px] text-slate-500 m-0">
-                          BLGF Actuals (2022–2025):{' '}
+                          {t('budget-blgf-actuals')}{' '}
                           {formatCompactPhp(
                             budgetRecords.reduce((s, b) => s + (b.actualReceipts ?? 0), 0)
                           )}{' '}
-                          receipts ·{' '}
+                          {t('budget-receipts')} ·{' '}
                           {formatCompactPhp(
                             budgetRecords.reduce((s, b) => s + (b.actualExpenditures ?? 0), 0)
                           )}{' '}
-                          spent (
+                          {t('budget-spent')} (
                           {formatCompactPhp(
                             budgetRecords.reduce((s, b) => s + (b.capitalOutlay ?? 0), 0)
                           )}{' '}
-                          Capital Outlay); +{formatCompactPhp(supplementalTotalAll)} supplemental;
-                          COA Qualified Opinion (₱0 disallowances).
+                          {t('budget-cap-outlay')}); +{formatCompactPhp(supplementalTotalAll)}{' '}
+                          {t('budget-supplemental')}; {t('budget-coa-note')}
                         </p>
                       </>
                     );
                   })()}
                 </div>
                 <span className="mt-4 text-xs font-bold text-[#26489A]">
-                  Explore Municipal Budget &amp; Docs →
+                  {t('budget-card-growth-cta')}
                 </span>
               </button>
 
@@ -578,7 +588,7 @@ export default function BudgetPage() {
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    FY {nationalSummary?.proposedYear ?? 2027} Proposed Budget Changes
+                    FY {nationalSummary?.proposedYear ?? 2027} {t('budget-card-diff-title')}
                   </h3>
                   {nationalSummary ? (
                     <>
@@ -588,13 +598,13 @@ export default function BudgetPage() {
                           {formatCompactPhp(Math.abs(nationalSummary.fyProposedDelta))}
                         </span>
                         <span className="text-xs font-semibold text-slate-500">
-                          net change across {nationalSummary.hgabCount} projects
+                          {t('budget-card-diff-sub')} {nationalSummary.hgabCount} {t('budget-card-diff-projects')}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-2 mb-2.5">
                         <div className="rounded-xl bg-slate-50 border border-black/5 px-3 py-2">
                           <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                            Proposed (NEP)
+                            {t('budget-card-nep')}
                           </span>
                           <span className="font-mono-data text-sm font-extrabold text-[#0f2342] tabular-nums">
                             {formatCompactPhp(nationalSummary.fyProposedNep)}
@@ -602,23 +612,73 @@ export default function BudgetPage() {
                         </div>
                         <div className="rounded-xl bg-[#26489A]/5 border border-[#26489A]/15 px-3 py-2">
                           <span className="block text-[10px] font-bold uppercase tracking-wider text-[#26489A]">
-                            House Bill (HGAB)
+                            {t('budget-card-hgab')}
                           </span>
                           <span className="font-mono-data text-sm font-extrabold text-[#26489A] tabular-nums">
                             {formatCompactPhp(nationalSummary.fyProposedHouse)}
                           </span>
                         </div>
                       </div>
+                      <div className="space-y-1.5 mb-3">
+                        {[
+                          {
+                            label: `${t('budget-card-inserted')} (${nationalSummary.houseOnlyCount})`,
+                            amount: nationalSummary.houseOnlyAmount,
+                            tone: 'bg-[#D1432A]',
+                          },
+                          {
+                            label: `${t('budget-card-matched')} (${nationalSummary.sameCount})`,
+                            amount: nationalSummary.sameAmount,
+                            tone: 'bg-[#2E8B57]',
+                          },
+                          ...(nationalSummary.unconfirmedCount > 0
+                            ? [
+                                {
+                                  label: `${t('budget-card-review')} (${nationalSummary.unconfirmedCount})`,
+                                  amount: nationalSummary.unconfirmedAmount,
+                                  tone: 'bg-amber-500',
+                                },
+                              ]
+                            : []),
+                        ].map((row) => {
+                          const peak = Math.max(
+                            nationalSummary.houseOnlyAmount,
+                            nationalSummary.sameAmount,
+                            nationalSummary.unconfirmedAmount,
+                            1
+                          );
+                          const widthPct = Math.max(8, Math.round((row.amount / peak) * 100));
+                          return (
+                            <div
+                              key={row.label}
+                              className="grid grid-cols-[120px_1fr_72px] items-center gap-2 text-[11px]"
+                            >
+                              <span className="font-semibold text-[#0f2342] truncate">
+                                {row.label}
+                              </span>
+                              <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                                <div
+                                  className={`h-full rounded-full ${row.tone}`}
+                                  style={{ width: `${widthPct}%` }}
+                                />
+                              </div>
+                              <span className="font-mono-data font-bold text-[#0f2342] text-right tabular-nums">
+                                {formatCompactPhp(row.amount)}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
                       <div className="flex flex-wrap justify-center gap-1.5 text-[11px]">
                         <span className="inline-flex items-center gap-1 rounded-full bg-[#D1432A]/10 text-[#D1432A] font-semibold px-2.5 py-0.5">
-                          Inserted: {nationalSummary.houseOnlyCount}
+                          {t('budget-card-inserted')}: {nationalSummary.houseOnlyCount}
                         </span>
                         <span className="inline-flex items-center gap-1 rounded-full bg-[#2E8B57]/10 text-[#2E8B57] font-semibold px-2.5 py-0.5">
-                          Matched: {nationalSummary.sameCount}
+                          {t('budget-card-matched')}: {nationalSummary.sameCount}
                         </span>
                         {nationalSummary.unconfirmedCount > 0 && (
                           <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 text-amber-900 font-semibold px-2.5 py-0.5">
-                            Needs Review: {nationalSummary.unconfirmedCount}
+                            {t('budget-card-review')}: {nationalSummary.unconfirmedCount}
                           </span>
                         )}
                       </div>
@@ -630,7 +690,7 @@ export default function BudgetPage() {
                   )}
                 </div>
                 <span className="mt-4 text-xs font-bold text-[#26489A]">
-                  Inspect FY 2027 Diff →
+                  {t('budget-card-diff-cta')}
                 </span>
               </button>
 
@@ -645,11 +705,11 @@ export default function BudgetPage() {
                       <i className="bi bi-compass-fill" aria-hidden="true" />
                     </span>
                     <span className="font-mono-data text-xs font-bold text-[#2E8B57] bg-[#2E8B57]/12 px-2.5 py-1 rounded-full">
-                      Live BetterGov API
+                      {t('budget-live-api')}
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    Project Transparency (GAA &amp; FY {nationalSummary?.proposedYear ?? 2027})
+                    {t('budget-card-gaa-title')} (GAA &amp; FY {nationalSummary?.proposedYear ?? 2027})
                   </h3>
                   {nationalSummary ? (
                     <>
@@ -707,8 +767,8 @@ export default function BudgetPage() {
                         })}
                       </div>
                       <p className="text-[11px] text-slate-500 m-0">
-                        Published GAA/NEP/HGAB allocations for Alcala ({nationalSummary.hgabCount} FY 2027
-                        projects), not actual spending.
+                        {t('budget-gaa-note-pre')}{nationalSummary.hgabCount} FY 2027{' '}
+                        {t('budget-gaa-note-post')}
                       </p>
                     </>
                   ) : (
@@ -724,7 +784,7 @@ export default function BudgetPage() {
                   )}
                 </div>
                 <span className="mt-4 text-xs font-bold text-[#2E8B57]">
-                  Open Project Transparency →
+                  {t('budget-card-gaa-cta')}
                 </span>
               </button>
 
@@ -741,7 +801,7 @@ export default function BudgetPage() {
                     aria-label="Filter barangay distribution by fiscal year"
                   >
                       {[
-                        { id: 'all', label: 'All' },
+                        { id: 'all', label: t('budget-card-brgy-all') },
                         ...(nationalPayload
                           ? [
                               ...nationalPayload.gaaYears.map((yr) => ({
@@ -779,7 +839,7 @@ export default function BudgetPage() {
                       ))}
                   </div>
                   <h3 className="text-base font-bold text-[#0f2342] mb-1">
-                    Barangay Budget Distribution
+                    {t('budget-card-brgy-title')}
                   </h3>
                   {barangayDistribution ? (
                     <>
@@ -788,7 +848,7 @@ export default function BudgetPage() {
                           {formatCompactPhp(barangayDistribution.grandTotal)}
                         </span>
                         <span className="text-xs font-semibold text-slate-500">
-                          across {barangayDistribution.fundedBarangayCount} of 21 barangays
+                          {t('budget-across')} {barangayDistribution.fundedBarangayCount} {t('budget-of-21-brgy')}
                           {distYear === 'all'
                             ? ` (${nationalPayload?.gaaYears[0] ?? 2020}–${nationalPayload?.proposedYear ?? 2027})`
                             : ` (FY ${distYear})`}
@@ -828,7 +888,7 @@ export default function BudgetPage() {
                               className="font-semibold text-slate-500 truncate"
                               title="Town-wide or multi-barangay projects without a single barangay label"
                             >
-                              Town-Wide / Other
+                              {t('budget-card-brgy-townwide')}
                             </span>
                             <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
                               <div
@@ -857,9 +917,9 @@ export default function BudgetPage() {
                       </div>
                       <p className="text-[11px] text-slate-500 m-0">
                         {barangayDistribution.ranked.length > 5
-                          ? `Top 5 of ${barangayDistribution.ranked.length} funded barangays shown. `
+                          ? `${t('budget-top5-pre')} ${barangayDistribution.ranked.length} ${t('budget-top5-post')} `
                           : ''}
-                        2027 reflects House Bill (HGAB) amounts.
+                        {t('budget-2027-hgab-note')}
                       </p>
                     </>
                   ) : (
@@ -873,7 +933,7 @@ export default function BudgetPage() {
                   onClick={() => setActiveTab('tracker')}
                   className="mt-4 text-left text-xs font-bold text-[#D1432A] hover:underline cursor-pointer w-fit"
                 >
-                  Explore All 21 Barangays →
+                  {t('budget-card-brgy-cta')}
                 </button>
               </div>
             </div>
@@ -883,7 +943,7 @@ export default function BudgetPage() {
               <div className="bg-white border border-black/10 rounded-2xl p-5 sm:p-6 shadow-xs">
                 <div className="flex items-center justify-between gap-2 mb-4">
                   <h3 className="text-base font-bold text-[#0f2342] m-0">
-                    FY {activeBudget.fiscalYear} Municipal Funding Mix
+                    FY {activeBudget.fiscalYear} {t('budget-mix-title')}
                   </h3>
                   <span className="font-mono-data text-xs font-semibold text-slate-500">
                     {activeBudget.spResolution}
@@ -922,7 +982,7 @@ export default function BudgetPage() {
                         <div className="rounded-xl bg-[#FAF7F2] p-3 border border-black/5">
                           <div className="flex items-center gap-1.5 font-semibold text-[#0f2342] mb-0.5">
                             <span className="h-2.5 w-2.5 rounded-full bg-[#26489A]" />
-                            National Tax Allotment ({ntaPct}%)
+                            {t('budget-nta-label')} ({ntaPct}%)
                           </div>
                           <div className="font-mono-data font-bold text-[#26489A] tabular-nums">
                             {formatPeso(ntaShareAmount)}
@@ -931,7 +991,7 @@ export default function BudgetPage() {
                         <div className="rounded-xl bg-[#FAF7F2] p-3 border border-black/5">
                           <div className="flex items-center gap-1.5 font-semibold text-[#0f2342] mb-0.5">
                             <span className="h-2.5 w-2.5 rounded-full bg-[#2E8B57]" />
-                            Local &amp; Other Sources ({localPct}%)
+                            {t('budget-local-label')} ({localPct}%)
                           </div>
                           <div className="font-mono-data font-bold text-[#2E8B57] tabular-nums">
                             {formatPeso(localAmt)}
@@ -944,7 +1004,7 @@ export default function BudgetPage() {
 
                 <div className="border-t border-black/5 pt-4 space-y-2.5">
                   <div className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                    Multi-Year Approved Appropriations
+                    {t('budget-multiyear-title')}
                   </div>
                   {ascendingBudgets.map((rec) => {
                     const pct = Math.round((rec.approvedBudget / maxAnnualBudget) * 100);
@@ -973,14 +1033,14 @@ export default function BudgetPage() {
               <div className="bg-white border border-black/10 rounded-2xl p-5 sm:p-6 shadow-xs">
                 <div className="flex items-center justify-between gap-2 mb-4">
                   <h3 className="text-base font-bold text-[#0f2342] m-0">
-                    Documented DPWH Contracts by Sector
+                    {t('budget-dpwh-sector-title')}
                   </h3>
                   <button
                     type="button"
                     onClick={() => setActiveTab('dpwh')}
                     className="text-xs font-bold text-[#D1432A] hover:underline bg-transparent border-0 p-0 cursor-pointer"
                   >
-                    View all {infrastructureProjects.length} →
+                    {t('budget-view-all')} {infrastructureProjects.length} →
                   </button>
                 </div>
 
@@ -1001,7 +1061,7 @@ export default function BudgetPage() {
                               <span className="text-slate-500 font-normal">({cat.count})</span>
                             </span>
                             <span className="font-mono-data font-bold text-[#0f2342] tabular-nums">
-                              {cat.total > 0 ? formatPeso(cat.total) : 'Pending / N/A'}
+                              {cat.total > 0 ? formatPeso(cat.total) : t('budget-pending-na')}
                             </span>
                           </div>
                           <div className="h-2 w-full rounded-full bg-slate-100 overflow-hidden">
@@ -1018,13 +1078,13 @@ export default function BudgetPage() {
                 {gaaReconciliation.gaa2226Total > 0 && (
                   <div className="mt-4 pt-3 border-t border-black/5 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-600">
                     <span>
-                      <strong>FY 2022–2026 GAA ({gaaReconciliation.gaa2226Count} lines):</strong>{' '}
+                      <strong>FY 2022–2026 GAA ({gaaReconciliation.gaa2226Count} {t('budget-lines')}):</strong>{' '}
                       <span className="font-mono-data font-bold text-[#0f2342]">
                         {formatCompactPhp(gaaReconciliation.gaa2226Total)}
                       </span>
                       {' · '}
                       <span className="text-amber-800 font-semibold">
-                        {formatCompactPhp(gaaReconciliation.unmatchedGaaSum)} awaiting contract match
+                        {formatCompactPhp(gaaReconciliation.unmatchedGaaSum)} {t('budget-awaiting-match')}
                       </span>
                     </span>
                     <span className="font-mono-data text-slate-500">
@@ -1034,7 +1094,7 @@ export default function BudgetPage() {
                         ).length
                       }
                       /{infrastructureProjects.length} PDFs · {gaaReconciliation.partialCount}{' '}
-                      partial · {gaaReconciliation.discrepancyCount} discrepancy
+                      {t('budget-partial')} · {gaaReconciliation.discrepancyCount} {t('budget-discrepancy')}
                     </span>
                   </div>
                 )}
