@@ -1,0 +1,373 @@
+/* BETTERGOV.PH Editorial Overrides for Legacy Inner Pages */
+:root {
+  --ink: #0c1b33;
+  --muted: #2b3a55;
+  --muted-light: #252629;
+  --paper: #ffffff;
+  --wash: #f4f7fc;
+  --rule-paper: #dbe3ef;
+  --blue: #0b4fd9;
+  --blue-dark: #0a44bd;
+  --blue-deep: #08286e;
+  --blue-glow: #0b4fd9;
+  --blue-bright: #0066eb;
+  --sun: #0b4fd9;
+  --sun-light: #e8efff;
+
+  --display: 'Figtree', ui-sans-serif, sans-serif;
+  --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --color-primary: #0b4fd9;
+  --color-primary-dark: #08286e;
+  --color-secondary: #0a44bd;
+  --color-accent: #c8102e;
+  --color-accent-ink: #8c0a20;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f4f7fc;
+  --color-surface: #ffffff;
+  --color-border: #dbe3ef;
+  --color-text: #0c1b33;
+  --color-text-light: #2b3a55;
+  --font-display: 'Figtree', ui-sans-serif, sans-serif;
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  --border-radius: 0px;
+  --shadow-sm: none;
+  --shadow-md: none;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans-ed, 'Inter', sans-serif);
+    color: var(--color-ed-ink, #0c1b33);
+    background: var(--color-ed-paper, #ffffff);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif-ed, 'Figtree', sans-serif);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #0b4fd9;
+  outline-offset: 2px;
+}
+
+/* Container alignment with design.md */
+@media (min-width: 1024px) {
+  .container {
+    max-width: min(1504px, 94vw);
+  }
+}
+
+/* Inner Page Masthead (.page-header, .legal-hero, .leg-hero, .trans-hero-v2, .stats-hero) -> PageMasthead light variant */
+.page-header,
+.legal-hero,
+.leg-hero,
+.trans-hero-v2,
+.stats-hero {
+  background: #f4f7fc !important;
+  border-bottom: 1px solid #0c1b33 !important;
+  color: #0c1b33 !important;
+  padding: 4rem 0 !important;
+  text-align: left !important;
+}
+
+.page-header::before,
+.page-header::after,
+.page-header-content::before,
+.page-header-content::after,
+.legal-hero::before,
+.legal-hero::after,
+.leg-hero::before,
+.leg-hero::after,
+.trans-hero-v2::before,
+.trans-hero-v2::after,
+.stats-hero::before,
+.stats-hero::after {
+  display: none !important;
+  content: none !important;
+}
+
+.page-header-content,
+.legal-hero-content,
+.leg-hero-content,
+.trans-hero-content-v2,
+.stats-hero-content {
+  text-align: left !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  align-items: flex-start !important;
+}
+
+.page-header-badge,
+.legal-hero-badge,
+.leg-hero-badge,
+.trans-hero-badge-v2,
+.stats-hero-badge {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .page-header,
+  .legal-hero,
+  .leg-hero,
+  .trans-hero-v2,
+  .stats-hero {
+    padding: 1.75rem 0 !important;
+  }
+}
+
+.page-header h1,
+.legal-hero h1,
+.leg-hero h1,
+.trans-hero-v2 h1,
+.stats-hero h1 {
+  font-family: var(--font-serif-ed, 'Figtree', sans-serif) !important;
+  font-size: clamp(32px, 5vw, 56px) !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  color: #0c1b33 !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 767px) {
+  .page-header h1,
+  .legal-hero h1,
+  .leg-hero h1,
+  .trans-hero-v2 h1,
+  .stats-hero h1 {
+    font-size: 26px !important;
+  }
+}
+
+.page-header p,
+.page-header-desc,
+.legal-hero p,
+.leg-hero p,
+.trans-hero-v2 p,
+.stats-hero p {
+  font-family: var(--font-sans-ed, 'Inter', sans-serif) !important;
+  font-size: 1.125rem !important;
+  line-height: 1.625 !important;
+  color: #2b3a55 !important;
+  text-align: left !important;
+  max-width: 42rem !important;
+  margin: 1rem 0 0 0 !important;
+}
+
+/* Strip legacy rounded-xl / rounded-2xl / shadows on inner page cards (keep Hero's curved buttons/cards) */
+main > :not(.ed-hero-keep-radius) .rounded-xl,
+main > :not(.ed-hero-keep-radius) .rounded-2xl,
+main > :not(.ed-hero-keep-radius) .rounded-lg,
+main > :not(.ed-hero-keep-radius) .rounded-md,
+.verify-tag,
+.trans-tab-v2,
+main button.rounded-full,
+main a.rounded-full,
+main span.rounded-full {
+  border-radius: 0 !important;
+}
+
+main .shadow-xs,
+main .shadow-sm,
+main .shadow-md,
+main .shadow-lg {
+  box-shadow: none !important;
+}
+
+/* Flatten legacy cream (#FAF7F2) and custom card surfaces to paper / paper-2 */
+main [class*="bg-[#FAF7F2]"],
+main [class*="bg-[#faf7f2]"] {
+  background-color: #f4f7fc !important;
+}
+
+.executive-card,
+.councilor-card,
+.leg-flow-card,
+.leg-category-card,
+.trans-stat-card-v2 {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid #dbe3ef !important;
+  background: #ffffff !important;
+}
+
+.executive-card-header {
+  background: #f4f7fc !important;
+  border-bottom: 1px solid #dbe3ef !important;
+}
+
+.leg-tab-btn {
+  border-radius: 0 !important;
+}
+
+.leg-tab-btn.active {
+  background: #0b4fd9 !important;
+  border-color: #0b4fd9 !important;
+  color: #ffffff !important;
+}
+
+/* Square-cornered editorial cards, buttons, inputs, tables */
+.stat-card,
+.process-card,
+.req-box,
+.source-citation-box,
+.civic-notice-banner,
+.filter-tab-btn,
+.mobile-filter-select,
+.service-card,
+.official-card,
+.councilor-card,
+.barangay-card,
+.home-contact-v2-card,
+.home-stat-card,
+.btn {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.stat-card,
+.process-card,
+.req-box,
+.service-card,
+.official-card,
+.councilor-card,
+.barangay-card,
+.home-contact-v2-card {
+  border: 1px solid #dbe3ef !important;
+  background: #ffffff !important;
+}
+
+.stat-card:hover,
+.service-card:hover,
+.official-card:hover,
+.councilor-card:hover,
+.barangay-card:hover,
+.home-contact-v2-card:hover {
+  border-color: #0c1b33 !important;
+}
+
+.btn-primary {
+  background: #0b4fd9 !important;
+  border: 1px solid #0b4fd9 !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background: #0a44bd !important;
+  border-color: #0a44bd !important;
+}
+
+.btn-outline,
+.btn-secondary {
+  background: transparent !important;
+  border: 1px solid #0b4fd9 !important;
+  color: #0b4fd9 !important;
+}
+
+.btn-outline:hover,
+.btn-secondary:hover {
+  background: #0b4fd9 !important;
+  color: #ffffff !important;
+}
+
+.civic-notice-banner {
+  border: 0 !important;
+  border-left: 4px solid #0b4fd9 !important;
+  background: #f4f7fc !important;
+  color: #2b3a55 !important;
+}
+
+.filter-tab-btn.active {
+  background: #0b4fd9 !important;
+  border-color: #0b4fd9 !important;
+  color: #ffffff !important;
+}
+
+.data-table thead th {
+  background: #f4f7fc !important;
+  border-top: 1px solid #0c1b33 !important;
+  border-bottom: 1px solid #0c1b33 !important;
+  font-family: var(--font-mono-ed, 'JetBrains Mono', monospace) !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  color: #2b3a55 !important;
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid #dbe3ef !important;
+}
+
+.data-table tbody tr:hover {
+  background: rgba(244, 247, 252, 0.6) !important;
+}
+
+/* Hero BigSearch wrapper for SearchAutocomplete */
+.ed-hero-search .search-form {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ed-hero-search .search-input-wrapper {
+  display: flex !important;
+  align-items: stretch !important;
+  background: #ffffff !important;
+  border: 1.5px solid #ffffff !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+.ed-hero-search .service-search-input {
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #0c1b33 !important;
+  font-family: var(--font-serif-ed, 'Figtree', sans-serif) !important;
+  font-size: 1.125rem !important;
+  padding: 0.875rem 1rem !important;
+  outline: none !important;
+  height: auto !important;
+}
+
+.ed-hero-search .service-search-input::placeholder {
+  color: #8a95aa !important;
+  font-style: italic !important;
+}
+
+.ed-hero-search .search-submit-btn {
+  position: static !important;
+  transform: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #08286e !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 1.5rem !important;
+  cursor: pointer !important;
+  font-size: 1rem !important;
+  width: auto !important;
+  height: auto !important;
+  flex-shrink: 0 !important;
+}
+
+.ed-hero-search .search-submit-btn:hover {
+  background: #000000 !important;
+}
+
+/* Remove yellow fellowship progress bar */
+.fs-progress {
+  display: none !important;
+}

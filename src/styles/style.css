@@ -162,9 +162,11 @@
   gap: var(--spacing-md);
 }
 
-.grid {
-  display: grid;
-  gap: var(--spacing-md);
+@layer components {
+  .grid {
+    display: grid;
+    gap: var(--spacing-md);
+  }
 }
 
 .grid-2 {

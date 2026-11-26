@@ -11,8 +11,13 @@ import './styles/statistics.css';
 import './styles/legal.css';
 import './index.css';
 import './styles/fellowship-theme.css';
+import './styles/bettergov-overrides.css';
 import App from './App.tsx';
 
-registerSW({ immediate: true });
+registerSW({
+  onNeedRefresh() {
+    // Avoid force-reloading the page during initial load; new SW activates on next visit.
+  },
+});
 
 createRoot(document.getElementById('root')!).render(<App />);

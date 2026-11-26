@@ -1,5 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { BARANGAYS_DATA } from '../data/municipalInfo';
+import Container from './v2/ui/Container';
+import Eyebrow from './v2/ui/Eyebrow';
+import Flag from './v2/ui/Flag';
+import SectionHeader from './v2/ui/SectionHeader';
+import { useLanguage } from '../contexts/LanguageContext';
 import { InfrastructureProject } from '../types/civic';
 
 interface GaaProject {
@@ -124,6 +129,7 @@ export default function BarangayProjectTracker({
 }: {
   dpwhProjects: InfrastructureProject[];
 }) {
+  const { t } = useLanguage();
   const [national, setNational] = useState<NationalBudgetPayload | null>(null);
   const [selectedBarangay, setSelectedBarangay] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -198,39 +204,33 @@ export default function BarangayProjectTracker({
   }, [national, dpwhProjects, selectedBarangay, searchQuery]);
 
   return (
-    <section id="barangay-tracker" className="section bg-alt">
-      <div className="container">
+    <section id="barangay-tracker" className="py-12 max-md:py-8 bg-white">
+      <Container>
         <div className="mb-6">
-          <span className="inline-flex items-center gap-1.5 font-mono-data text-xs font-bold uppercase tracking-wider text-[#26489A] bg-[#26489A]/10 border border-[#26489A]/25 px-3 py-1 rounded-full">
+          <Flag variant="navy" className="mb-3">
             <i className="bi bi-geo-alt-fill" aria-hidden="true" />
-            <span>Community-Wide Barangay Project Tracker</span>
-          </span>
-          <h2 className="mt-3 mb-1 text-2xl font-bold text-[#0f2342]">
-            Track Projects Across All 21 Alcala Barangays (2020–2027)
-          </h2>
-          <p className="text-sm text-slate-600 m-0">
-            Combined view of FY 2027 NEP/House Bill proposals, enacted FY 2020–2026 GAA records, and
-            DPWH district projects—filterable by any barangay for the entire Alcala community.
-          </p>
+            <span>{t('tracker-badge')}</span>
+          </Flag>
+          <SectionHeader label={t('tracker-title')} meta={t('tracker-desc')} className="mb-0" />
         </div>
 
         {/* Filter Controls */}
-        <div className="bg-white border border-black/10 rounded-2xl p-4 sm:p-5 mb-6 shadow-xs">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+        <div className="border border-ed-ink bg-ed-paper-2 p-5 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
             <div>
               <label
                 htmlFor="tracker-barangay-select"
-                className="block text-xs font-bold text-[#0f2342] mb-1.5"
+                className="block font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2 mb-1.5"
               >
-                Filter by Barangay
+                {t('tracker-filter-brgy')}
               </label>
               <select
                 id="tracker-barangay-select"
                 value={selectedBarangay}
                 onChange={(e) => setSelectedBarangay(e.target.value)}
-                className="w-full rounded-xl border border-black/15 bg-[#FAF7F2] px-3.5 py-2 text-sm font-semibold text-[#0f2342] focus:border-[#26489A] focus:outline-none"
+                className="w-full border border-ed-ink bg-white px-3.5 py-2 text-sm font-medium text-ed-ink focus:border-ed-navy focus:outline-none"
               >
-                <option value="all">All 21 Barangays in Alcala</option>
+                <option value="all">{t('tracker-all-brgy')}</option>
                 {barangayCounts.map((b) => (
                   <option key={b.psgcCode} value={b.name}>
                     Brgy. {b.name} ({b.total} {b.total === 1 ? 'record' : 'records'})
@@ -242,44 +242,38 @@ export default function BarangayProjectTracker({
             <div>
               <label
                 htmlFor="tracker-search-input"
-                className="block text-xs font-bold text-[#0f2342] mb-1.5"
+                className="block font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2 mb-1.5"
               >
-                Search Project Keyword
+                {t('tracker-search-label')}
               </label>
               <input
                 id="tracker-search-input"
                 type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="e.g., Flood, FMR, Multi-Purpose, Road..."
-                className="w-full rounded-xl border border-black/15 bg-white px-3.5 py-2 text-sm focus:border-[#26489A] focus:outline-none"
+                placeholder={t('tracker-search-placeholder')}
+                className="w-full border border-ed-ink bg-white px-3.5 py-2 text-sm text-ed-ink focus:border-ed-navy focus:outline-none"
               />
             </div>
           </div>
 
           {/* Summary KPIs for active selection */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-black/5">
-            <div className="rounded-xl bg-[#FAF7F2] p-3.5">
-              <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                Matching Records
-              </div>
-              <div className="text-xl font-extrabold text-[#26489A] tabular-nums mt-0.5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 border border-ed-rule divide-y sm:divide-y-0 sm:divide-x divide-ed-rule bg-white">
+            <div className="p-4">
+              <Eyebrow tone="navy">{t('tracker-kpi-records')}</Eyebrow>
+              <div className="font-serif-ed text-2xl font-bold text-ed-navy tabular-nums mt-1">
                 {filteredData.totalRecords}
               </div>
             </div>
-            <div className="rounded-xl bg-[#FAF7F2] p-3.5">
-              <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                Enacted GAA (2020–2026)
-              </div>
-              <div className="text-xl font-extrabold text-[#2E8B57] tabular-nums mt-0.5">
+            <div className="p-4">
+              <Eyebrow>{t('tracker-kpi-gaa')}</Eyebrow>
+              <div className="font-serif-ed text-2xl font-bold text-ed-ink tabular-nums mt-1">
                 {formatPhp(filteredData.gaaTotal)}
               </div>
             </div>
-            <div className="rounded-xl bg-[#FAF7F2] p-3.5">
-              <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                FY 2027 House Bill / NEP
-              </div>
-              <div className="text-xl font-extrabold text-[#D1432A] tabular-nums mt-0.5">
+            <div className="p-4">
+              <Eyebrow tone="red">{t('tracker-kpi-hgab')}</Eyebrow>
+              <div className="font-serif-ed text-2xl font-bold text-ed-red tabular-nums mt-1">
                 {formatPhp(filteredData.hgabTotal)}
               </div>
             </div>
@@ -288,40 +282,40 @@ export default function BarangayProjectTracker({
 
         {/* Combined Project List */}
         {filteredData.totalRecords === 0 ? (
-          <div className="bg-white border border-black/10 rounded-2xl p-8 text-center text-sm text-slate-600">
-            No project records matched your current filter. Try selecting{' '}
+          <div className="border border-ed-rule bg-white p-8 text-center text-sm text-ed-ink-2">
+            {t('tracker-empty')}{' '}
             <button
               type="button"
               onClick={() => {
                 setSelectedBarangay('all');
                 setSearchQuery('');
               }}
-              className="font-semibold text-[#26489A] bg-transparent border-0 p-0 cursor-pointer underline"
+              className="font-medium text-ed-navy bg-transparent border-0 p-0 cursor-pointer underline"
             >
-              All 21 Barangays
+              {t('tracker-empty-btn')}
             </button>
             .
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="border border-ed-ink divide-y divide-ed-rule bg-white">
             {filteredData.hgab.map((p) => (
               <article
                 key={`hgab-${p.id}`}
-                className="bg-white border border-black/10 rounded-xl p-4 sm:p-5 shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-3"
+                className="p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-3 hover:bg-ed-paper-2/60 transition-colors"
               >
                 <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="font-mono-data text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-[#D1432A]/10 text-[#D1432A]">
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <Flag variant="red">
                       FY 2027 {p.dataset === 'fmr' ? 'FMR' : 'DPWH'}
-                    </span>
-                    <span className="font-mono-data text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
-                      {p.statusLabel}
-                    </span>
+                    </Flag>
+                    <Flag variant="outline">{p.statusLabel}</Flag>
                   </div>
-                  <h3 className="m-0 text-sm sm:text-base font-bold text-[#0f2342]">{p.title}</h3>
+                  <h3 className="m-0 font-serif-ed text-base font-semibold text-ed-ink leading-snug">
+                    {p.title}
+                  </h3>
                 </div>
                 <div className="flex flex-wrap items-center gap-3 shrink-0">
-                  <span className="text-sm sm:text-base font-extrabold text-[#2E8B57] tabular-nums">
+                  <span className="font-mono-ed text-sm sm:text-base font-semibold text-ed-ink tabular-nums">
                     {formatPhp(p.housePhp ?? p.nepPhp)}
                   </span>
                   {p.housePdfUrl && (
@@ -329,7 +323,7 @@ export default function BarangayProjectTracker({
                       href={p.housePdfUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 rounded-lg border border-black/15 px-2.5 py-1 text-xs font-semibold text-[#26489A] no-underline"
+                      className="inline-flex items-center gap-1 border border-ed-ink px-2.5 py-1 font-mono-ed text-[11px] font-medium uppercase tracking-[0.08em] text-ed-navy hover:bg-ed-paper-2 no-underline"
                     >
                       <i className="bi bi-file-earmark-pdf" aria-hidden="true" />
                       <span>PDF</span>
@@ -364,24 +358,24 @@ export default function BarangayProjectTracker({
               return (
                 <article
                   key={`gaa-${g.famKey}`}
-                  className="bg-white border border-black/10 rounded-xl p-4 sm:p-5 shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-3"
+                  className="p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-3 hover:bg-ed-paper-2/60 transition-colors"
                 >
                   <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <span className="inline-block font-mono-data text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-[#2E8B57]/12 text-[#2E8B57]">
-                        Enacted GAA (2020–2026)
-                      </span>
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      <Flag variant="navy">{t('tracker-gaa-badge')}</Flag>
                       {matchedDpwh && (
-                        <span className="font-mono-data text-[11px] font-semibold px-2 py-0.5 rounded bg-[#1976A8]/10 text-[#1976A8]">
-                          Matched DPWH {matchedDpwh.id}
-                        </span>
+                        <Flag variant="outline">
+                          {t('tracker-matched-dpwh')} {matchedDpwh.id}
+                        </Flag>
                       )}
                     </div>
-                    <h3 className="m-0 text-sm sm:text-base font-bold text-[#0f2342]">{g.name}</h3>
-                    <p className="m-0 mt-0.5 text-xs text-slate-500">{g.department}</p>
+                    <h3 className="m-0 font-serif-ed text-base font-semibold text-ed-ink leading-snug">
+                      {g.name}
+                    </h3>
+                    <p className="m-0 mt-1 text-xs text-ed-ink-3">{g.department}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-                    <div className="font-mono-data text-xs sm:text-sm font-bold text-[#26489A] tabular-nums">
+                    <div className="font-mono-ed text-xs sm:text-sm font-semibold text-ed-navy tabular-nums">
                       {years}
                     </div>
                     {dpwhUrl && isPdf && matchedDpwh ? (
@@ -389,7 +383,7 @@ export default function BarangayProjectTracker({
                         href={dpwhUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-lg border border-black/15 px-2.5 py-1 text-xs font-semibold text-[#26489A] no-underline"
+                        className="inline-flex items-center gap-1 border border-ed-ink px-2.5 py-1 font-mono-ed text-[11px] font-medium uppercase tracking-[0.08em] text-ed-navy hover:bg-ed-paper-2 no-underline"
                       >
                         <i className="bi bi-file-earmark-pdf" aria-hidden="true" />
                         <span>DPWH PDF ({matchedDpwh.id})</span>
@@ -399,7 +393,7 @@ export default function BarangayProjectTracker({
                         href={gaaApiUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-lg border border-black/10 px-2.5 py-1 text-xs font-medium text-slate-600 no-underline hover:text-[#26489A]"
+                        className="inline-flex items-center gap-1 border border-ed-rule-strong px-2.5 py-1 font-mono-ed text-[11px] text-ed-ink-2 no-underline hover:border-ed-ink hover:text-ed-navy"
                         title="Direct BetterGov GAA API JSON record used to populate this entry"
                       >
                         <i className="bi bi-filetype-json" aria-hidden="true" />
@@ -414,27 +408,37 @@ export default function BarangayProjectTracker({
             {filteredData.dpwh.map((d) => (
               <article
                 key={`dpwh-${d.id}`}
-                className="bg-white border border-black/10 rounded-xl p-4 sm:p-5 shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-3"
+                className="p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-3 hover:bg-ed-paper-2/60 transition-colors"
               >
                 <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="font-mono-data text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-[#1976A8]/12 text-[#1976A8]">
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <Flag variant="outline">
                       DPWH {d.id} · {d.category}
-                    </span>
-                    <span className="text-xs text-slate-500">{d.barangay}</span>
+                    </Flag>
+                    <span className="font-mono-ed text-[11px] text-ed-ink-3">{d.barangay}</span>
                     {d.evidenceStatus && (
-                      <span className="font-mono-data text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#26489A] border border-blue-200">
+                      <Flag
+                        variant={
+                          d.evidenceStatus === 'Documentary discrepancy'
+                            ? 'red'
+                            : d.evidenceStatus === 'Corroborated implementation'
+                              ? 'navy'
+                              : 'outline'
+                        }
+                      >
                         {d.evidenceStatus}
-                      </span>
+                      </Flag>
                     )}
                   </div>
-                  <h3 className="m-0 text-sm sm:text-base font-bold text-[#0f2342]">{d.name}</h3>
-                  <p className="m-0 mt-0.5 text-xs text-slate-500">
+                  <h3 className="m-0 font-serif-ed text-base font-semibold text-ed-ink leading-snug">
+                    {d.name}
+                  </h3>
+                  <p className="m-0 mt-1 text-xs text-ed-ink-3">
                     {d.contractor} · {d.statusLabel}
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-3 shrink-0">
-                  <span className="font-mono-data text-xs font-semibold text-slate-600">
+                  <span className="font-mono-ed text-xs font-medium text-ed-ink-2">
                     {d.projectDate}
                   </span>
                   {(d.documentUrl || d.citation.sourceUrl) && (
@@ -442,7 +446,7 @@ export default function BarangayProjectTracker({
                       href={d.documentUrl || d.citation.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 rounded-lg border border-black/15 px-2.5 py-1 text-xs font-semibold text-[#26489A] no-underline"
+                      className="inline-flex items-center gap-1 border border-ed-ink px-2.5 py-1 font-mono-ed text-[11px] font-medium uppercase tracking-[0.08em] text-ed-navy hover:bg-ed-paper-2 no-underline"
                     >
                       <i
                         className={`bi ${(d.documentUrl || '').toLowerCase().endsWith('.pdf') ? 'bi-file-earmark-pdf' : 'bi-box-arrow-up-right'}`}
@@ -460,7 +464,7 @@ export default function BarangayProjectTracker({
             ))}
           </div>
         )}
-      </div>
+      </Container>
     </section>
   );
 }

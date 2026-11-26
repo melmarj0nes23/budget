@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import TransparencySplashScreen from './TransparencySplashScreen';
+import Container from './v2/ui/Container';
+import Eyebrow from './v2/ui/Eyebrow';
+import Flag from './v2/ui/Flag';
 import { useLanguage } from '../contexts/LanguageContext';
 import {
   DatasetKey,
@@ -73,28 +76,28 @@ const CHANGE_META: Record<
 > = {
   inserted: {
     label: 'Inserted',
-    badgeClass: 'bg-[#D1432A]/12 text-[#D1432A] border-[#D1432A]/25',
-    textClass: 'text-[#D1432A]',
+    badgeClass: 'bg-ed-red/10 text-ed-red border-ed-red/30',
+    textClass: 'text-ed-red',
   },
   removed: {
     label: 'Removed',
-    badgeClass: 'bg-amber-100 text-amber-900 border-amber-300/60',
-    textClass: 'text-amber-800',
+    badgeClass: 'bg-ed-paper-2 text-ed-ink-2 border-ed-rule-strong',
+    textClass: 'text-ed-ink-2',
   },
   increased: {
     label: 'Increased',
-    badgeClass: 'bg-[#2E8B57]/12 text-[#2E8B57] border-[#2E8B57]/25',
-    textClass: 'text-[#2E8B57]',
+    badgeClass: 'bg-ed-navy/10 text-ed-navy border-ed-navy/30',
+    textClass: 'text-ed-navy',
   },
   reduced: {
     label: 'Reduced',
-    badgeClass: 'bg-orange-100 text-orange-900 border-orange-300/60',
-    textClass: 'text-orange-800',
+    badgeClass: 'bg-ed-red/5 text-ed-red border-ed-red/25',
+    textClass: 'text-ed-red',
   },
   unchanged: {
     label: 'Unchanged',
-    badgeClass: 'bg-slate-100 text-slate-600 border-slate-200',
-    textClass: 'text-slate-500',
+    badgeClass: 'bg-ed-paper-2 text-ed-ink-3 border-ed-rule',
+    textClass: 'text-ed-ink-3',
   },
 };
 
@@ -382,28 +385,29 @@ export default function RegionalBudgetSection() {
   };
 
   return (
-    <section id="regional-budget" className="section bg-alt">
-      <div className="container !px-1.5 sm:!px-4">
-        <div className="rounded-xl sm:rounded-2xl overflow-clip border border-black/10 bg-white shadow-xs">
-          {/* BetterAlcala Soft-Sage Editorial Header */}
-          <div className="bg-[#EAF2EE] border-b border-black/10 p-4 sm:p-8">
+    <section id="regional-budget" className="py-12 max-md:py-8 bg-white">
+      <Container>
+        <div className="border border-ed-ink bg-white">
+          {/* Broadsheet Editorial Header */}
+          <div className="bg-ed-paper-2 border-b border-ed-ink p-5 sm:p-7">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-5">
               <div>
-                <h2 className="m-0 text-2xl sm:text-3xl font-bold text-[#0f2342] font-serif">
+                <Eyebrow tone="navy">BetterGov Budget API Explorer</Eyebrow>
+                <h2 className="m-0 mt-1.5 font-serif-ed text-2xl sm:text-3xl font-bold text-ed-ink tracking-[-0.02em]">
                   {data ? data.scopeLabel : t('budget-regional-title')}
                 </h2>
-                <p className="m-0 mt-1.5 text-sm text-slate-600 max-w-2xl">
+                <p className="m-0 mt-1.5 text-sm text-ed-ink-2 max-w-2xl">
                   {t('budget-regional-desc')}
                 </p>
               </div>
 
               {/* Scope Selector: Fiscal Year + Province + City/Municipality */}
-              <div className="flex flex-col gap-2.5 shrink-0">
+              <div className="flex flex-col gap-2 shrink-0">
                 <select
                   aria-label="Filter by Fiscal Year"
                   value={fiscalYear}
                   onChange={(e) => setFiscalYear(e.target.value)}
-                  className="w-full rounded-lg border border-black/15 bg-white px-3 py-2 text-xs sm:text-sm font-semibold text-[#0f2342] focus:border-[#26489A] focus:outline-none"
+                  className="w-full border border-ed-ink bg-white px-3 py-2 font-mono-ed text-xs font-medium text-ed-ink focus:border-ed-navy focus:outline-none"
                 >
                   <option value="2027">FY 2027 (NEP vs. House)</option>
                   {['2026', '2025', '2024', '2023', '2022', '2021', '2020'].map((yr) => (
@@ -421,7 +425,7 @@ export default function RegionalBudgetSection() {
                       setSelectedProvinceCode(e.target.value);
                       setSelectedMuniPsgc('all');
                     }}
-                    className="rounded-lg border border-black/15 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-[#0f2342] focus:border-[#26489A] focus:outline-none min-w-[200px]"
+                    className="border border-ed-ink bg-white px-3 py-2 text-xs sm:text-sm font-medium text-ed-ink focus:border-ed-navy focus:outline-none min-w-[200px]"
                   >
                     <option value="all">{t('budget-all-ph')}</option>
                     {PSGC_PROVINCES.map((p) => (
@@ -438,7 +442,7 @@ export default function RegionalBudgetSection() {
                     value={selectedMuniPsgc}
                     disabled={selectedProvinceCode === 'all'}
                     onChange={(e) => setSelectedMuniPsgc(e.target.value)}
-                    className="rounded-lg border border-black/15 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-[#0f2342] focus:border-[#26489A] focus:outline-none min-w-[210px] disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="border border-ed-ink bg-white px-3 py-2 text-xs sm:text-sm font-medium text-ed-ink focus:border-ed-navy focus:outline-none min-w-[210px] disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <option value="all">
                       {selectedProvinceCode === 'all'
@@ -456,164 +460,138 @@ export default function RegionalBudgetSection() {
             </div>
           </div>
 
-          <div className="p-2.5 sm:p-8">
-            {loading && (
-              <TransparencySplashScreen />
-            )}
+          <div className="p-4 sm:p-7">
+            {loading && <TransparencySplashScreen />}
 
             {!loading && error && (
-              <div className="rounded-xl border border-[#D1432A]/30 bg-red-50 p-4 text-sm text-[#D1432A]">
+              <div className="border-l-2 border-ed-red bg-ed-paper-2 p-4 text-sm text-ed-red">
                 <strong>Unable to load regional budget data:</strong> {error}
               </div>
             )}
 
             {!loading && !error && data && (
               <>
-                {/* KPI Cards (FY 2027 only) */}
+                {/* KPI Strip (FY 2027 only) */}
                 {subView === '2027' && (
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mb-6">
-                  <div className="rounded-xl bg-[#FAF7F2] border border-black/10 p-3 sm:p-4">
-                    <div className="font-mono-data text-[10px] sm:text-[11px] font-bold uppercase text-[#26489A]">
-                      FY 2027 NEP
+                  <div className="grid grid-cols-2 lg:grid-cols-4 border border-ed-ink divide-y lg:divide-y-0 lg:divide-x divide-ed-rule bg-white mb-6">
+                    <div className="p-4">
+                      <Eyebrow tone="navy">FY 2027 NEP</Eyebrow>
+                      <div className="font-serif-ed text-2xl sm:text-3xl font-bold text-ed-ink tabular-nums mt-1.5">
+                        {formatCompactPhp(kpis.nep)}
+                      </div>
+                      <div className="text-xs text-ed-ink-3 mt-0.5">Executive Proposal</div>
                     </div>
-                    <div className="text-2xl sm:text-4xl font-extrabold text-[#0f2342] font-mono-data tabular-nums mt-1">
-                      {formatCompactPhp(kpis.nep)}
-                    </div>
-                    <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                      Executive Proposal
-                    </div>
-                  </div>
 
-                  <div className="rounded-xl bg-[#FAF7F2] border border-black/10 p-3 sm:p-4">
-                    <div className="font-mono-data text-[10px] sm:text-[11px] font-bold uppercase text-[#2E8B57]">
-                      FY 2027 House Bill
+                    <div className="p-4">
+                      <Eyebrow tone="navy">FY 2027 House Bill</Eyebrow>
+                      <div className="font-serif-ed text-2xl sm:text-3xl font-bold text-ed-navy tabular-nums mt-1.5">
+                        {formatCompactPhp(kpis.house)}
+                      </div>
+                      <div className="text-xs text-ed-ink-3 mt-0.5">House Version</div>
                     </div>
-                    <div className="text-2xl sm:text-4xl font-extrabold text-[#2E8B57] font-mono-data tabular-nums mt-1">
-                      {formatCompactPhp(kpis.house)}
-                    </div>
-                    <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                      House Version
-                    </div>
-                  </div>
 
-                  <div className="rounded-xl bg-[#FAF7F2] border border-black/10 p-3 sm:p-4">
-                    <div className="font-mono-data text-[10px] sm:text-[11px] font-bold uppercase text-[#D1432A]">
-                      Net Delta (House − NEP)
+                    <div className="p-4">
+                      <Eyebrow tone="red">Net Delta (House − NEP)</Eyebrow>
+                      <div className="font-serif-ed text-2xl sm:text-3xl font-bold text-ed-red tabular-nums mt-1.5">
+                        {kpis.delta >= 0 ? '+' : '−'}
+                        {formatCompactPhp(Math.abs(kpis.delta))}
+                      </div>
+                      <div className="text-xs text-ed-ink-3 mt-0.5">Total Discrepancy</div>
                     </div>
-                    <div className="text-2xl sm:text-4xl font-extrabold text-[#D1432A] font-mono-data tabular-nums mt-1">
-                      {kpis.delta >= 0 ? '+' : '−'}
-                      {formatCompactPhp(Math.abs(kpis.delta))}
-                    </div>
-                    <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                      Total Discrepancy
-                    </div>
-                  </div>
 
-                  <div className="rounded-xl bg-[#FAF7F2] border border-black/10 p-3 sm:p-4">
-                    <div className="font-mono-data text-[10px] sm:text-[11px] font-bold uppercase text-[#1976A8]">
-                      Matched Lines
-                    </div>
-                    <div className="text-2xl sm:text-4xl font-extrabold text-[#1976A8] font-mono-data tabular-nums mt-1">
-                      {kpis.count.toLocaleString()}
-                    </div>
-                    <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                      GAA Programs
+                    <div className="p-4">
+                      <Eyebrow>Matched Lines</Eyebrow>
+                      <div className="font-serif-ed text-2xl sm:text-3xl font-bold text-ed-ink tabular-nums mt-1.5">
+                        {kpis.count.toLocaleString()}
+                      </div>
+                      <div className="text-xs text-ed-ink-3 mt-0.5">GAA Programs</div>
                     </div>
                   </div>
-                </div>
                 )}
 
-                {/* KPI Cards (FY 2020-2026 Enacted GAA) */}
+                {/* KPI Strip (FY 2020-2026 Enacted GAA) */}
                 {subView === 'gaa' && (
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mb-6">
-                  <div className="rounded-xl bg-[#FAF7F2] border border-black/10 p-3 sm:p-4">
-                    <div className="font-mono-data text-[10px] sm:text-[11px] font-bold uppercase text-[#26489A]">
-                      FY{gaaYear} Enacted Budget (GAA)
+                  <div className="grid grid-cols-2 lg:grid-cols-4 border border-ed-ink divide-y lg:divide-y-0 lg:divide-x divide-ed-rule bg-white mb-6">
+                    <div className="p-4">
+                      <Eyebrow tone="navy">FY{gaaYear} Enacted Budget (GAA)</Eyebrow>
+                      <div
+                        className="text-[11px] text-ed-ink-3 mt-0.5"
+                        title="Appropriation is the legal authority to spend enacted in the GAA; disbursement is actual cash released and spent."
+                      >
+                        Appropriation vs. Disbursement
+                      </div>
+                      <div className="font-serif-ed text-2xl sm:text-3xl font-bold text-ed-ink tabular-nums mt-1">
+                        {gaaKpis.total > 0 ? formatCompactPhp(gaaKpis.total) : '—'}
+                      </div>
+                      <div className="font-mono-ed text-[11px] text-ed-ink-3 tabular-nums mt-0.5 break-all">
+                        {formatPhp(gaaKpis.total)}
+                      </div>
                     </div>
-                    <div
-                      className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5 leading-snug"
-                      title="Appropriation is the legal authority to spend enacted in the GAA; disbursement is actual cash released and spent."
-                    >
-                      Appropriation vs. Disbursement
-                    </div>
-                    <div className="text-2xl sm:text-4xl font-extrabold text-[#0f2342] font-mono-data tabular-nums mt-1">
-                      {gaaKpis.total > 0 ? formatCompactPhp(gaaKpis.total) : '—'}
-                    </div>
-                    <div className="text-[11px] text-slate-500 font-mono-data tabular-nums mt-0.5 leading-snug break-all">
-                      {formatPhp(gaaKpis.total)}
-                    </div>
-                  </div>
 
-                  <div className="rounded-xl bg-[#FAF7F2] border border-black/10 p-3 sm:p-4">
-                    <div className="font-mono-data text-[10px] sm:text-[11px] font-bold uppercase text-[#2E8B57]">
-                      Year-over-Year Change
+                    <div className="p-4">
+                      <Eyebrow>Year-over-Year Change</Eyebrow>
+                      <div
+                        className={`font-serif-ed text-2xl sm:text-3xl font-bold tabular-nums mt-1.5 ${
+                          gaaKpis.yoyPct === null
+                            ? 'text-ed-ink-3'
+                            : gaaKpis.yoyPct >= 0
+                              ? 'text-ed-navy'
+                              : 'text-ed-red'
+                        }`}
+                      >
+                        {gaaKpis.yoyPct === null
+                          ? '—'
+                          : `${gaaKpis.yoyPct >= 0 ? '+' : '−'}${Math.abs(gaaKpis.yoyPct).toFixed(2)}%`}
+                      </div>
+                      <div className="text-xs text-ed-ink-3 mt-0.5">
+                        {gaaKpis.yoyDelta !== null
+                          ? `${formatSignedCompactPhp(gaaKpis.yoyDelta)} · vs FY${Number(gaaYear) - 1} GAA`
+                          : 'No prior GAA baseline'}
+                      </div>
                     </div>
-                    <div
-                      className={`text-2xl sm:text-4xl font-extrabold font-mono-data tabular-nums mt-1 ${
-                        gaaKpis.yoyPct === null
-                          ? 'text-slate-400'
-                          : gaaKpis.yoyPct >= 0
-                            ? 'text-[#2E8B57]'
-                            : 'text-[#D1432A]'
-                      }`}
-                    >
-                      {gaaKpis.yoyPct === null
-                        ? '—'
-                        : `${gaaKpis.yoyPct >= 0 ? '+' : '−'}${Math.abs(gaaKpis.yoyPct).toFixed(2)}%`}
-                    </div>
-                    <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                      {gaaKpis.yoyDelta !== null
-                        ? `${formatSignedCompactPhp(gaaKpis.yoyDelta)} · vs FY${Number(gaaYear) - 1} GAA`
-                        : 'No prior GAA baseline'}
-                    </div>
-                  </div>
 
-                  <div className="rounded-xl bg-[#FAF7F2] border border-black/10 p-3 sm:p-4">
-                    <div className="font-mono-data text-[10px] sm:text-[11px] font-bold uppercase text-[#1976A8]">
-                      Largest Line-Agency Dept.
+                    <div className="p-4">
+                      <Eyebrow>Largest Line-Agency Dept.</Eyebrow>
+                      <div className="font-serif-ed text-2xl sm:text-3xl font-bold text-ed-ink tabular-nums mt-1.5">
+                        {gaaKpis.largestLineDept
+                          ? formatCompactPhp(gaaKpis.largestLineDept.amount)
+                          : '—'}
+                      </div>
+                      <div className="text-xs text-ed-ink-3 mt-0.5">
+                        {gaaKpis.largestLineDept
+                          ? `${gaaKpis.largestLineDept.name} (${gaaKpis.largestLineDept.pct.toFixed(1)}%)`
+                          : 'No agency data for scope'}
+                      </div>
                     </div>
-                    <div className="text-2xl sm:text-4xl font-extrabold text-[#0f2342] font-mono-data tabular-nums mt-1">
-                      {gaaKpis.largestLineDept
-                        ? formatCompactPhp(gaaKpis.largestLineDept.amount)
-                        : '—'}
-                    </div>
-                    <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                      {gaaKpis.largestLineDept
-                        ? `${gaaKpis.largestLineDept.name} (${gaaKpis.largestLineDept.pct.toFixed(1)}%)`
-                        : 'No agency data for scope'}
-                    </div>
-                  </div>
 
-                  <div className="rounded-xl bg-[#FAF7F2] border border-black/10 p-3 sm:p-4">
-                    <div className="font-mono-data text-[10px] sm:text-[11px] font-bold uppercase text-[#0f2342]">
-                      Dataset Coverage
-                    </div>
-                    <div
-                      className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5 leading-snug"
-                      title="Automatic Appropriations are standing expenditures mandated by existing laws (e.g., debt interest, NTA/IRA) that do not require annual congressional action."
-                    >
-                      Automatic Appropriations
-                    </div>
-                    <div className="text-2xl sm:text-4xl font-extrabold text-[#1976A8] font-mono-data tabular-nums mt-1">
-                      {gaaKpis.lineItems.toLocaleString()}
-                    </div>
-                    <div className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                      Line items across {gaaKpis.deptCount} departments/funds · Top fund:{' '}
-                      {gaaKpis.topFundPct.toFixed(1)}%
+                    <div className="p-4">
+                      <Eyebrow>Dataset Coverage</Eyebrow>
+                      <div
+                        className="text-[11px] text-ed-ink-3 mt-0.5"
+                        title="Automatic Appropriations are standing expenditures mandated by existing laws (e.g., debt interest, NTA/IRA) that do not require annual congressional action."
+                      >
+                        Automatic Appropriations
+                      </div>
+                      <div className="font-serif-ed text-2xl sm:text-3xl font-bold text-ed-navy tabular-nums mt-1">
+                        {gaaKpis.lineItems.toLocaleString()}
+                      </div>
+                      <div className="text-xs text-ed-ink-3 mt-0.5">
+                        Line items across {gaaKpis.deptCount} departments/funds · Top fund:{' '}
+                        {gaaKpis.topFundPct.toFixed(1)}%
+                      </div>
                     </div>
                   </div>
-                </div>
                 )}
 
                 {/* Controls Row */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 mb-4">
                   <input
                     type="search"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Filter projects or offices..."
                     aria-label="Filter regional budget projects"
-                    className="w-full sm:flex-1 sm:max-w-md rounded-lg border border-black/15 bg-white px-3 py-1.5 text-xs sm:text-sm focus:border-[#26489A] focus:outline-none"
+                    className="w-full sm:flex-1 sm:max-w-md border border-ed-ink bg-white px-3.5 py-2 text-xs sm:text-sm text-ed-ink focus:border-ed-navy focus:outline-none"
                   />
 
                   <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto shrink-0">
@@ -622,7 +600,7 @@ export default function RegionalBudgetSection() {
                         aria-label="Filter by program"
                         value={datasetFilter}
                         onChange={(e) => setDatasetFilter(e.target.value as 'all' | DatasetKey)}
-                        className="flex-1 sm:flex-none rounded-lg border border-black/15 bg-white px-2.5 py-1.5 text-xs font-medium text-[#0f2342]"
+                        className="flex-1 sm:flex-none border border-ed-ink bg-white px-3 py-2 font-mono-ed text-xs font-medium text-ed-ink focus:border-ed-navy focus:outline-none"
                       >
                         <option value="all">All Programs</option>
                         <option value="dpwh">DPWH</option>
@@ -635,7 +613,7 @@ export default function RegionalBudgetSection() {
                     <button
                       type="button"
                       onClick={exportCsv}
-                      className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-[#0f2342]/20 bg-[#FAF7F2] hover:border-[#0f2342] px-3 py-1.5 text-xs font-semibold text-[#0f2342] cursor-pointer shrink-0"
+                      className="inline-flex items-center justify-center gap-1.5 border border-ed-ink bg-ed-paper-2 hover:bg-white px-3.5 py-2 font-mono-ed text-[11px] font-medium uppercase tracking-[0.08em] text-ed-ink cursor-pointer shrink-0"
                     >
                       <i className="bi bi-download" aria-hidden="true" />
                       <span>Export CSV</span>
@@ -644,14 +622,14 @@ export default function RegionalBudgetSection() {
                 </div>
 
                 {data.truncatedProjects && (
-                  <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-4">
+                  <p className="border-l-2 border-ed-navy bg-ed-paper-2 px-4 py-2.5 text-xs text-ed-ink-2 mb-4">
                     Showing the top 4,000 rows per dataset (exact nationwide totals are shown in the
                     summary cards above). Use the search box or select a province/municipality to
                     narrow results.
                   </p>
                 )}
 
-                {/* 2027 Projects: Change-Type Pills + Mobile Accordion + Desktop Table */}
+                {/* 2027 Projects: Change-Type Tabs + Mobile Accordion + Desktop Table */}
                 {subView === '2027' && (
                   <>
                     <div
@@ -662,10 +640,10 @@ export default function RegionalBudgetSection() {
                       <button
                         type="button"
                         onClick={() => setChangeFilter('all')}
-                        className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold whitespace-nowrap shrink-0 cursor-pointer border transition-colors ${
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 font-mono-ed text-[11px] uppercase tracking-[0.08em] whitespace-nowrap shrink-0 cursor-pointer border transition-colors ${
                           changeFilter === 'all'
-                            ? 'bg-[#0f2342] text-white border-[#0f2342]'
-                            : 'bg-[#FAF7F2] text-[#0f2342] border-black/10 hover:border-[#26489A]'
+                            ? 'bg-ed-navy text-white border-ed-navy'
+                            : 'bg-ed-paper-2 text-ed-ink border-ed-rule-strong hover:border-ed-ink'
                         }`}
                       >
                         <span>All ({data.projects.length})</span>
@@ -673,7 +651,6 @@ export default function RegionalBudgetSection() {
                       {(['inserted', 'removed', 'increased', 'reduced', 'unchanged'] as ChangeKind[]).map(
                         (kind) => {
                           const count = changeSummary.counts[kind];
-                          const total = changeSummary.totals[kind];
                           const meta = CHANGE_META[kind];
                           const active = changeFilter === kind;
                           return (
@@ -681,10 +658,10 @@ export default function RegionalBudgetSection() {
                               key={kind}
                               type="button"
                               onClick={() => setChangeFilter(active ? 'all' : kind)}
-                              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold whitespace-nowrap shrink-0 cursor-pointer border transition-colors ${
+                              className={`inline-flex items-center gap-1.5 px-3 py-1.5 font-mono-ed text-[11px] uppercase tracking-[0.08em] whitespace-nowrap shrink-0 cursor-pointer border transition-colors ${
                                 active
-                                  ? 'bg-[#0f2342] text-white border-[#0f2342]'
-                                  : 'bg-white text-[#0f2342] border-black/10 hover:border-[#26489A]'
+                                  ? 'bg-ed-navy text-white border-ed-navy'
+                                  : 'bg-white text-ed-ink border-ed-rule-strong hover:border-ed-ink'
                               }`}
                             >
                               <span>
@@ -696,9 +673,9 @@ export default function RegionalBudgetSection() {
                       )}
                     </div>
 
-                    <div className="rounded-xl border border-black/10 overflow-hidden">
+                    <div className="border border-ed-ink overflow-hidden">
                       {/* Mobile Accordion */}
-                      <div className="md:hidden divide-y divide-black/10">
+                      <div className="md:hidden divide-y divide-ed-rule">
                         {filteredProjects.slice(0, 100).map((p) => {
                           const rowKey = `${p.dataset}-${p.id}`;
                           const isOpen = expandedKey === rowKey;
@@ -710,100 +687,98 @@ export default function RegionalBudgetSection() {
                                 type="button"
                                 aria-expanded={isOpen}
                                 onClick={() => setExpandedKey(isOpen ? null : rowKey)}
-                                className="w-full text-left p-2.5 sm:p-3.5 flex items-start justify-between gap-2.5 cursor-pointer bg-transparent border-0"
+                                className="w-full text-left p-3.5 flex items-start justify-between gap-2.5 cursor-pointer bg-transparent border-0"
                               >
                                 <div className="min-w-0 flex-1">
-                                  <div className="flex flex-wrap items-center gap-1.5 mb-1">
-                                    <span className="font-mono-data text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-[#26489A]/10 text-[#26489A]">
-                                      {DATASET_LABELS[p.dataset]}
-                                    </span>
+                                  <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                                    <Flag variant="outline">{DATASET_LABELS[p.dataset]}</Flag>
                                     <span
-                                      className={`inline-block rounded-full border px-2 py-0.5 text-[10px] font-bold ${meta.badgeClass}`}
+                                      className={`inline-block border px-2 py-[2px] font-mono-ed text-[10px] uppercase tracking-[0.1em] ${meta.badgeClass}`}
                                     >
                                       {meta.label}
                                     </span>
                                   </div>
-                                  <div className="text-xs font-semibold text-[#0f2342] leading-snug">
+                                  <div className="text-xs font-medium text-ed-ink leading-snug">
                                     {p.title}
                                   </div>
                                 </div>
                                 <div className="shrink-0 text-right">
                                   <div
-                                    className={`font-mono-data text-xs font-bold tabular-nums ${
-                                      delta !== 0 ? meta.textClass : 'text-[#0f2342]'
+                                    className={`font-mono-ed text-xs font-semibold tabular-nums ${
+                                      delta !== 0 ? meta.textClass : 'text-ed-ink'
                                     }`}
                                   >
                                     {formatPhp(p.housePhp ?? p.nepPhp)}
                                   </div>
                                   {delta !== 0 && (
                                     <div
-                                      className={`font-mono-data text-[10px] font-bold tabular-nums ${meta.textClass}`}
+                                      className={`font-mono-ed text-[10px] font-semibold tabular-nums ${meta.textClass}`}
                                     >
                                       {formatSignedCompactPhp(delta)}
                                     </div>
                                   )}
                                   <i
-                                    className={`bi ${isOpen ? 'bi-chevron-up' : 'bi-chevron-down'} text-xs text-slate-400`}
+                                    className={`bi ${isOpen ? 'bi-chevron-up' : 'bi-chevron-down'} text-xs text-ed-ink-3`}
                                     aria-hidden="true"
                                   />
                                 </div>
                               </button>
 
                               {isOpen && (
-                                <div className="px-2.5 pb-3 pt-2 bg-[#FAF7F2] border-t border-black/5 text-xs space-y-2">
+                                <div className="px-3.5 pb-3.5 pt-2.5 bg-ed-paper-2 border-t border-ed-rule text-xs space-y-2">
                                   {p.program && (
                                     <div className="flex justify-between gap-2">
-                                      <span className="text-slate-500 shrink-0">Program</span>
-                                      <span className="font-medium text-[#0f2342] text-right">
+                                      <span className="text-ed-ink-3 shrink-0">Program</span>
+                                      <span className="font-medium text-ed-ink text-right">
                                         {p.program}
                                       </span>
                                     </div>
                                   )}
                                   {p.pap && (
                                     <div className="flex justify-between gap-2">
-                                      <span className="text-slate-500 shrink-0">PAP Code</span>
-                                      <span className="font-mono-data text-[#0f2342] text-right">
+                                      <span className="text-ed-ink-3 shrink-0">PAP Code</span>
+                                      <span className="font-mono-ed text-ed-ink text-right">
                                         {p.pap}
                                       </span>
                                     </div>
                                   )}
                                   {p.office && (
                                     <div className="flex justify-between gap-2">
-                                      <span className="text-slate-500 shrink-0">Office</span>
-                                      <span className="font-medium text-[#0f2342] text-right">
+                                      <span className="text-ed-ink-3 shrink-0">Office</span>
+                                      <span className="font-medium text-ed-ink text-right">
                                         {p.office}
                                       </span>
                                     </div>
                                   )}
                                   <div className="flex justify-between gap-2">
-                                    <span className="text-slate-500">FY 2027 NEP</span>
-                                    <span className="font-mono-data tabular-nums text-[#0f2342]">
+                                    <span className="text-ed-ink-3">FY 2027 NEP</span>
+                                    <span className="font-mono-ed tabular-nums text-ed-ink">
                                       {formatPhp(p.nepPhp)}
                                     </span>
                                   </div>
                                   <div className="flex justify-between gap-2">
-                                    <span className="text-slate-500">House Bill</span>
+                                    <span className="text-ed-ink-3">House Bill</span>
                                     <span
-                                      className={`font-mono-data tabular-nums font-bold ${
-                                        delta !== 0 ? meta.textClass : 'text-[#0f2342]'
+                                      className={`font-mono-ed tabular-nums font-semibold ${
+                                        delta !== 0 ? meta.textClass : 'text-ed-ink'
                                       }`}
                                     >
                                       {formatPhp(p.housePhp)}
                                     </span>
                                   </div>
-                                  <div className="flex justify-between gap-2 border-t border-black/5 pt-1.5">
-                                    <span className="text-slate-500 font-semibold">Net Change</span>
-                                    <span className={`font-mono-data tabular-nums font-bold ${meta.textClass}`}>
+                                  <div className="flex justify-between gap-2 border-t border-ed-rule pt-1.5">
+                                    <span className="text-ed-ink-2 font-medium">Net Change</span>
+                                    <span className={`font-mono-ed tabular-nums font-semibold ${meta.textClass}`}>
                                       {formatSignedPhp(delta)}
                                     </span>
                                   </div>
-                                  <div className="flex flex-wrap items-center gap-3 pt-1 font-semibold">
+                                  <div className="flex flex-wrap items-center gap-3 pt-1 font-mono-ed text-[11px] uppercase tracking-[0.08em]">
                                     {p.nepPdfUrl && (
                                       <a
                                         href={p.nepPdfUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-[#26489A] hover:underline"
+                                        className="text-ed-navy hover:underline"
                                       >
                                         NEP PDF{' '}
                                         <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
@@ -814,7 +789,7 @@ export default function RegionalBudgetSection() {
                                         href={p.housePdfUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-[#2E8B57] hover:underline"
+                                        className="text-ed-red hover:underline"
                                       >
                                         House PDF{' '}
                                         <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
@@ -829,7 +804,7 @@ export default function RegionalBudgetSection() {
                                         }
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-slate-700 hover:underline"
+                                        className="text-ed-ink-2 hover:underline"
                                       >
                                         Details{' '}
                                         <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
@@ -842,7 +817,7 @@ export default function RegionalBudgetSection() {
                           );
                         })}
                         {filteredProjects.length === 0 && (
-                          <div className="py-8 text-center text-xs text-slate-500">
+                          <div className="py-8 text-center text-xs text-ed-ink-3">
                             No FY 2027 projects match the current filter.
                           </div>
                         )}
@@ -852,80 +827,78 @@ export default function RegionalBudgetSection() {
                       <div className="hidden md:block overflow-x-auto">
                         <table className="w-full text-left border-collapse text-xs sm:text-sm">
                           <thead>
-                            <tr className="bg-[#FAF7F2] border-b border-black/10 text-[#0f2342]">
-                              <th className="py-3 px-3.5 font-bold">Program &amp; Project</th>
-                              <th className="py-3 px-3.5 font-bold whitespace-nowrap">Change</th>
-                              <th className="py-3 px-3.5 font-bold text-right whitespace-nowrap">
+                            <tr className="bg-ed-paper-2 border-b border-ed-ink font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-2">
+                              <th className="py-3 px-4 font-medium">Program &amp; Project</th>
+                              <th className="py-3 px-4 font-medium whitespace-nowrap">Change</th>
+                              <th className="py-3 px-4 font-medium text-right whitespace-nowrap">
                                 FY 2027 NEP
                               </th>
-                              <th className="py-3 px-3.5 font-bold text-right whitespace-nowrap">
+                              <th className="py-3 px-4 font-medium text-right whitespace-nowrap">
                                 House Bill
                               </th>
-                              <th className="py-3 px-3.5 font-bold text-right whitespace-nowrap">
+                              <th className="py-3 px-4 font-medium text-right whitespace-nowrap">
                                 Net Change
                               </th>
-                              <th className="py-3 px-3.5 font-bold whitespace-nowrap">Sources</th>
+                              <th className="py-3 px-4 font-medium whitespace-nowrap">Sources</th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-black/5">
+                          <tbody className="divide-y divide-ed-rule">
                             {filteredProjects.slice(0, 100).map((p) => {
                               const { kind, delta } = classifyChange(p);
                               const meta = CHANGE_META[kind];
                               return (
-                                <tr key={`${p.dataset}-${p.id}`} className="hover:bg-[#FAF7F2]/60">
-                                  <td className="py-3 px-3.5">
+                                <tr key={`${p.dataset}-${p.id}`} className="hover:bg-ed-paper-2/60">
+                                  <td className="py-3 px-4">
                                     <div className="flex flex-wrap items-center gap-1.5 mb-1">
-                                      <span className="font-mono-data text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-[#26489A]/10 text-[#26489A]">
-                                        {DATASET_LABELS[p.dataset]}
-                                      </span>
+                                      <Flag variant="outline">{DATASET_LABELS[p.dataset]}</Flag>
                                       {p.office && (
-                                        <span className="text-[11px] text-slate-500">{p.office}</span>
+                                        <span className="text-[11px] text-ed-ink-3">{p.office}</span>
                                       )}
                                       {p.pap && (
-                                        <span className="font-mono-data text-[10px] text-slate-400">
+                                        <span className="font-mono-ed text-[10px] text-ed-ink-3">
                                           PAP {p.pap}
                                         </span>
                                       )}
                                     </div>
-                                    <div className="font-medium text-[#0f2342] leading-snug">
+                                    <div className="font-medium text-ed-ink leading-snug">
                                       {p.title}
                                     </div>
                                     {p.program && (
-                                      <div className="text-[11px] text-slate-500 mt-0.5">
+                                      <div className="text-[11px] text-ed-ink-3 mt-0.5">
                                         {p.program}
                                       </div>
                                     )}
                                   </td>
-                                  <td className="py-3 px-3.5 whitespace-nowrap">
+                                  <td className="py-3 px-4 whitespace-nowrap">
                                     <span
-                                      className={`inline-block rounded-full border px-2.5 py-0.5 text-[11px] font-bold ${meta.badgeClass}`}
+                                      className={`inline-block border px-2 py-[3px] font-mono-ed text-[10px] uppercase tracking-[0.1em] ${meta.badgeClass}`}
                                     >
                                       {meta.label}
                                     </span>
                                   </td>
-                                  <td className="py-3 px-3.5 text-right font-mono-data tabular-nums whitespace-nowrap text-slate-700">
+                                  <td className="py-3 px-4 text-right font-mono-ed tabular-nums whitespace-nowrap text-ed-ink-2">
                                     {formatPhp(p.nepPhp)}
                                   </td>
                                   <td
-                                    className={`py-3 px-3.5 text-right font-mono-data tabular-nums font-bold whitespace-nowrap ${
-                                      delta !== 0 ? meta.textClass : 'text-[#0f2342]'
+                                    className={`py-3 px-4 text-right font-mono-ed tabular-nums font-semibold whitespace-nowrap ${
+                                      delta !== 0 ? meta.textClass : 'text-ed-ink'
                                     }`}
                                   >
                                     {formatPhp(p.housePhp)}
                                   </td>
                                   <td
-                                    className={`py-3 px-3.5 text-right font-mono-data tabular-nums font-bold whitespace-nowrap ${meta.textClass}`}
+                                    className={`py-3 px-4 text-right font-mono-ed tabular-nums font-semibold whitespace-nowrap ${meta.textClass}`}
                                   >
                                     {delta === 0 ? '—' : formatSignedPhp(delta)}
                                   </td>
-                                  <td className="py-3 px-3.5 whitespace-nowrap">
-                                    <div className="flex items-center gap-2 text-[11px] font-semibold">
+                                  <td className="py-3 px-4 whitespace-nowrap">
+                                    <div className="flex items-center gap-2 font-mono-ed text-[11px] uppercase tracking-[0.08em]">
                                       {p.nepPdfUrl && (
                                         <a
                                           href={p.nepPdfUrl}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="text-[#26489A] hover:underline"
+                                          className="text-ed-navy hover:underline"
                                         >
                                           NEP
                                         </a>
@@ -935,7 +908,7 @@ export default function RegionalBudgetSection() {
                                           href={p.housePdfUrl}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="text-[#2E8B57] hover:underline"
+                                          className="text-ed-red hover:underline"
                                         >
                                           House
                                         </a>
@@ -949,7 +922,7 @@ export default function RegionalBudgetSection() {
                                           }
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="text-slate-600 hover:underline"
+                                          className="text-ed-ink-2 hover:underline"
                                         >
                                           Details
                                         </a>
@@ -961,7 +934,7 @@ export default function RegionalBudgetSection() {
                             })}
                             {filteredProjects.length === 0 && (
                               <tr>
-                                <td colSpan={6} className="py-8 text-center text-slate-500">
+                                <td colSpan={6} className="py-8 text-center text-ed-ink-3">
                                   No FY 2027 projects match the current filter.
                                 </td>
                               </tr>
@@ -970,7 +943,7 @@ export default function RegionalBudgetSection() {
                         </table>
                       </div>
                       {filteredProjects.length > 100 && (
-                        <div className="bg-[#FAF7F2] px-4 py-2.5 text-xs text-slate-600 border-t border-black/10">
+                        <div className="bg-ed-paper-2 px-4 py-2.5 text-xs text-ed-ink-2 border-t border-ed-rule">
                           Showing top 100 of {filteredProjects.length} projects — filter by keyword or
                           export CSV to inspect all rows.
                         </div>
@@ -981,33 +954,33 @@ export default function RegionalBudgetSection() {
 
                 {/* GAA 2020-2026: Mobile Stacked Cards + Desktop Table */}
                 {subView === 'gaa' && (
-                  <div className="rounded-xl border border-black/10 overflow-hidden">
-                    <div className="bg-[#FAF7F2] px-4 py-2.5 border-b border-black/10 flex flex-wrap items-center justify-between gap-2 text-xs">
-                      <span className="font-semibold text-[#0f2342]">
+                  <div className="border border-ed-ink overflow-hidden">
+                    <div className="bg-ed-paper-2 px-4 py-2.5 border-b border-ed-ink flex flex-wrap items-center justify-between gap-2 text-xs">
+                      <span className="font-mono-ed uppercase tracking-[0.1em] text-ed-ink">
                         FY {gaaYear} Enacted GAA Programs ({filteredGaa.length})
                       </span>
-                      <span className="font-mono-data font-bold text-[#26489A] tabular-nums">
+                      <span className="font-mono-ed font-semibold text-ed-navy tabular-nums">
                         Total: {formatPhp(gaaYearTotal)}
                       </span>
                     </div>
 
                     {/* Mobile Stacked List */}
-                    <div className="md:hidden divide-y divide-black/10">
+                    <div className="md:hidden divide-y divide-ed-rule">
                       {filteredGaa.slice(0, 100).map((g) => (
-                        <div key={g.famKey} className="p-2.5 sm:p-3.5 bg-white">
-                          <div className="text-[11px] font-semibold text-[#2E8B57] mb-0.5">
+                        <div key={g.famKey} className="p-3.5 bg-white">
+                          <div className="font-mono-ed text-[10px] uppercase tracking-[0.1em] text-ed-navy mb-1">
                             {g.department}
                           </div>
-                          <div className="text-xs font-medium text-[#0f2342] leading-snug mb-1.5">
+                          <div className="text-xs font-medium text-ed-ink leading-snug mb-1.5">
                             {g.name}
                           </div>
-                          <div className="font-mono-data tabular-nums text-xs font-bold text-[#0f2342]">
+                          <div className="font-mono-ed tabular-nums text-xs font-semibold text-ed-ink">
                             {formatPhp(g.years[gaaYear])}
                           </div>
                         </div>
                       ))}
                       {filteredGaa.length === 0 && (
-                        <div className="py-8 text-center text-xs text-slate-500">
+                        <div className="py-8 text-center text-xs text-ed-ink-3">
                           No enacted GAA records found for FY {gaaYear} with the current filter.
                         </div>
                       )}
@@ -1016,49 +989,49 @@ export default function RegionalBudgetSection() {
                     {/* Desktop Table */}
                     <div className="hidden md:block overflow-x-auto">
                       <table className="w-full text-left border-collapse text-xs sm:text-sm">
-                      <thead>
-                        <tr className="bg-white border-b border-black/10 text-[#0f2342]">
-                          <th className="py-3 px-3.5 font-bold">Department &amp; Program</th>
-                          <th className="py-3 px-3.5 font-bold text-right whitespace-nowrap">
-                            FY {gaaYear} Amount
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-black/5">
-                        {filteredGaa.slice(0, 100).map((g) => (
-                          <tr key={g.famKey} className="hover:bg-[#FAF7F2]/60">
-                            <td className="py-3 px-3.5">
-                              <div className="text-[11px] font-semibold text-[#2E8B57] mb-0.5">
-                                {g.department}
-                              </div>
-                              <div className="font-medium text-[#0f2342] leading-snug">{g.name}</div>
-                            </td>
-                            <td className="py-3 px-3.5 text-right font-mono-data tabular-nums font-bold text-[#0f2342] whitespace-nowrap">
-                              {formatPhp(g.years[gaaYear])}
-                            </td>
+                        <thead>
+                          <tr className="bg-ed-paper-2 border-b border-ed-ink font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-2">
+                            <th className="py-3 px-4 font-medium">Department &amp; Program</th>
+                            <th className="py-3 px-4 font-medium text-right whitespace-nowrap">
+                              FY {gaaYear} Amount
+                            </th>
                           </tr>
-                        ))}
-                        {filteredGaa.length === 0 && (
-                          <tr>
-                            <td colSpan={2} className="py-8 text-center text-slate-500">
-                              No enacted GAA records found for FY {gaaYear} with the current filter.
-                            </td>
-                          </tr>
-                        )}
-                      </tbody>
+                        </thead>
+                        <tbody className="divide-y divide-ed-rule">
+                          {filteredGaa.slice(0, 100).map((g) => (
+                            <tr key={g.famKey} className="hover:bg-ed-paper-2/60">
+                              <td className="py-3 px-4">
+                                <div className="font-mono-ed text-[10px] uppercase tracking-[0.1em] text-ed-navy mb-0.5">
+                                  {g.department}
+                                </div>
+                                <div className="font-medium text-ed-ink leading-snug">{g.name}</div>
+                              </td>
+                              <td className="py-3 px-4 text-right font-mono-ed tabular-nums font-semibold text-ed-ink whitespace-nowrap">
+                                {formatPhp(g.years[gaaYear])}
+                              </td>
+                            </tr>
+                          ))}
+                          {filteredGaa.length === 0 && (
+                            <tr>
+                              <td colSpan={2} className="py-8 text-center text-ed-ink-3">
+                                No enacted GAA records found for FY {gaaYear} with the current filter.
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
                       </table>
                     </div>
                   </div>
                 )}
 
                 {/* Official API Notice */}
-                <div className="mt-5 rounded-xl bg-[#FAF7F2] border border-black/10 px-4 py-3 text-[11px] text-slate-600 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div className="mt-6 border border-ed-rule bg-ed-paper-2 px-4 py-3 text-xs text-ed-ink-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <span>{data.notice}</span>
                   <a
                     href="https://budget.bettergov.ph/docs"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-[#26489A] hover:underline whitespace-nowrap"
+                    className="font-mono-ed text-[11px] uppercase tracking-[0.08em] font-medium text-ed-navy hover:underline whitespace-nowrap"
                   >
                     BetterGov Budget API Docs{' '}
                     <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
@@ -1068,7 +1041,7 @@ export default function RegionalBudgetSection() {
             )}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

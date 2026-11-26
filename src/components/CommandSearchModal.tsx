@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SearchIcon } from 'lucide-react';
 import { BARANGAYS_DATA } from '../data/municipalInfo';
 import { BUDGET_RECORDS, INFRASTRUCTURE_PROJECTS } from '../data/transparencyData';
 
@@ -12,36 +13,31 @@ interface SearchEntry {
   keywords: string;
 }
 
-const QUICK_JUMPS: { label: string; category: string; route: string; icon: string }[] = [
+const QUICK_JUMPS: { label: string; category: string; route: string }[] = [
   {
     label: 'Overview Summary (FY 2026 Budget Snapshot)',
     category: 'Section',
     route: '/',
-    icon: 'bi-grid-1x2-fill',
   },
   {
     label: 'Barangay Project Tracker (21 Barangays)',
     category: 'Section',
     route: '/tracker',
-    icon: 'bi-geo-alt-fill',
   },
   {
-    label: 'Municipal Budget & Docs (FY 2022–2026)',
+    label: 'Municipal Budget & Docs (FY 2024–2026)',
     category: 'Section',
     route: '/budgetdocs',
-    icon: 'bi-graph-up-arrow',
   },
   {
-    label: `DPWH Contracts (${INFRASTRUCTURE_PROJECTS.length} Infrastructure Projects)`,
+    label: 'DPWH Contracts (12 Infrastructure Projects)',
     category: 'Section',
     route: '/contracts',
-    icon: 'bi-cone-striped',
   },
   {
     label: 'Project Transparency (GAA & FY 2027 NEP)',
     category: 'Section',
     route: '/transparency',
-    icon: 'bi-compass-fill',
   },
 ];
 
@@ -154,87 +150,86 @@ export default function CommandSearchModal({ open, onClose }: CommandSearchModal
 
   return (
     <div
-      className="fixed inset-0 z-[2000] flex items-start justify-center bg-[#081529]/60 backdrop-blur-xs pt-14 sm:pt-20 px-4"
+      className="fixed inset-0 z-[2000] flex items-start justify-center bg-black/50 pt-14 sm:pt-20 px-4"
       role="dialog"
       aria-modal="true"
       aria-label="Quick Budget Search"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl rounded-2xl bg-white shadow-2xl border border-black/10 overflow-hidden"
+        className="w-full max-w-2xl border border-ed-ink bg-white shadow-[0_12px_32px_rgba(8,40,110,0.14)]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-black/10">
-          <i className="bi bi-search text-lg text-[#26489A]" aria-hidden="true" />
+        <div className="flex items-center gap-3 border-b border-ed-rule px-4 py-3.5">
+          <SearchIcon size={16} className="shrink-0 text-ed-navy" aria-hidden />
           <input
             ref={inputRef}
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Search DPWH contracts, barangays, FY budgets, or sections..."
-            className="w-full bg-transparent text-sm sm:text-base text-[#0f2342] placeholder:text-slate-400 focus:outline-none"
+            placeholder="Try: flood control, Pindangan, FY 2026..."
+            className="w-full border-0 bg-transparent font-sans-ed text-sm sm:text-base text-ed-ink placeholder:italic placeholder:text-ed-ink-4 focus:outline-none"
             aria-label="Search BetterAlcala Budget"
           />
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-black/10 px-2 py-0.5 text-[11px] font-semibold text-slate-500 hover:bg-slate-100 cursor-pointer"
+            className="cursor-pointer border border-ed-rule-strong bg-ed-paper-2 px-2 py-0.5 font-mono-ed text-[11px] font-medium text-ed-ink-3 hover:border-ed-ink hover:text-ed-ink"
           >
             ESC
           </button>
         </div>
 
-        <div className="max-h-[60vh] overflow-y-auto p-2">
+        <div className="max-h-[60vh] overflow-y-auto divide-y divide-ed-rule">
           {!query.trim() ? (
             <div>
-              <p className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+              <div className="border-b border-ed-rule bg-ed-paper-2 px-4 py-2 font-mono-ed text-[10px] font-medium uppercase tracking-[0.14em] text-ed-ink-3">
                 Budget Sections
-              </p>
+              </div>
               {QUICK_JUMPS.map((item, idx) => (
                 <button
                   key={item.route}
                   type="button"
                   onClick={() => go(item.route)}
                   onMouseEnter={() => setActiveIndex(idx)}
-                  className={`w-full flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors cursor-pointer ${
-                    activeIndex === idx ? 'bg-[#26489A]/10 text-[#0f2342]' : 'text-slate-700 hover:bg-slate-50'
+                  className={`flex w-full cursor-pointer items-center justify-between gap-3 border-0 border-b border-ed-rule px-4 py-3 text-left text-sm transition-colors last:border-b-0 ${
+                    activeIndex === idx ? 'bg-ed-navy-tint text-ed-navy' : 'bg-white text-ed-ink hover:bg-ed-paper-2'
                   }`}
                 >
-                  <span className="flex items-center gap-2.5 min-w-0">
-                    <i className={`bi ${item.icon} text-[#26489A]`} aria-hidden="true" />
-                    <span className="font-medium truncate">{item.label}</span>
+                  <span className="font-serif-ed font-semibold truncate">{item.label}</span>
+                  <span className="font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3 shrink-0">
+                    {item.category}
                   </span>
-                  <span className="text-[11px] font-semibold text-slate-400 shrink-0">{item.category}</span>
                 </button>
               ))}
             </div>
           ) : results.length === 0 ? (
-            <div className="py-10 text-center text-sm text-slate-500">
+            <div className="py-10 text-center font-sans-ed text-sm text-ed-ink-3">
               No matching budget records or contracts for &ldquo;{query}&rdquo;.
             </div>
           ) : (
             <div>
-              <p className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+              <div className="border-b border-ed-rule bg-ed-paper-2 px-4 py-2 font-mono-ed text-[10px] font-medium uppercase tracking-[0.14em] text-ed-ink-3">
                 Results ({results.length})
-              </p>
+              </div>
               {results.map((item, idx) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => go(item.route)}
                   onMouseEnter={() => setActiveIndex(idx)}
-                  className={`w-full flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors cursor-pointer ${
-                    activeIndex === idx ? 'bg-[#26489A]/10 text-[#0f2342]' : 'text-slate-700 hover:bg-slate-50'
+                  className={`flex w-full cursor-pointer items-center justify-between gap-3 border-0 border-b border-ed-rule px-4 py-3 text-left text-sm transition-colors last:border-b-0 ${
+                    activeIndex === idx ? 'bg-ed-navy-tint text-ed-navy' : 'bg-white text-ed-ink hover:bg-ed-paper-2'
                   }`}
                 >
                   <span className="min-w-0">
-                    <span className="block font-semibold text-[#0f2342] truncate">{item.label}</span>
+                    <span className="block font-serif-ed font-semibold text-ed-ink truncate">{item.label}</span>
                     {item.sublabel && (
-                      <span className="block text-xs text-slate-500 truncate">{item.sublabel}</span>
+                      <span className="block font-sans-ed text-xs text-ed-ink-3 truncate">{item.sublabel}</span>
                     )}
                   </span>
-                  <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-[#26489A] shrink-0">
+                  <span className="border border-ed-rule-strong bg-ed-paper-2 px-2 py-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-navy shrink-0">
                     {item.type}
                   </span>
                 </button>

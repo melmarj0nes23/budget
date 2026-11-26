@@ -1,6 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
+import PageMasthead from '../components/v2/layout/PageMasthead';
+import Container from '../components/v2/ui/Container';
+import Eyebrow from '../components/v2/ui/Eyebrow';
+import Flag from '../components/v2/ui/Flag';
+import SectionHeader from '../components/v2/ui/SectionHeader';
 import { useLanguage } from '../contexts/LanguageContext';
 import BarangayProjectTracker from '../components/BarangayProjectTracker';
 import RegionalBudgetSection from '../components/RegionalBudgetSection';
@@ -174,7 +179,6 @@ export default function BudgetPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [nationalPayload, setNationalPayload] = useState<NationalBudgetPayload | null>(null);
   const [distYear, setDistYear] = useState<DistributionYear>('all');
-  const activeTabRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -301,14 +305,6 @@ export default function BudgetPage() {
       grandTotal,
     };
   }, [nationalPayload, distYear]);
-
-  useEffect(() => {
-    activeTabRef.current?.scrollIntoView({
-      inline: 'center',
-      block: 'nearest',
-      behavior: 'smooth',
-    });
-  }, [activeTab]);
 
   useEffect(() => {
     const paramProj = searchParams.get('project');
@@ -442,49 +438,56 @@ export default function BudgetPage() {
       pageTitle={seo.title}
       pageDescription={seo.description}
     >
-      <section className="trans-hero-v2">
-        <div className="container">
-          <div className="trans-hero-content-v2">
-            <span className="trans-hero-badge-v2">
-              <i className="bi bi-shield-check" aria-hidden="true" />{' '}
+      <PageMasthead
+        variant={activeTab === 'summary' ? 'hero' : 'light'}
+        title={t('budget-hero-title')}
+        lede={t('budget-hero-desc')}
+      >
+        <div className="flex flex-wrap items-center gap-3">
+          {activeTab === 'summary' ? (
+            <Flag
+              variant="outline"
+              className="border-white/30 bg-white/10 text-white"
+            >
+              <i className="bi bi-shield-check" aria-hidden="true" />
               <span>{t('budget-hero-badge')}</span>
-            </span>
-            <h1>{t('budget-hero-title')}</h1>
-            <p>{t('budget-hero-desc')}</p>
-          </div>
+            </Flag>
+          ) : (
+            <Flag variant="navy">
+              <i className="bi bi-shield-check" aria-hidden="true" />
+              <span>{t('budget-hero-badge')}</span>
+            </Flag>
+          )}
+          <Eyebrow tone={activeTab === 'summary' ? 'onDark' : 'default'}>
+            Alcala, Pangasinan · Open Fiscal Data
+          </Eyebrow>
         </div>
-      </section>
+      </PageMasthead>
 
       {/* Overview Summary View (Default for effortless mobile/desktop scanning) */}
       {activeTab === 'summary' && (
-        <section className="section">
-          <div className="container">
-            <div className="mb-6">
-              <h2 className="text-xl font-bold text-[#0f2342] m-0">
-                {t('budget-summary-title')}
-              </h2>
-              <p className="text-sm text-slate-600 m-0 mt-1">
-                FY {activeBudget.fiscalYear} {t('budget-summary-desc')}
-              </p>
-            </div>
+        <section className="py-12 max-md:py-8 bg-white border-b border-ed-rule">
+          <Container>
+            <SectionHeader
+              label={t('budget-summary-title')}
+              meta={`FY ${activeBudget.fiscalYear} ${t('budget-summary-desc')}`}
+            />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-ed-rule border border-ed-rule mb-10">
               <button
                 type="button"
                 onClick={() => setActiveTab('municipal')}
-                className="text-left bg-white border border-black/10 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#26489A]/40 transition-all cursor-pointer flex flex-col justify-between"
+                className="text-left bg-white hover:bg-ed-paper-2 p-6 transition-colors cursor-pointer flex flex-col justify-between border-0"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#26489A]/10 text-[#26489A]">
-                      <i className="bi bi-graph-up-arrow" aria-hidden="true" />
-                    </span>
-                    <span className="font-mono-data text-xs font-bold text-[#26489A] bg-[#26489A]/10 px-2.5 py-1 rounded-full">
+                    <Eyebrow tone="navy">Municipal Appropriations</Eyebrow>
+                    <Flag variant="outline">
                       FY {ascendingBudgets[0]?.fiscalYear ?? 2024}–
                       {ascendingBudgets[ascendingBudgets.length - 1]?.fiscalYear ?? 2026}
-                    </span>
+                    </Flag>
                   </div>
-                  <h3 className="text-base font-bold text-[#0f2342] mb-1">
+                  <h3 className="font-serif-ed text-[20px] font-semibold text-ed-ink leading-snug mb-2">
                     {t('budget-card-growth-title')} ({ascendingBudgets.length}{t('budget-card-growth-suffix')})
                   </h3>
                   {(() => {
@@ -497,15 +500,15 @@ export default function BudgetPage() {
                         : null;
                     return (
                       <>
-                        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2.5">
-                          <span className="text-2xl font-extrabold text-[#26489A] tabular-nums">
+                        <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5 mb-4">
+                          <span className="font-serif-ed text-[32px] font-bold tracking-[-0.02em] text-ed-navy tabular-nums">
                             {growthPct !== null ? `+${growthPct.toFixed(1)}%` : '—'}
                           </span>
-                          <span className="text-xs font-semibold text-slate-500">
+                          <span className="font-mono-ed text-[11px] uppercase tracking-[0.08em] text-ed-ink-3">
                             {t('budget-card-growth-sub')}
                           </span>
                         </div>
-                        <div className="space-y-1.5 mb-2.5">
+                        <div className="space-y-2 mb-4">
                           {ascendingBudgets.map((row, idx) => {
                             const widthPct = Math.max(
                               8,
@@ -521,23 +524,23 @@ export default function BudgetPage() {
                             return (
                               <div
                                 key={row.fiscalYear}
-                                className="grid grid-cols-[68px_1fr_118px] items-center gap-2 text-[11px]"
+                                className="grid grid-cols-[68px_1fr_124px] items-center gap-2 text-xs"
                               >
-                                <span className="font-mono-data font-semibold text-slate-600">
+                                <span className="font-mono-ed font-medium text-ed-ink-2">
                                   FY {row.fiscalYear}
                                 </span>
-                                <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                                <div className="h-2 bg-ed-paper-3 overflow-hidden">
                                   <div
-                                    className="h-full rounded-full bg-[#26489A]"
+                                    className="h-full bg-ed-navy"
                                     style={{ width: `${widthPct}%` }}
                                   />
                                 </div>
-                                <span className="font-mono-data font-bold text-[#0f2342] text-right tabular-nums">
+                                <span className="font-mono-ed font-semibold text-ed-ink text-right tabular-nums">
                                   {formatCompactPhp(row.approvedBudget)}
                                   {yoy !== null && (
                                     <span
                                       className={`ml-1 ${
-                                        yoy >= 0 ? 'text-[#2E8B57]' : 'text-amber-700'
+                                        yoy >= 0 ? 'text-ed-navy' : 'text-ed-red'
                                       }`}
                                     >
                                       ({yoy >= 0 ? `+${yoy.toFixed(1)}%` : `${yoy.toFixed(1)}%`})
@@ -548,7 +551,7 @@ export default function BudgetPage() {
                             );
                           })}
                         </div>
-                        <p className="text-[11px] text-slate-500 m-0">
+                        <p className="text-xs text-ed-ink-3 m-0 leading-relaxed">
                           {t('budget-blgf-actuals')}{' '}
                           {formatCompactPhp(
                             budgetRecords.reduce((s, b) => s + (b.actualReceipts ?? 0), 0)
@@ -568,75 +571,73 @@ export default function BudgetPage() {
                     );
                   })()}
                 </div>
-                <span className="mt-4 text-xs font-bold text-[#26489A]">
-                  {t('budget-card-growth-cta')}
+                <span className="mt-5 pt-3 border-t border-ed-rule font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-navy">
+                  {t('budget-card-growth-cta')} →
                 </span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setActiveTab('regional')}
-                className="text-left bg-white border border-black/10 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#26489A]/40 transition-all cursor-pointer flex flex-col justify-between"
+                className="text-left bg-white hover:bg-ed-paper-2 p-6 transition-colors cursor-pointer flex flex-col justify-between border-0"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#26489A]/10 text-[#26489A]">
-                      <i className="bi bi-arrow-left-right" aria-hidden="true" />
-                    </span>
-                    <span className="font-mono-data text-xs font-bold text-[#26489A] bg-[#26489A]/10 px-2.5 py-1 rounded-full">
+                    <Eyebrow tone="navy">National Budget Comparison</Eyebrow>
+                    <Flag variant="outline">
                       FY {nationalSummary?.proposedYear ?? 2027} NEP → House Bill
-                    </span>
+                    </Flag>
                   </div>
-                  <h3 className="text-base font-bold text-[#0f2342] mb-1">
+                  <h3 className="font-serif-ed text-[20px] font-semibold text-ed-ink leading-snug mb-2">
                     FY {nationalSummary?.proposedYear ?? 2027} {t('budget-card-diff-title')}
                   </h3>
                   {nationalSummary ? (
                     <>
-                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2.5">
-                        <span className="text-2xl font-extrabold text-[#26489A] tabular-nums">
+                      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5 mb-4">
+                        <span className="font-serif-ed text-[32px] font-bold tracking-[-0.02em] text-ed-navy tabular-nums">
                           {nationalSummary.fyProposedDelta >= 0 ? '+' : '−'}
                           {formatCompactPhp(Math.abs(nationalSummary.fyProposedDelta))}
                         </span>
-                        <span className="text-xs font-semibold text-slate-500">
+                        <span className="font-mono-ed text-[11px] uppercase tracking-[0.08em] text-ed-ink-3">
                           {t('budget-card-diff-sub')} {nationalSummary.hgabCount} {t('budget-card-diff-projects')}
                         </span>
                       </div>
-                      <div className="grid grid-cols-2 gap-2 mb-2.5">
-                        <div className="rounded-xl bg-slate-50 border border-black/5 px-3 py-2">
-                          <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                      <div className="grid grid-cols-2 gap-px bg-ed-rule border border-ed-rule mb-4">
+                        <div className="bg-ed-paper-2 px-3 py-2.5">
+                          <span className="block font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3">
                             {t('budget-card-nep')}
                           </span>
-                          <span className="font-mono-data text-sm font-extrabold text-[#0f2342] tabular-nums">
+                          <span className="font-mono-ed text-sm font-semibold text-ed-ink tabular-nums">
                             {formatCompactPhp(nationalSummary.fyProposedNep)}
                           </span>
                         </div>
-                        <div className="rounded-xl bg-[#26489A]/5 border border-[#26489A]/15 px-3 py-2">
-                          <span className="block text-[10px] font-bold uppercase tracking-wider text-[#26489A]">
+                        <div className="bg-ed-paper-2 px-3 py-2.5">
+                          <span className="block font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-navy">
                             {t('budget-card-hgab')}
                           </span>
-                          <span className="font-mono-data text-sm font-extrabold text-[#26489A] tabular-nums">
+                          <span className="font-mono-ed text-sm font-semibold text-ed-navy tabular-nums">
                             {formatCompactPhp(nationalSummary.fyProposedHouse)}
                           </span>
                         </div>
                       </div>
-                      <div className="space-y-1.5 mb-3">
+                      <div className="space-y-2 mb-4">
                         {[
                           {
                             label: `${t('budget-card-inserted')} (${nationalSummary.houseOnlyCount})`,
                             amount: nationalSummary.houseOnlyAmount,
-                            tone: 'bg-[#D1432A]',
+                            tone: 'bg-ed-red',
                           },
                           {
                             label: `${t('budget-card-matched')} (${nationalSummary.sameCount})`,
                             amount: nationalSummary.sameAmount,
-                            tone: 'bg-[#2E8B57]',
+                            tone: 'bg-ed-navy',
                           },
                           ...(nationalSummary.unconfirmedCount > 0
                             ? [
                                 {
                                   label: `${t('budget-card-review')} (${nationalSummary.unconfirmedCount})`,
                                   amount: nationalSummary.unconfirmedAmount,
-                                  tone: 'bg-amber-500',
+                                  tone: 'bg-ed-ink-3',
                                 },
                               ]
                             : []),
@@ -651,94 +652,90 @@ export default function BudgetPage() {
                           return (
                             <div
                               key={row.label}
-                              className="grid grid-cols-[120px_1fr_72px] items-center gap-2 text-[11px]"
+                              className="grid grid-cols-[124px_1fr_72px] items-center gap-2 text-xs"
                             >
-                              <span className="font-semibold text-[#0f2342] truncate">
+                              <span className="font-medium text-ed-ink truncate">
                                 {row.label}
                               </span>
-                              <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                              <div className="h-2 bg-ed-paper-3 overflow-hidden">
                                 <div
-                                  className={`h-full rounded-full ${row.tone}`}
+                                  className={`h-full ${row.tone}`}
                                   style={{ width: `${widthPct}%` }}
                                 />
                               </div>
-                              <span className="font-mono-data font-bold text-[#0f2342] text-right tabular-nums">
+                              <span className="font-mono-ed font-semibold text-ed-ink text-right tabular-nums">
                                 {formatCompactPhp(row.amount)}
                               </span>
                             </div>
                           );
                         })}
                       </div>
-                      <div className="flex flex-wrap justify-center gap-1.5 text-[11px]">
-                        <span className="inline-flex items-center gap-1 rounded-full bg-[#D1432A]/10 text-[#D1432A] font-semibold px-2.5 py-0.5">
+                      <div className="flex flex-wrap gap-1.5">
+                        <Flag variant="red">
                           {t('budget-card-inserted')}: {nationalSummary.houseOnlyCount}
-                        </span>
-                        <span className="inline-flex items-center gap-1 rounded-full bg-[#2E8B57]/10 text-[#2E8B57] font-semibold px-2.5 py-0.5">
+                        </Flag>
+                        <Flag variant="navy">
                           {t('budget-card-matched')}: {nationalSummary.sameCount}
-                        </span>
+                        </Flag>
                         {nationalSummary.unconfirmedCount > 0 && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 text-amber-900 font-semibold px-2.5 py-0.5">
+                          <Flag variant="outline">
                             {t('budget-card-review')}: {nationalSummary.unconfirmedCount}
-                          </span>
+                          </Flag>
                         )}
                       </div>
                     </>
                   ) : (
-                    <p className="text-xs text-slate-600 m-0">
+                    <p className="text-xs text-ed-ink-3 m-0">
                       Loading FY 2027 NEP vs. House Bill comparison...
                     </p>
                   )}
                 </div>
-                <span className="mt-4 text-xs font-bold text-[#26489A]">
-                  {t('budget-card-diff-cta')}
+                <span className="mt-5 pt-3 border-t border-ed-rule font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-navy">
+                  {t('budget-card-diff-cta')} →
                 </span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setActiveTab('regional')}
-                className="text-left bg-white border border-black/10 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-[#2E8B57]/40 transition-all cursor-pointer flex flex-col justify-between"
+                className="text-left bg-white hover:bg-ed-paper-2 p-6 transition-colors cursor-pointer flex flex-col justify-between border-0"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#2E8B57]/12 text-[#2E8B57]">
-                      <i className="bi bi-compass-fill" aria-hidden="true" />
-                    </span>
-                    <span className="font-mono-data text-xs font-bold text-[#2E8B57] bg-[#2E8B57]/12 px-2.5 py-1 rounded-full">
-                      {t('budget-live-api')}
-                    </span>
+                    <Eyebrow tone="navy">Enacted GAA Explorer</Eyebrow>
+                    <Flag variant="navy">{t('budget-live-api')}</Flag>
                   </div>
-                  <h3 className="text-base font-bold text-[#0f2342] mb-1">
+                  <h3 className="font-serif-ed text-[20px] font-semibold text-ed-ink leading-snug mb-2">
                     {t('budget-card-gaa-title')} (GAA &amp; FY {nationalSummary?.proposedYear ?? 2027})
                   </h3>
                   {nationalSummary ? (
                     <>
-                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2">
-                        <span className="text-2xl font-extrabold text-[#2E8B57] tabular-nums">
+                      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5 mb-4">
+                        <span className="font-serif-ed text-[32px] font-bold tracking-[-0.02em] text-ed-navy tabular-nums">
                           {formatCompactPhp(nationalSummary.gaaGrandTotal)}
                         </span>
-                        <span className="text-xs font-semibold text-slate-500">
+                        <span className="font-mono-ed text-[11px] uppercase tracking-[0.08em] text-ed-ink-3">
                           FY {nationalSummary.gaaYears[0]}–
                           {nationalSummary.gaaYears[nationalSummary.gaaYears.length - 1]} GAA (
                           {nationalSummary.gaaCount} projects)
                         </span>
                       </div>
-                      <div className="space-y-1.5 mb-2.5">
+                      <div className="space-y-2 mb-4">
                         {[
                           ...nationalSummary.gaaTotalsByYear.map((row) => ({
                             label: `FY ${row.year} GAA`,
                             amount: row.amount,
-                            tone: 'bg-[#26489A]',
+                            tone: 'bg-ed-navy',
                           })),
                           {
                             label: `FY ${nationalSummary.proposedYear} NEP`,
                             amount: nationalSummary.fyProposedNep,
-                            tone: 'bg-[#008080]',
+                            tone: 'bg-ed-ink-2',
                           },
                           {
                             label: `FY ${nationalSummary.proposedYear} House`,
                             amount: nationalSummary.fyProposedHouse,
-                            tone: 'bg-[#2E8B57]',
+                            tone: 'bg-ed-red',
                           },
                         ].map((row) => {
                           const peak = Math.max(
@@ -749,57 +746,54 @@ export default function BudgetPage() {
                           );
                           const widthPct = Math.max(6, Math.round((row.amount / peak) * 100));
                           return (
-                            <div key={row.label} className="grid grid-cols-[96px_1fr_72px] items-center gap-2 text-[11px]">
-                              <span className="font-mono-data font-semibold text-slate-600">
+                            <div key={row.label} className="grid grid-cols-[96px_1fr_72px] items-center gap-2 text-xs">
+                              <span className="font-mono-ed font-medium text-ed-ink-2">
                                 {row.label}
                               </span>
-                              <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                              <div className="h-2 bg-ed-paper-3 overflow-hidden">
                                 <div
-                                  className={`h-full rounded-full ${row.tone}`}
+                                  className={`h-full ${row.tone}`}
                                   style={{ width: `${widthPct}%` }}
                                 />
                               </div>
-                              <span className="font-mono-data font-bold text-[#0f2342] text-right tabular-nums">
+                              <span className="font-mono-ed font-semibold text-ed-ink text-right tabular-nums">
                                 {formatCompactPhp(row.amount)}
                               </span>
                             </div>
                           );
                         })}
                       </div>
-                      <p className="text-[11px] text-slate-500 m-0">
+                      <p className="text-xs text-ed-ink-3 m-0 leading-relaxed">
                         {t('budget-gaa-note-pre')}{nationalSummary.hgabCount} FY 2027{' '}
                         {t('budget-gaa-note-post')}
                       </p>
                     </>
                   ) : (
                     <>
-                      <div className="text-2xl font-extrabold text-[#2E8B57] tabular-nums mb-1">
+                      <div className="font-serif-ed text-[28px] font-bold text-ed-navy tabular-nums mb-2">
                         FY 2020–2027 Explorer
                       </div>
-                      <p className="text-xs text-slate-600 m-0">
+                      <p className="text-xs text-ed-ink-3 m-0">
                         Compare FY 2027 NEP vs. House Bill &amp; 2020–2026 GAA for Alcala,
                         Pangasinan, and nationwide LGUs.
                       </p>
                     </>
                   )}
                 </div>
-                <span className="mt-4 text-xs font-bold text-[#2E8B57]">
-                  {t('budget-card-gaa-cta')}
+                <span className="mt-5 pt-3 border-t border-ed-rule font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-navy">
+                  {t('budget-card-gaa-cta')} →
                 </span>
               </button>
 
-              <div className="bg-white border border-black/10 rounded-2xl p-5 shadow-xs flex flex-col justify-between min-w-0">
+              <div className="bg-white p-6 flex flex-col justify-between min-w-0">
                 <div className="min-w-0">
-                  <div className="mb-2.5">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#D1432A]/10 text-[#D1432A]">
-                      <i className="bi bi-bar-chart-steps" aria-hidden="true" />
-                    </span>
-                  </div>
-                  <div
-                    className="flex flex-nowrap items-center gap-1 rounded-full bg-slate-100 p-0.5 w-fit max-w-full overflow-x-auto mb-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-                    role="group"
-                    aria-label="Filter barangay distribution by fiscal year"
-                  >
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <Eyebrow tone="red">Barangay Distribution</Eyebrow>
+                    <div
+                      className="inline-flex flex-nowrap items-center border border-ed-rule bg-ed-paper-2 max-w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+                      role="group"
+                      aria-label="Filter barangay distribution by fiscal year"
+                    >
                       {[
                         { id: 'all', label: t('budget-card-brgy-all') },
                         ...(nationalPayload
@@ -828,33 +822,34 @@ export default function BudgetPage() {
                           key={yr.id}
                           type="button"
                           onClick={() => setDistYear(yr.id)}
-                          className={`px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
+                          className={`px-2 py-1 font-mono-ed text-[10px] uppercase tracking-[0.08em] whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
                             distYear === yr.id
-                              ? 'bg-[#0f2342] text-white'
-                              : 'text-slate-600 hover:text-[#0f2342]'
+                              ? 'bg-ed-navy text-white'
+                              : 'text-ed-ink-2 hover:bg-white'
                           }`}
                         >
                           {yr.label}
                         </button>
                       ))}
+                    </div>
                   </div>
-                  <h3 className="text-base font-bold text-[#0f2342] mb-1">
+                  <h3 className="font-serif-ed text-[20px] font-semibold text-ed-ink leading-snug mb-2">
                     {t('budget-card-brgy-title')}
                   </h3>
                   {barangayDistribution ? (
                     <>
-                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 mb-2.5">
-                        <span className="text-2xl font-extrabold text-[#D1432A] tabular-nums">
+                      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5 mb-4">
+                        <span className="font-serif-ed text-[32px] font-bold tracking-[-0.02em] text-ed-red tabular-nums">
                           {formatCompactPhp(barangayDistribution.grandTotal)}
                         </span>
-                        <span className="text-xs font-semibold text-slate-500">
+                        <span className="font-mono-ed text-[11px] uppercase tracking-[0.08em] text-ed-ink-3">
                           {t('budget-across')} {barangayDistribution.fundedBarangayCount} {t('budget-of-21-brgy')}
                           {distYear === 'all'
                             ? ` (${nationalPayload?.gaaYears[0] ?? 2020}–${nationalPayload?.proposedYear ?? 2027})`
                             : ` (FY ${distYear})`}
                         </span>
                       </div>
-                      <div className="space-y-1.5 mb-2.5">
+                      <div className="space-y-2 mb-4">
                         {barangayDistribution.ranked.slice(0, 5).map((item) => {
                           const peak = Math.max(
                             barangayDistribution.ranked[0]?.amount || 0,
@@ -865,34 +860,34 @@ export default function BudgetPage() {
                           return (
                             <div
                               key={item.name}
-                              className="grid grid-cols-[120px_1fr_72px] items-center gap-2 text-[11px]"
+                              className="grid grid-cols-[120px_1fr_72px] items-center gap-2 text-xs"
                             >
-                              <span className="font-semibold text-[#0f2342] truncate" title={item.name}>
+                              <span className="font-medium text-ed-ink truncate" title={item.name}>
                                 {item.name}
                               </span>
-                              <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                              <div className="h-2 bg-ed-paper-3 overflow-hidden">
                                 <div
-                                  className="h-full rounded-full bg-[#D1432A]"
+                                  className="h-full bg-ed-red"
                                   style={{ width: `${widthPct}%` }}
                                 />
                               </div>
-                              <span className="font-mono-data font-bold text-[#0f2342] text-right tabular-nums">
+                              <span className="font-mono-ed font-semibold text-ed-ink text-right tabular-nums">
                                 {formatCompactPhp(item.amount)}
                               </span>
                             </div>
                           );
                         })}
                         {barangayDistribution.townWideAmount > 0 && (
-                          <div className="grid grid-cols-[120px_1fr_72px] items-center gap-2 text-[11px]">
+                          <div className="grid grid-cols-[120px_1fr_72px] items-center gap-2 text-xs">
                             <span
-                              className="font-semibold text-slate-500 truncate"
+                              className="font-medium text-ed-ink-3 truncate"
                               title="Town-wide or multi-barangay projects without a single barangay label"
                             >
                               {t('budget-card-brgy-townwide')}
                             </span>
-                            <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div className="h-2 bg-ed-paper-3 overflow-hidden">
                               <div
-                                className="h-full rounded-full bg-slate-400"
+                                className="h-full bg-ed-ink-3"
                                 style={{
                                   width: `${Math.max(
                                     6,
@@ -909,13 +904,13 @@ export default function BudgetPage() {
                                 }}
                               />
                             </div>
-                            <span className="font-mono-data font-bold text-slate-700 text-right tabular-nums">
+                            <span className="font-mono-ed font-semibold text-ed-ink-2 text-right tabular-nums">
                               {formatCompactPhp(barangayDistribution.townWideAmount)}
                             </span>
                           </div>
                         )}
                       </div>
-                      <p className="text-[11px] text-slate-500 m-0">
+                      <p className="text-xs text-ed-ink-3 m-0 leading-relaxed">
                         {barangayDistribution.ranked.length > 5
                           ? `${t('budget-top5-pre')} ${barangayDistribution.ranked.length} ${t('budget-top5-post')} `
                           : ''}
@@ -923,7 +918,7 @@ export default function BudgetPage() {
                       </p>
                     </>
                   ) : (
-                    <p className="text-xs text-slate-600 m-0">
+                    <p className="text-xs text-ed-ink-3 m-0">
                       Loading barangay-level allocation distribution...
                     </p>
                   )}
@@ -931,21 +926,21 @@ export default function BudgetPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab('tracker')}
-                  className="mt-4 text-left text-xs font-bold text-[#D1432A] hover:underline cursor-pointer w-fit"
+                  className="mt-5 pt-3 border-t border-ed-rule text-left font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-red hover:underline cursor-pointer w-full bg-transparent"
                 >
-                  {t('budget-card-brgy-cta')}
+                  {t('budget-card-brgy-cta')} →
                 </button>
               </div>
             </div>
 
             {/* Executive Visual Breakdown */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className="bg-white border border-black/10 rounded-2xl p-5 sm:p-6 shadow-xs">
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <h3 className="text-base font-bold text-[#0f2342] m-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-ed-rule border border-ed-rule">
+              <div className="bg-white p-6">
+                <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-ed-rule">
+                  <h3 className="font-serif-ed text-[18px] font-semibold text-ed-ink m-0">
                     FY {activeBudget.fiscalYear} {t('budget-mix-title')}
                   </h3>
-                  <span className="font-mono-data text-xs font-semibold text-slate-500">
+                  <span className="font-mono-ed text-xs text-ed-ink-3">
                     {activeBudget.spResolution}
                   </span>
                 </div>
@@ -955,7 +950,7 @@ export default function BudgetPage() {
                   const ntaShareAmount = ntaMatch ? Number(ntaMatch[1].replace(/,/g, '')) : null;
                   if (!ntaShareAmount || !Number.isFinite(ntaShareAmount)) {
                     return (
-                      <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+                      <p className="text-xs text-ed-ink-2 mb-4 leading-relaxed">
                         {activeBudget.ntaShareNote}
                       </p>
                     );
@@ -966,34 +961,34 @@ export default function BudgetPage() {
                   const localPct = Math.round((100 - ntaPct) * 10) / 10;
                   return (
                     <div className="mb-5">
-                      <div className="h-3 w-full rounded-full overflow-hidden bg-slate-100 flex mb-3">
+                      <div className="h-3 w-full overflow-hidden bg-ed-paper-3 flex mb-3">
                         <div
-                          className="bg-[#26489A] h-full"
+                          className="bg-ed-navy h-full"
                           style={{ width: `${ntaPct}%` }}
                           title={`NTA Share (${ntaPct}%)`}
                         />
                         <div
-                          className="bg-[#2E8B57] h-full"
+                          className="bg-ed-ink-2 h-full"
                           style={{ width: `${localPct}%` }}
                           title={`Local & Other Revenues (${localPct}%)`}
                         />
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                        <div className="rounded-xl bg-[#FAF7F2] p-3 border border-black/5">
-                          <div className="flex items-center gap-1.5 font-semibold text-[#0f2342] mb-0.5">
-                            <span className="h-2.5 w-2.5 rounded-full bg-[#26489A]" />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-ed-rule border border-ed-rule text-xs">
+                        <div className="bg-ed-paper-2 p-3">
+                          <div className="flex items-center gap-1.5 font-medium text-ed-ink mb-0.5">
+                            <span className="h-2.5 w-2.5 bg-ed-navy" />
                             {t('budget-nta-label')} ({ntaPct}%)
                           </div>
-                          <div className="font-mono-data font-bold text-[#26489A] tabular-nums">
+                          <div className="font-mono-ed font-semibold text-ed-navy tabular-nums">
                             {formatPeso(ntaShareAmount)}
                           </div>
                         </div>
-                        <div className="rounded-xl bg-[#FAF7F2] p-3 border border-black/5">
-                          <div className="flex items-center gap-1.5 font-semibold text-[#0f2342] mb-0.5">
-                            <span className="h-2.5 w-2.5 rounded-full bg-[#2E8B57]" />
+                        <div className="bg-ed-paper-2 p-3">
+                          <div className="flex items-center gap-1.5 font-medium text-ed-ink mb-0.5">
+                            <span className="h-2.5 w-2.5 bg-ed-ink-2" />
                             {t('budget-local-label')} ({localPct}%)
                           </div>
-                          <div className="font-mono-data font-bold text-[#2E8B57] tabular-nums">
+                          <div className="font-mono-ed font-semibold text-ed-ink tabular-nums">
                             {formatPeso(localAmt)}
                           </div>
                         </div>
@@ -1002,8 +997,8 @@ export default function BudgetPage() {
                   );
                 })()}
 
-                <div className="border-t border-black/5 pt-4 space-y-2.5">
-                  <div className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                <div className="border-t border-ed-rule pt-4 space-y-2.5">
+                  <div className="font-mono-ed text-[11px] font-medium uppercase tracking-[0.14em] text-ed-ink-3">
                     {t('budget-multiyear-title')}
                   </div>
                   {ascendingBudgets.map((rec) => {
@@ -1011,16 +1006,16 @@ export default function BudgetPage() {
                     return (
                       <div key={rec.fiscalYear} className="text-xs">
                         <div className="flex justify-between gap-2 mb-1">
-                          <span className="font-semibold text-[#0f2342]">
+                          <span className="font-medium text-ed-ink">
                             FY {rec.fiscalYear} ({rec.appropriationOrdinance})
                           </span>
-                          <span className="font-mono-data font-bold text-[#0f2342] tabular-nums">
+                          <span className="font-mono-ed font-semibold text-ed-ink tabular-nums">
                             {formatPeso(rec.approvedBudget)}
                           </span>
                         </div>
-                        <div className="h-2 w-full rounded-full bg-slate-100 overflow-hidden">
+                        <div className="h-2 w-full bg-ed-paper-3 overflow-hidden">
                           <div
-                            className="h-full rounded-full bg-[#26489A]"
+                            className="h-full bg-ed-navy"
                             style={{ width: `${pct}%` }}
                           />
                         </div>
@@ -1030,15 +1025,15 @@ export default function BudgetPage() {
                 </div>
               </div>
 
-              <div className="bg-white border border-black/10 rounded-2xl p-5 sm:p-6 shadow-xs">
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <h3 className="text-base font-bold text-[#0f2342] m-0">
+              <div className="bg-white p-6">
+                <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-ed-rule">
+                  <h3 className="font-serif-ed text-[18px] font-semibold text-ed-ink m-0">
                     {t('budget-dpwh-sector-title')}
                   </h3>
                   <button
                     type="button"
                     onClick={() => setActiveTab('dpwh')}
-                    className="text-xs font-bold text-[#D1432A] hover:underline bg-transparent border-0 p-0 cursor-pointer"
+                    className="font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-red hover:underline bg-transparent border-0 p-0 cursor-pointer"
                   >
                     {t('budget-view-all')} {infrastructureProjects.length} →
                   </button>
@@ -1056,17 +1051,17 @@ export default function BudgetPage() {
                       return (
                         <div key={cat.category} className="text-xs">
                           <div className="flex justify-between gap-2 mb-1">
-                            <span className="font-semibold text-[#0f2342]">
+                            <span className="font-medium text-ed-ink">
                               {cat.category}{' '}
-                              <span className="text-slate-500 font-normal">({cat.count})</span>
+                              <span className="text-ed-ink-3 font-normal">({cat.count})</span>
                             </span>
-                            <span className="font-mono-data font-bold text-[#0f2342] tabular-nums">
+                            <span className="font-mono-ed font-semibold text-ed-ink tabular-nums">
                               {cat.total > 0 ? formatPeso(cat.total) : t('budget-pending-na')}
                             </span>
                           </div>
-                          <div className="h-2 w-full rounded-full bg-slate-100 overflow-hidden">
+                          <div className="h-2 w-full bg-ed-paper-3 overflow-hidden">
                             <div
-                              className="h-full rounded-full bg-[#D1432A]"
+                              className="h-full bg-ed-red"
                               style={{ width: `${Math.max(pct, 4)}%` }}
                             />
                           </div>
@@ -1076,18 +1071,18 @@ export default function BudgetPage() {
                 </div>
 
                 {gaaReconciliation.gaa2226Total > 0 && (
-                  <div className="mt-4 pt-3 border-t border-black/5 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-600">
+                  <div className="mt-5 pt-3 border-t border-ed-rule flex flex-wrap items-center justify-between gap-2 text-xs text-ed-ink-2">
                     <span>
                       <strong>FY 2022–2026 GAA ({gaaReconciliation.gaa2226Count} {t('budget-lines')}):</strong>{' '}
-                      <span className="font-mono-data font-bold text-[#0f2342]">
+                      <span className="font-mono-ed font-semibold text-ed-ink">
                         {formatCompactPhp(gaaReconciliation.gaa2226Total)}
                       </span>
                       {' · '}
-                      <span className="text-amber-800 font-semibold">
+                      <span className="text-ed-red font-medium">
                         {formatCompactPhp(gaaReconciliation.unmatchedGaaSum)} {t('budget-awaiting-match')}
                       </span>
                     </span>
-                    <span className="font-mono-data text-slate-500">
+                    <span className="font-mono-ed text-[11px] text-ed-ink-3">
                       {
                         infrastructureProjects.filter((p) =>
                           (p.documentUrl || '').toLowerCase().endsWith('.pdf')
@@ -1100,29 +1095,32 @@ export default function BudgetPage() {
                 )}
               </div>
             </div>
-          </div>
+          </Container>
         </section>
       )}
 
       {/* Annual Budget & SRE Distinction */}
       {activeTab === 'municipal' && (
         <>
-      <section className="sre-section-v2">
-        <div className="container">
-          <div className="sre-header-v2">
-            <div className="sre-title-group">
-              <span className="sre-label">
-                <i className="bi bi-graph-up-arrow" aria-hidden="true" />{' '}
-                <span>Annual Municipal Budget &amp; SRE</span>
-              </span>
-              <h2>Approved Appropriations vs. Execution Records</h2>
-              <p>
+      <section className="py-12 max-md:py-8 bg-white border-b border-ed-rule">
+        <Container>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-6">
+            <div>
+              <Eyebrow tone="navy">Annual Municipal Budget &amp; SRE</Eyebrow>
+              <h2 className="font-serif-ed text-[24px] font-semibold leading-tight tracking-[-0.01em] text-ed-ink mt-1.5 mb-2">
+                Approved Appropriations vs. Execution Records
+              </h2>
+              <p className="text-sm text-ed-ink-2 max-w-2xl m-0">
                 Approved budgets are verified via Sangguniang Panlalawigan resolutions; unreleased
                 execution breakdowns are awaiting official LGU release.
               </p>
             </div>
 
-            <div className="sre-period-toggle" role="tablist" aria-label="Select fiscal year">
+            <div
+              className="inline-flex flex-wrap border border-ed-ink bg-white shrink-0"
+              role="tablist"
+              aria-label="Select fiscal year"
+            >
               {sortedBudgets.map((b) => (
                 <button
                   key={b.fiscalYear}
@@ -1133,100 +1131,86 @@ export default function BudgetPage() {
                     setHasManuallySelectedYear(true);
                     setSelectedYear(b.fiscalYear);
                   }}
-                  className={`sre-period-btn ${selectedYear === b.fiscalYear ? 'active' : ''}`}
+                  className={`px-3.5 py-2 font-mono-ed text-xs font-medium uppercase tracking-[0.08em] cursor-pointer transition-colors ${
+                    selectedYear === b.fiscalYear
+                      ? 'bg-ed-navy text-white'
+                      : 'text-ed-ink hover:bg-ed-paper-2'
+                  }`}
                 >
-                  <span className="sre-period-q">FY {b.fiscalYear}</span>
-                  <span className="sre-period-range">Operative Budget</span>
+                  FY {b.fiscalYear}
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="sre-metrics-row">
-            <div className="sre-metric-card sre-metric-income">
-              <div className="sre-metric-icon">
-                <i className="bi bi-check2-circle" aria-hidden="true" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-ed-ink divide-y sm:divide-y-0 sm:divide-x divide-ed-rule bg-white">
+            <div className="p-5">
+              <Eyebrow tone="navy">Approved Annual Budget (FY {activeBudget.fiscalYear})</Eyebrow>
+              <div className="font-serif-ed text-[26px] font-bold tracking-[-0.02em] text-ed-ink tabular-nums mt-2">
+                {formatPeso(activeBudget.approvedBudget)}
               </div>
-              <div className="sre-metric-data">
-                <span className="sre-metric-value tabular-nums">
-                  {formatPeso(activeBudget.approvedBudget)}
-                </span>
-                <span className="sre-metric-label">Approved Annual Budget (FY {activeBudget.fiscalYear})</span>
+              <div className="font-mono-ed text-[11px] text-ed-ink-3 mt-1">
+                {activeBudget.appropriationOrdinance}
               </div>
             </div>
 
-            <div className="sre-metric-card sre-metric-expense">
-              <div className="sre-metric-icon">
-                <i className="bi bi-clipboard-data" aria-hidden="true" />
+            <div className="p-5">
+              <Eyebrow>Obligations (COA Executive Summary)</Eyebrow>
+              <div className="font-serif-ed text-[26px] font-bold tracking-[-0.02em] text-ed-ink tabular-nums mt-2">
+                {activeBudget.obligations != null
+                  ? formatPeso(activeBudget.obligations)
+                  : 'Pending Release'}
               </div>
-              <div className="sre-metric-data">
-                <span className="sre-metric-value tabular-nums">
-                  {activeBudget.obligations != null
-                    ? formatPeso(activeBudget.obligations)
-                    : 'Pending Release'}
-                </span>
-                <span className="sre-metric-label">Obligations (COA Executive Summary)</span>
-                <div className="mt-1">
-                  <VerificationBadge
-                    status={activeBudget.obligations != null ? 'Verified' : activeBudget.sreStatus}
-                  />
-                </div>
+              <div className="mt-2">
+                <VerificationBadge
+                  status={activeBudget.obligations != null ? 'Verified' : activeBudget.sreStatus}
+                />
               </div>
             </div>
 
-            <div className="sre-metric-card sre-metric-net">
-              <div className="sre-metric-icon">
-                <i className="bi bi-cash-stack" aria-hidden="true" />
+            <div className="p-5">
+              <Eyebrow>Disbursements (COA Executive Summary)</Eyebrow>
+              <div className="font-serif-ed text-[26px] font-bold tracking-[-0.02em] text-ed-ink tabular-nums mt-2">
+                {activeBudget.disbursements != null
+                  ? formatPeso(activeBudget.disbursements)
+                  : 'Pending Release'}
               </div>
-              <div className="sre-metric-data">
-                <span className="sre-metric-value tabular-nums">
-                  {activeBudget.disbursements != null
-                    ? formatPeso(activeBudget.disbursements)
-                    : 'Pending Release'}
-                </span>
-                <span className="sre-metric-label">Disbursements (COA Executive Summary)</span>
-                <div className="mt-1">
-                  <VerificationBadge
-                    status={activeBudget.disbursements != null ? 'Verified' : activeBudget.sreStatus}
-                  />
-                </div>
+              <div className="mt-2">
+                <VerificationBadge
+                  status={activeBudget.disbursements != null ? 'Verified' : activeBudget.sreStatus}
+                />
               </div>
             </div>
 
-            <div className="sre-metric-card sre-metric-balance">
-              <div className="sre-metric-icon">
-                <i className="bi bi-receipt" aria-hidden="true" />
+            <div className="p-5">
+              <Eyebrow>Actual Expenditures (BLGF eSRE)</Eyebrow>
+              <div className="font-serif-ed text-[26px] font-bold tracking-[-0.02em] text-ed-ink tabular-nums mt-2">
+                {activeBudget.actualExpenditures
+                  ? formatPeso(activeBudget.actualExpenditures)
+                  : 'Pending Release'}
               </div>
-              <div className="sre-metric-data">
-                <span className="sre-metric-value tabular-nums">
-                  {activeBudget.actualExpenditures
-                    ? formatPeso(activeBudget.actualExpenditures)
-                    : 'Pending Release'}
-                </span>
-                <span className="sre-metric-label">Actual Expenditures (BLGF eSRE)</span>
-                <div className="mt-1">
-                  <VerificationBadge status={activeBudget.sreStatus} />
-                </div>
+              <div className="mt-2">
+                <VerificationBadge status={activeBudget.sreStatus} />
               </div>
             </div>
           </div>
 
           {ascendingBudgets.length > 1 && (
-            <div className="bg-white border border-black/10 rounded-xl p-5 mt-6">
+            <div className="border border-ed-rule bg-ed-paper-2 p-5 mt-6">
               <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                 <div>
-                  <h3 className="text-base font-bold text-[#0032a0] m-0">
+                  <h3 className="font-serif-ed text-[18px] font-semibold text-ed-ink m-0">
                     Multi-Year Approved Appropriations Comparison
                   </h3>
-                  <p className="text-xs text-slate-600 m-0">
+                  <p className="text-xs text-ed-ink-3 m-0 mt-0.5">
                     Click a fiscal year bar to inspect its Sangguniang Panlalawigan operative record
                   </p>
                 </div>
-                <span className="text-xs font-mono-data text-slate-500">
+                <span className="font-mono-ed text-xs text-ed-ink-3">
                   {budgetYearsSummary.label}
                 </span>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {ascendingBudgets.map((b, idx) => {
                   const prev = idx > 0 ? ascendingBudgets[idx - 1] : null;
                   const pctDiff = prev
@@ -1244,22 +1228,22 @@ export default function BudgetPage() {
                         setHasManuallySelectedYear(true);
                         setSelectedYear(b.fiscalYear);
                       }}
-                      className={`w-full text-left rounded-lg border p-3 transition cursor-pointer ${
+                      className={`w-full text-left border p-3 transition-colors cursor-pointer ${
                         isActive
-                          ? 'border-[#0032a0] bg-blue-50/40'
-                          : 'border-slate-200 bg-slate-50/50 hover:border-slate-300'
+                          ? 'border-ed-navy bg-white'
+                          : 'border-ed-rule bg-white/60 hover:border-ed-ink-3'
                       }`}
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2 text-xs mb-1.5">
-                        <span className="font-bold text-slate-900 font-mono-data">
+                        <span className="font-mono-ed font-semibold text-ed-ink">
                           FY {b.fiscalYear}
                         </span>
-                        <span className="font-mono-data font-bold text-[#0032a0]">
+                        <span className="font-mono-ed font-semibold text-ed-navy tabular-nums">
                           {formatPeso(b.approvedBudget)}
                           {pctDiff && (
                             <span
-                              className={`ml-2 font-semibold ${
-                                Number(pctDiff) >= 0 ? 'text-emerald-700' : 'text-amber-700'
+                              className={`ml-2 ${
+                                Number(pctDiff) >= 0 ? 'text-ed-navy' : 'text-ed-red'
                               }`}
                             >
                               ({Number(pctDiff) >= 0 ? `+${pctDiff}%` : `${pctDiff}%`} YoY)
@@ -1267,10 +1251,10 @@ export default function BudgetPage() {
                           )}
                         </span>
                       </div>
-                      <div className="h-2.5 w-full rounded-full bg-slate-200/80 overflow-hidden">
+                      <div className="h-2 w-full bg-ed-paper-3 overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all ${
-                            isActive ? 'bg-[#0032a0]' : 'bg-slate-400'
+                          className={`h-full transition-all ${
+                            isActive ? 'bg-ed-navy' : 'bg-ed-ink-3'
                           }`}
                           style={{ width: `${barPct}%` }}
                         />
@@ -1282,38 +1266,44 @@ export default function BudgetPage() {
             </div>
           )}
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-6 items-stretch">
-            <div className="lg:col-span-5 bg-white border border-black/10 rounded-xl p-5 flex flex-col">
-              <h3 className="text-base font-bold text-[#0032a0] mb-3">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-ed-rule border border-ed-rule mt-6 items-stretch">
+            <div className="lg:col-span-5 bg-white p-6 flex flex-col">
+              <h3 className="font-serif-ed text-[18px] font-semibold text-ed-ink mb-4 pb-2 border-b border-ed-rule">
                 FY {activeBudget.fiscalYear} Enactment &amp; Provincial Review
               </h3>
-              <dl className="space-y-2.5 text-sm text-slate-700 m-0">
+              <dl className="space-y-3 text-sm text-ed-ink-2 m-0">
                 <div>
-                  <dt className="font-semibold text-slate-900">Municipal Enactment</dt>
-                  <dd className="m-0">{activeBudget.appropriationOrdinance}</dd>
+                  <dt className="font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3">
+                    Municipal Enactment
+                  </dt>
+                  <dd className="m-0 mt-0.5 text-ed-ink font-medium">{activeBudget.appropriationOrdinance}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-slate-900">Sangguniang Panlalawigan Action</dt>
-                  <dd className="m-0">{activeBudget.spResolution}</dd>
+                  <dt className="font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3">
+                    Sangguniang Panlalawigan Action
+                  </dt>
+                  <dd className="m-0 mt-0.5">{activeBudget.spResolution}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-slate-900">National Tax Allotment (NTA) &amp; 20% DF</dt>
-                  <dd className="m-0">{activeBudget.ntaShareNote}</dd>
+                  <dt className="font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3">
+                    National Tax Allotment (NTA) &amp; 20% DF
+                  </dt>
+                  <dd className="m-0 mt-0.5">{activeBudget.ntaShareNote}</dd>
                 </div>
                 {activeBudget.supplementalBudgetsTotal && (
                   <div>
-                    <dt className="font-semibold text-slate-900">
+                    <dt className="font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3">
                       Supplemental Budgets ({formatPeso(activeBudget.supplementalBudgetsTotal)})
                     </dt>
-                    <dd className="m-0">{activeBudget.supplementalBudgetsNote}</dd>
+                    <dd className="m-0 mt-0.5">{activeBudget.supplementalBudgetsNote}</dd>
                   </div>
                 )}
                 {activeBudget.actualReceipts != null && (
                   <div>
-                    <dt className="font-semibold text-slate-900">
+                    <dt className="font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3">
                       BLGF eSRE Receipts &amp; Capital Outlay
                     </dt>
-                    <dd className="m-0">
+                    <dd className="m-0 mt-0.5">
                       Receipts: {formatPeso(activeBudget.actualReceipts)} · Capital Outlay:{' '}
                       {formatPeso(activeBudget.capitalOutlay ?? 0)} · Ending Cash:{' '}
                       {formatPeso(activeBudget.endingCashBalance ?? 0)}{' '}
@@ -1322,7 +1312,7 @@ export default function BudgetPage() {
                           href={activeBudget.sreDocumentUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="ml-1 font-semibold text-[#26489A]"
+                          className="ml-1 font-medium text-ed-navy hover:underline"
                         >
                           Official XLSX <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                         </a>
@@ -1332,17 +1322,17 @@ export default function BudgetPage() {
                 )}
                 {activeBudget.coaOpinion && (
                   <div>
-                    <dt className="font-semibold text-slate-900">
+                    <dt className="font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3">
                       COA Audit Opinion ({activeBudget.coaOpinion})
                     </dt>
-                    <dd className="m-0">
+                    <dd className="m-0 mt-0.5">
                       {activeBudget.coaHighlightsNote}{' '}
                       {activeBudget.coaPdfUrl && (
                         <a
                           href={activeBudget.coaPdfUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="ml-1 font-semibold text-[#26489A]"
+                          className="ml-1 font-medium text-ed-navy hover:underline"
                         >
                           COA Executive Summary (PDF){' '}
                           <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
@@ -1354,34 +1344,34 @@ export default function BudgetPage() {
               </dl>
             </div>
 
-            <div className="lg:col-span-7 bg-white border border-black/10 rounded-xl p-5 flex flex-col justify-between">
+            <div className="lg:col-span-7 bg-white p-6 flex flex-col justify-between">
               <div>
-                <h3 className="text-base font-bold text-[#0032a0] mb-3">
+                <h3 className="font-serif-ed text-[18px] font-semibold text-ed-ink mb-4 pb-2 border-b border-ed-rule">
                   Understanding Budget Terms &amp; Public Records
                 </h3>
-                <ul className="space-y-2 text-sm text-slate-700 m-0">
+                <ul className="space-y-3 text-sm text-ed-ink-2 m-0 pl-4">
                   <li>
-                    <strong>Approved Budget:</strong> Maximum spending authority enacted by the
+                    <strong className="text-ed-ink">Approved Budget:</strong> Maximum spending authority enacted by the
                     Sangguniang Bayan and declared operative by the Sangguniang Panlalawigan.
                   </li>
                   <li>
-                    <strong>Obligations:</strong> Binding commitments (contracts/purchase orders)
+                    <strong className="text-ed-ink">Obligations:</strong> Binding commitments (contracts/purchase orders)
                     charged against approved appropriations.
                   </li>
                   <li>
-                    <strong>Disbursements &amp; Actual Expenditures:</strong> Cash settled and final
+                    <strong className="text-ed-ink">Disbursements &amp; Actual Expenditures:</strong> Cash settled and final
                     audited expenses reported in the BLGF Statement of Receipts and Expenditures (SRE)
                     and Commission on Audit (COA) Annual Audit Reports.
                   </li>
                 </ul>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-black/10 grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="mt-6 pt-4 border-t border-ed-rule grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <a
                   href="https://blgf.gov.ph/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-outline btn-sm justify-center whitespace-nowrap !px-2.5 !text-xs"
+                  className="inline-flex items-center justify-center gap-1.5 border border-ed-ink px-3 py-2 font-mono-ed text-[11px] font-medium uppercase tracking-[0.08em] text-ed-ink hover:bg-ed-paper-2 no-underline"
                 >
                   BLGF eSRE Portal <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                 </a>
@@ -1389,15 +1379,15 @@ export default function BudgetPage() {
                   href="https://www.coa.gov.ph/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-outline btn-sm justify-center whitespace-nowrap !px-2.5 !text-xs"
+                  className="inline-flex items-center justify-center gap-1.5 border border-ed-ink px-3 py-2 font-mono-ed text-[11px] font-medium uppercase tracking-[0.08em] text-ed-ink hover:bg-ed-paper-2 no-underline"
                 >
-                  COA Region I Audit Reports <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                  COA Region I Reports <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                 </a>
                 <a
                   href="https://notices.philgeps.gov.ph/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-outline btn-sm justify-center whitespace-nowrap !px-2.5 !text-xs"
+                  className="inline-flex items-center justify-center gap-1.5 border border-ed-ink px-3 py-2 font-mono-ed text-[11px] font-medium uppercase tracking-[0.08em] text-ed-ink hover:bg-ed-paper-2 no-underline"
                 >
                   PhilGEPS Procurement <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                 </a>
@@ -1406,157 +1396,156 @@ export default function BudgetPage() {
           </div>
 
           <SourceCitationBox citation={activeBudget.citation} />
-        </div>
+        </Container>
       </section>
 
       {/* AIP / Financial Statements / Procurement Status Table */}
-      <section className="section bg-alt">
-        <div className="container">
-          <h2 className="text-xl font-bold text-slate-900 mb-2">
-            Municipal Financial &amp; Procurement Document Registry
-          </h2>
-          <p className="text-sm text-slate-600 mb-4">
-            Status of core Full Disclosure Policy (FDP) documents for Alcala, Pangasinan
-          </p>
+      <section className="py-12 max-md:py-8 bg-ed-paper-2 border-b border-ed-rule">
+        <Container>
+          <SectionHeader
+            label="Municipal Financial & Procurement Document Registry"
+            meta="Status of core Full Disclosure Policy (FDP) documents for Alcala, Pangasinan"
+          />
 
-          <div className="table-responsive">
-            <table className="data-table">
+          <div className="border border-ed-ink bg-white overflow-x-auto">
+            <table className="w-full text-left border-collapse text-sm">
               <thead>
-                <tr>
-                  <th scope="col">Document Category</th>
-                  <th scope="col">Issuing / Oversight Agency</th>
-                  <th scope="col">Current Public Availability</th>
-                  <th scope="col">Verification Status</th>
+                <tr className="bg-ed-paper-2 border-b border-ed-ink font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-2">
+                  <th scope="col" className="py-3 px-4 font-medium">Document Category</th>
+                  <th scope="col" className="py-3 px-4 font-medium">Issuing / Oversight Agency</th>
+                  <th scope="col" className="py-3 px-4 font-medium">Current Public Availability</th>
+                  <th scope="col" className="py-3 px-4 font-medium">Verification Status</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-ed-rule text-ed-ink-2">
                 <tr>
-                  <td data-label="Document Category">Annual Budgets ({budgetYearsSummary.label})</td>
-                  <td data-label="Issuing / Oversight Agency">SB Alcala / SP Pangasinan</td>
-                  <td data-label="Current Public Availability">
+                  <td className="py-3.5 px-4 font-medium text-ed-ink">Annual Budgets ({budgetYearsSummary.label})</td>
+                  <td className="py-3.5 px-4">SB Alcala / SP Pangasinan</td>
+                  <td className="py-3.5 px-4">
                     Operative totals verified ({budgetYearsSummary.totals})
                   </td>
-                  <td data-label="Verification Status">
-                    <span className="text-xs font-medium text-slate-600">Confirmed</span>
+                  <td className="py-3.5 px-4">
+                    <Flag variant="navy">Confirmed</Flag>
                   </td>
                 </tr>
                 <tr>
-                  <td data-label="Document Category">Supplemental Budgets (CY 2022–2025)</td>
-                  <td data-label="Issuing / Oversight Agency">SB Alcala / SP Pangasinan</td>
-                  <td data-label="Current Public Availability">
+                  <td className="py-3.5 px-4 font-medium text-ed-ink">Supplemental Budgets (CY 2022–2025)</td>
+                  <td className="py-3.5 px-4">SB Alcala / SP Pangasinan</td>
+                  <td className="py-3.5 px-4">
                     {formatPeso(supplementalTotalAll)} enacted across CY 2022–2025 (SP Res. Nos.
                     33-2023, 1134-2024, 85-2026; Mun. Res. Nos. 2022-280, 2023-182/211, 2025-245)
                   </td>
-                  <td data-label="Verification Status">
-                    <span className="text-xs font-medium text-slate-600">Confirmed</span>
+                  <td className="py-3.5 px-4">
+                    <Flag variant="navy">Confirmed</Flag>
                   </td>
                 </tr>
                 <tr>
-                  <td data-label="Document Category">Annual Investment Program (AIP)</td>
-                  <td data-label="Issuing / Oversight Agency">MPDC / Municipal Budget Office</td>
-                  <td data-label="Current Public Availability">
+                  <td className="py-3.5 px-4 font-medium text-ed-ink">Annual Investment Program (AIP)</td>
+                  <td className="py-3.5 px-4">MPDC / Municipal Budget Office</td>
+                  <td className="py-3.5 px-4">
                     Full line-item schedule not yet published online
                   </td>
-                  <td data-label="Verification Status">
+                  <td className="py-3.5 px-4">
                     <VerificationBadge status="Needs Review" />
                   </td>
                 </tr>
                 <tr>
-                  <td data-label="Document Category">Statement of Receipts &amp; Expenditures (SRE)</td>
-                  <td data-label="Issuing / Oversight Agency">
+                  <td className="py-3.5 px-4 font-medium text-ed-ink">Statement of Receipts &amp; Expenditures (SRE)</td>
+                  <td className="py-3.5 px-4">
                     Bureau of Local Government Finance (BLGF)
                   </td>
-                  <td data-label="Current Public Availability">
+                  <td className="py-3.5 px-4">
                     FY 2022–2025 official BLGF workbooks extracted (₱1.16B receipts · ₱877.37M
                     expenditures; FY 2025 prelim.) via{' '}
                     <a
                       href="https://blgf.gov.ph/lgu-fiscal-data/"
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="text-ed-navy hover:underline"
                     >
                       blgf.gov.ph
                     </a>
                   </td>
-                  <td data-label="Verification Status">
-                    <VerificationBadge status="Verified" />
+                  <td className="py-3.5 px-4">
+                    <Flag variant="navy">Verified</Flag>
                   </td>
                 </tr>
                 <tr>
-                  <td data-label="Document Category">COA Annual Audit Reports (AAR)</td>
-                  <td data-label="Issuing / Oversight Agency">
+                  <td className="py-3.5 px-4 font-medium text-ed-ink">COA Annual Audit Reports (AAR)</td>
+                  <td className="py-3.5 px-4">
                     Commission on Audit (COA Region I)
                   </td>
-                  <td data-label="Current Public Availability">
+                  <td className="py-3.5 px-4">
                     CY 2022–2025 Executive Summary PDFs extracted (Qualified Opinion across all 4
                     years; ₱0.00 ending suspensions/disallowances) via{' '}
-                    <a href="https://www.coa.gov.ph/" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.coa.gov.ph/" target="_blank" rel="noopener noreferrer" className="text-ed-navy hover:underline">
                       coa.gov.ph
                     </a>
                   </td>
-                  <td data-label="Verification Status">
-                    <VerificationBadge status="Verified" />
+                  <td className="py-3.5 px-4">
+                    <Flag variant="navy">Verified</Flag>
                   </td>
                 </tr>
                 <tr>
-                  <td data-label="Document Category">Municipal Procurement Notices &amp; Bids</td>
-                  <td data-label="Issuing / Oversight Agency">
+                  <td className="py-3.5 px-4 font-medium text-ed-ink">Municipal Procurement Notices &amp; Bids</td>
+                  <td className="py-3.5 px-4">
                     BAC Alcala / Alcala Water District / PhilGEPS
                   </td>
-                  <td data-label="Current Public Availability">
+                  <td className="py-3.5 px-4">
                     LGU &amp; Water District notices (e.g. Brgy. Vacante MPB, VFD/water metering)
                     published via{' '}
                     <a
                       href="https://notices.philgeps.gov.ph/"
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="text-ed-navy hover:underline"
                     >
                       PhilGEPS
                     </a>
                     ; bulk 20% DF extraction pending
                   </td>
-                  <td data-label="Verification Status">
+                  <td className="py-3.5 px-4">
                     <VerificationBadge status="Needs Review" />
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
+        </Container>
       </section>
         </>
       )}
 
       {/* DPWH Infrastructure Projects in Alcala */}
       {activeTab === 'dpwh' && (
-      <section id="dpwh-projects" className="infra-section-v5">
-        <div className="container">
+      <section id="dpwh-projects" className="py-12 max-md:py-8 bg-white">
+        <Container>
           <div className="mb-6">
-            <span className="sre-label">
-              <i className="bi bi-cone-striped" aria-hidden="true" />{' '}
-              <span>DPWH Pangasinan 3rd District Engineering Office</span>
-            </span>
-            <h2 className="mt-2">Infrastructure Projects in Alcala, Pangasinan</h2>
-            <p className="text-slate-600">
+            <Eyebrow tone="red">DPWH Pangasinan 3rd District Engineering Office</Eyebrow>
+            <h2 className="font-serif-ed text-[24px] font-semibold leading-tight tracking-[-0.01em] text-ed-ink mt-1.5 mb-2">
+              Infrastructure Projects in Alcala, Pangasinan
+            </h2>
+            <p className="text-sm text-ed-ink-2 m-0">
               {infrastructureProjects.length} documented DPWH public works projects across Alcala’s
               barangays (total documented ABC/awarded allocations shown:{' '}
-              <strong className="tabular-nums">{formatPeso(totalVerifiedContractValue)}</strong>).
+              <strong className="font-mono-ed tabular-nums text-ed-ink">{formatPeso(totalVerifiedContractValue)}</strong>).
             </p>
             {gaaReconciliation.gaa2226Total > 0 && (
-              <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50/70 px-4 py-3 text-xs text-amber-950 flex flex-wrap items-center justify-between gap-2">
+              <div className="mt-4 border-l-2 border-ed-red bg-ed-paper-2 px-4 py-3 text-xs text-ed-ink-2 flex flex-wrap items-center justify-between gap-2">
                 <span>
-                  <strong>FY 2022–2026 GAA Reconciliation:</strong>{' '}
+                  <strong className="text-ed-ink">FY 2022–2026 GAA Reconciliation:</strong>{' '}
                   {formatPeso(gaaReconciliation.gaa2226Total)} appropriated across{' '}
                   {gaaReconciliation.gaa2226Count} GAA lines ·{' '}
-                  <strong>{formatPeso(gaaReconciliation.matchedGaaSum)}</strong> matched to DPWH
+                  <strong className="text-ed-ink">{formatPeso(gaaReconciliation.matchedGaaSum)}</strong> matched to DPWH
                   contracts ·{' '}
-                  <strong>{formatPeso(gaaReconciliation.unmatchedGaaSum)}</strong> awaiting contract
+                  <strong className="text-ed-ink">{formatPeso(gaaReconciliation.unmatchedGaaSum)}</strong> awaiting contract
                   ID / PhilGEPS matching.
                 </span>
-                <span className="font-mono-data font-semibold">
+                <span className="font-mono-ed font-medium text-ed-red">
                   {gaaReconciliation.partialCount} Partially corroborated ·{' '}
                   {gaaReconciliation.discrepancyCount} Documentary discrepancy
                 </span>
-                <span className="w-full text-[11px] text-amber-900/90">
+                <span className="w-full text-[11px] text-ed-ink-3">
                   Note: &ldquo;Documentary discrepancy&rdquo; indicates a title, multi-LGU bundling,
                   or record-matching difference across public documents—not irregularity or
                   wrongdoing.
@@ -1566,7 +1555,7 @@ export default function BudgetPage() {
           </div>
 
           {categoryTotals.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ed-rule border border-ed-rule mb-6">
               {categoryTotals.map((item) => {
                 const isSelected = selectedCategory === item.category;
                 return (
@@ -1578,19 +1567,19 @@ export default function BudgetPage() {
                         prev === item.category ? 'all' : item.category
                       )
                     }
-                    className={`text-left rounded-xl border p-4 transition cursor-pointer ${
+                    className={`text-left p-4 transition-colors cursor-pointer border-0 ${
                       isSelected
-                        ? 'border-[#0032a0] bg-blue-50/60'
-                        : 'border-black/10 bg-white hover:border-[#0032a0]/40'
+                        ? 'bg-ed-navy text-white'
+                        : 'bg-white hover:bg-ed-paper-2 text-ed-ink'
                     }`}
                   >
-                    <div className="text-xs font-semibold text-slate-500 truncate">
+                    <div className={`font-mono-ed text-[10px] uppercase tracking-[0.12em] truncate ${isSelected ? 'text-white/80' : 'text-ed-ink-3'}`}>
                       {item.category}
                     </div>
-                    <div className="text-base font-bold text-[#0032a0] font-mono-data mt-1">
+                    <div className={`font-serif-ed text-lg font-bold tabular-nums mt-1 ${isSelected ? 'text-white' : 'text-ed-navy'}`}>
                       {item.total > 0 ? formatPeso(item.total) : 'Pending / N/A'}
                     </div>
-                    <div className="text-[11px] text-slate-600 mt-1 font-mono-data">
+                    <div className={`font-mono-ed text-[11px] mt-1 ${isSelected ? 'text-white/80' : 'text-ed-ink-3'}`}>
                       {item.count} {item.count === 1 ? 'project' : 'projects'} ·{' '}
                       {isSelected ? 'Showing (click to clear)' : 'Click to filter'}
                     </div>
@@ -1600,7 +1589,7 @@ export default function BudgetPage() {
             </div>
           )}
 
-          <div className="bg-slate-50 border border-black/10 rounded-xl p-4 mb-6">
+          <div className="border border-ed-ink bg-ed-paper-2 p-4 mb-6">
             <div className="flex flex-col md:flex-row gap-3 justify-between mb-3">
               <input
                 type="search"
@@ -1608,22 +1597,22 @@ export default function BudgetPage() {
                 onChange={(e) => setProjectSearch(e.target.value)}
                 placeholder="Search Contract ID, barangay, or contractor..."
                 aria-label="Search infrastructure projects"
-                className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm focus:border-[#0032a0] focus:outline-none"
+                className="flex-1 border border-ed-ink bg-white px-3.5 py-2 text-sm text-ed-ink focus:border-ed-navy focus:outline-none"
               />
-              <span className="text-sm text-slate-600 self-center tabular-nums">
+              <span className="font-mono-ed text-xs uppercase tracking-[0.1em] text-ed-ink-3 self-center tabular-nums">
                 {filteredProjects.length}{' '}
                 {filteredProjects.length === 1 ? 'project' : 'projects'}
               </span>
             </div>
-            <div className="mobile-filter-select-wrap">
-              <label htmlFor="budget-project-category-select" className="mobile-filter-select-label">
+            <div className="md:hidden">
+              <label htmlFor="budget-project-category-select" className="block font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3 mb-1">
                 Project Type
               </label>
               <select
                 id="budget-project-category-select"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="mobile-filter-select"
+                className="w-full border border-ed-ink bg-white px-3 py-2 text-xs font-medium text-ed-ink"
                 aria-label="Filter infrastructure projects by type"
               >
                 {projectCategories.map((cat) => (
@@ -1633,13 +1622,17 @@ export default function BudgetPage() {
                 ))}
               </select>
             </div>
-            <div className="filter-tab-bar filter-tab-bar--collapsible mb-0">
+            <div className="hidden md:flex flex-wrap gap-1.5">
               {projectCategories.map((cat) => (
                 <button
                   key={cat}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`filter-tab-btn ${selectedCategory === cat ? 'active' : ''}`}
+                  className={`px-3 py-1.5 border font-mono-ed text-[11px] uppercase tracking-[0.08em] cursor-pointer transition-colors ${
+                    selectedCategory === cat
+                      ? 'border-ed-navy bg-ed-navy text-white'
+                      : 'border-ed-rule-strong bg-white text-ed-ink-2 hover:border-ed-ink'
+                  }`}
                 >
                   {cat === 'all' ? 'All Project Types' : cat}
                 </button>
@@ -1648,16 +1641,16 @@ export default function BudgetPage() {
           </div>
 
           {filteredProjects.length === 0 ? (
-            <div className="bg-white border border-black/10 rounded-xl p-8 text-center">
-              <p className="text-sm font-semibold text-slate-900 mb-1">
+            <div className="border border-ed-rule bg-white p-8 text-center">
+              <p className="font-serif-ed text-base font-semibold text-ed-ink mb-1">
                 No infrastructure projects match your filter.
               </p>
-              <p className="text-xs text-slate-600 mb-4">
+              <p className="text-xs text-ed-ink-3 mb-4">
                 Try clearing the search query or selecting All Project Types.
               </p>
               <button
                 type="button"
-                className="btn btn-outline btn-sm"
+                className="border border-ed-ink bg-white px-4 py-2 font-mono-ed text-xs uppercase tracking-[0.1em] text-ed-ink hover:bg-ed-paper-2 cursor-pointer"
                 onClick={() => {
                   setProjectSearch('');
                   setSelectedCategory('all');
@@ -1667,81 +1660,89 @@ export default function BudgetPage() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-2" style={{ gap: 'var(--spacing-md)' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-ed-rule border border-ed-rule">
               {filteredProjects.map((proj) => (
                 <article
                   key={proj.id}
-                  className="bg-white border border-black/10 rounded-xl p-5 flex flex-col justify-between"
+                  className="bg-white p-5 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                      <span className="text-xs font-bold text-[#0032a0] tabular-nums">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                      <span className="font-mono-ed text-[11px] font-medium text-ed-navy tabular-nums">
                         Contract ID: {proj.id} · {proj.projectDate}
                       </span>
                       <div className="flex flex-wrap items-center gap-1.5">
                         {proj.evidenceStatus && (
-                          <span
-                            className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                          <Flag
+                            variant={
                               proj.evidenceStatus === 'Documentary discrepancy'
-                                ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                ? 'red'
                                 : proj.evidenceStatus === 'Corroborated implementation'
-                                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                                  : 'bg-blue-50 text-[#26489A] border-blue-200'
-                            }`}
+                                  ? 'navy'
+                                  : 'outline'
+                            }
                           >
                             {proj.evidenceStatus}
-                          </span>
+                          </Flag>
                         )}
                         <VerificationBadge status={proj.citation.verificationStatus} />
                       </div>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900 mb-2">{proj.name}</h3>
-                    <div className="text-xs text-slate-600 space-y-1 mb-3">
+                    <h3 className="font-serif-ed text-[17px] font-semibold text-ed-ink leading-snug mb-3">
+                      {proj.name}
+                    </h3>
+                    <div className="text-xs text-ed-ink-2 space-y-1.5 mb-4">
                       <div>
-                        <strong>Location / Barangay:</strong> {proj.location}
+                        <strong className="text-ed-ink">Location / Barangay:</strong> {proj.location}
                       </div>
                       <div>
-                        <strong>Category:</strong> {proj.category}
+                        <strong className="text-ed-ink">Category:</strong> {proj.category}
                       </div>
                       <div>
-                        <strong>Implementing Agency:</strong> {proj.implementingAgency}
+                        <strong className="text-ed-ink">Implementing Agency:</strong> {proj.implementingAgency}
                       </div>
                       <div>
-                        <strong>Funding Source:</strong> {proj.fundingSource}
+                        <strong className="text-ed-ink">Funding Source:</strong> {proj.fundingSource}
                       </div>
                       <div>
-                        <strong>Contractor:</strong> {proj.contractor}
+                        <strong className="text-ed-ink">Contractor:</strong> {proj.contractor}
                       </div>
                       {proj.gaaAllocation && (
                         <div className="tabular-nums">
-                          <strong>GAA Appropriation:</strong> {formatPeso(proj.gaaAllocation)}
+                          <strong className="text-ed-ink">GAA Appropriation:</strong>{' '}
+                          <span className="font-mono-ed">{formatPeso(proj.gaaAllocation)}</span>
                         </div>
                       )}
                       {proj.abcAmount && (
                         <div className="tabular-nums">
-                          <strong>Approved Budget (ABC):</strong> {formatPeso(proj.abcAmount)}
+                          <strong className="text-ed-ink">Approved Budget (ABC):</strong>{' '}
+                          <span className="font-mono-ed">{formatPeso(proj.abcAmount)}</span>
                         </div>
                       )}
                       {proj.contractCost && (
                         <div className="tabular-nums">
-                          <strong>Awarded Contract Cost:</strong> {formatPeso(proj.contractCost)}
+                          <strong className="text-ed-ink">Awarded Contract Cost:</strong>{' '}
+                          <span className="font-mono-ed">{formatPeso(proj.contractCost)}</span>
                         </div>
                       )}
                       {proj.ntpDate && (
                         <div className="tabular-nums">
-                          <strong>Notice to Proceed / Start:</strong> {proj.ntpDate}
+                          <strong className="text-ed-ink">Notice to Proceed / Start:</strong>{' '}
+                          <span className="font-mono-ed">{proj.ntpDate}</span>
                         </div>
                       )}
                     </div>
                   </div>
 
-                  <div className="border-t border-black/5 pt-3 flex flex-wrap items-center justify-between gap-2 text-xs">
-                    <span className="font-semibold text-emerald-700">{proj.statusLabel}</span>
+                  <div className="border-t border-ed-rule pt-3 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <span className="font-mono-ed text-[11px] font-medium uppercase tracking-[0.08em] text-ed-ink-2">
+                      {proj.statusLabel}
+                    </span>
                     <a
                       href={proj.documentUrl || proj.citation.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-medium text-[#0032a0]"
+                      className="font-mono-ed text-[11px] font-medium uppercase tracking-[0.08em] text-ed-navy hover:underline"
                     >
                       {proj.documentUrl && proj.documentUrl.toLowerCase().endsWith('.pdf')
                         ? 'DPWH Document (PDF)'
@@ -1753,7 +1754,7 @@ export default function BudgetPage() {
               ))}
             </div>
           )}
-        </div>
+        </Container>
       </section>
       )}
 
