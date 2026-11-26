@@ -1139,7 +1139,7 @@ export default function BudgetPage() {
             </div>
 
             <div className="p-5">
-              <Eyebrow>Obligations (COA Executive Summary)</Eyebrow>
+              <Eyebrow>Obligations</Eyebrow>
               <div className="font-serif-ed text-[26px] font-bold tracking-[-0.02em] text-ed-ink tabular-nums mt-2">
                 {activeBudget.obligations != null
                   ? formatPeso(activeBudget.obligations)
@@ -1153,7 +1153,7 @@ export default function BudgetPage() {
             </div>
 
             <div className="p-5">
-              <Eyebrow>Disbursements (COA Executive Summary)</Eyebrow>
+              <Eyebrow>Disbursements</Eyebrow>
               <div className="font-serif-ed text-[26px] font-bold tracking-[-0.02em] text-ed-ink tabular-nums mt-2">
                 {activeBudget.disbursements != null
                   ? formatPeso(activeBudget.disbursements)
