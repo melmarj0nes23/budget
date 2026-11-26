@@ -443,25 +443,9 @@ export default function BudgetPage() {
         title={t('budget-hero-title')}
         lede={t('budget-hero-desc')}
       >
-        <div className="flex flex-wrap items-center gap-3">
-          {activeTab === 'summary' ? (
-            <Flag
-              variant="outline"
-              className="border-white/30 bg-white/10 text-white"
-            >
-              <i className="bi bi-shield-check" aria-hidden="true" />
-              <span>{t('budget-hero-badge')}</span>
-            </Flag>
-          ) : (
-            <Flag variant="navy">
-              <i className="bi bi-shield-check" aria-hidden="true" />
-              <span>{t('budget-hero-badge')}</span>
-            </Flag>
-          )}
-          <Eyebrow tone={activeTab === 'summary' ? 'onDark' : 'default'}>
-            Alcala, Pangasinan · Open Fiscal Data
-          </Eyebrow>
-        </div>
+        <Eyebrow tone={activeTab === 'summary' ? 'onDark' : 'default'}>
+          Alcala, Pangasinan · Open Fiscal Data
+        </Eyebrow>
       </PageMasthead>
 
       {/* Overview Summary View (Default for effortless mobile/desktop scanning) */}
