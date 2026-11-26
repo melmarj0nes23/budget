@@ -556,7 +556,7 @@ export default function BudgetPage() {
                   })()}
                 </div>
                 <span className="mt-5 pt-3 border-t border-ed-rule font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-navy">
-                  {t('budget-card-growth-cta')} →
+                  {t('budget-card-growth-cta')}
                 </span>
               </button>
 
@@ -675,7 +675,7 @@ export default function BudgetPage() {
                   )}
                 </div>
                 <span className="mt-5 pt-3 border-t border-ed-rule font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-navy">
-                  {t('budget-card-diff-cta')} →
+                  {t('budget-card-diff-cta')}
                 </span>
               </button>
 
@@ -765,7 +765,7 @@ export default function BudgetPage() {
                   )}
                 </div>
                 <span className="mt-5 pt-3 border-t border-ed-rule font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-navy">
-                  {t('budget-card-gaa-cta')} →
+                  {t('budget-card-gaa-cta')}
                 </span>
               </button>
 
@@ -912,7 +912,7 @@ export default function BudgetPage() {
                   onClick={() => setActiveTab('tracker')}
                   className="mt-5 pt-3 border-t border-ed-rule text-left font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-red hover:underline cursor-pointer w-full bg-transparent"
                 >
-                  {t('budget-card-brgy-cta')} →
+                  {t('budget-card-brgy-cta')}
                 </button>
               </div>
             </div>
