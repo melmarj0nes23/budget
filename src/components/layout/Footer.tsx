@@ -109,7 +109,7 @@ export default function Footer() {
     { label: 'Overview Summary', href: '/' },
     { label: 'Barangay Tracker', href: '/tracker' },
     { label: 'Municipal Budget & Docs', href: '/budgetdocs' },
-    { label: 'DPWH Contracts (12)', href: '/contracts' },
+    { label: 'DPWH Contracts', href: '/contracts' },
     { label: 'Project Transparency', href: '/transparency' },
     { label: 'Main Portal (betteralcala.org)', href: 'https://betteralcala.org/', external: true },
   ];
