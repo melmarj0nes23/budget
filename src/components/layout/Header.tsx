@@ -56,7 +56,7 @@ export default function Header() {
         matchPrefixes: ['/budgetdocs'],
       },
       {
-        label: 'DPWH Contracts (12)',
+        label: 'DPWH Contracts',
         to: '/contracts',
         matchPrefixes: ['/contracts'],
       },
